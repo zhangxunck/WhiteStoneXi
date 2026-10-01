@@ -695,6 +695,7 @@ body.zh-simple .para-col-zh .zh-si { display: block; }
 .card-hero {
   margin: 32px 0 24px 0;
   text-align: center;
+  position: relative;
 }
 .card-hero img {
   max-width: 100%;
@@ -706,6 +707,21 @@ body.zh-simple .para-col-zh .zh-si { display: block; }
 }
 .card-hero img:hover {
   transform: translateY(-2px);
+}
+/* 题图角落版权水印（IP 盘点 §图片 IP 保护）：渲染层叠加，不改源文件
+   ——高清原图不进公开仓（源文件隔离），水印让盗用自带归属痕迹。 */
+.card-hero::after {
+  content: "© 白石溪 WhiteStoneSpring";
+  position: absolute;
+  top: 12px;
+  right: 14px;            /* 图右上角——img 是 .card-hero 首个子元素，无歧义 */
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: #fff;
+  mix-blend-mode: difference;        /* 深底浅图两可读 */
+  opacity: 0.55;
+  pointer-events: none;
+  font-family: -apple-system, "PingFang SC", sans-serif;
 }
 .card-hero figcaption {
   margin-top: 10px;
