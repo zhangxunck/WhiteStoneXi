@@ -36,7 +36,7 @@
 
 ### 各篇的证据底座与配图
 
-写作四篇各配一张丝带图，五色对应五篇，标出该篇在论证里的位置而非装饰。硅基神殿五篇各配一幅吴冠中画作，取画中的结构意象对应正文主题。
+写作四篇各配一张丝带图，四色对应四篇，标出该篇在论证里的位置而非装饰。硅基神殿五篇各配一幅吴冠中画作，取画中的结构意象对应正文主题。
 
 引用格式按 **GB/T 7714—2025**，逐条标到原文与页码。
 
@@ -85,7 +85,7 @@ Each series reads on its own. Any order works.
 
 ### Evidence Base and Visual Artifacts
 
-The four writing pieces carry one ribbon each; five colors mark five positions in the argument rather than decoration. The five Silicon Temple pieces each carry a Wu Guanzhong painting, chosen so the structure in the picture answers the theme in the text.
+The four writing pieces carry one ribbon each; four colors mark four positions in the argument rather than decoration. The five Silicon Temple pieces each carry a Wu Guanzhong painting, chosen so the structure in the picture answers the theme in the text.
 
 Citations follow **GB/T 7714—2025**, traced to originals with page numbers.
 

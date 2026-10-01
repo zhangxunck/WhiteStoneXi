@@ -70,7 +70,7 @@ TOGGLE_JS = """
   document.querySelectorAll('.para-tabs button').forEach(function(btn){
     btn.addEventListener('click',function(){ applyView(btn.dataset.view); });
   });
-  // 站点级（导览/发刊词）繁/简：点按钮切 body.zh-simple，站名/导航用 site-tr/site-si 成对
+  // 站点级（导览/简介）繁/简：点按钮切 body.zh-simple，站名/导航用 site-tr/site-si 成对
   document.querySelectorAll('.lang-toggle').forEach(function(btn){
     btn.addEventListener('click',function(e){
       e.preventDefault();
@@ -83,7 +83,7 @@ TOGGLE_JS = """
 """
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-# style.css 缓存戳：每次 build 刷新（mtime 整秒），保证发刊词/并排版式即时生效
+# style.css 缓存戳：每次 build 刷新（mtime 整秒），保证简介/并排版式即时生效
 css_v = str(int(os.path.getmtime(os.path.join(ROOT, "assets", "style.css"))))
 
 # 3-C 纯流动抽象艺术 SVG
@@ -415,7 +415,7 @@ def _nav_html(depth=""):
         (f"{d}index.html",        "導覽", "导览"),
         (f"{d}archive.html",      "目錄", "目录"),
         (f"{d}podcasts.html",     "播客", "播客"),
-        (f"{d}README.html",       "發刊詞", "发刊词"),
+        (f"{d}README.html",       "簡介", "简介"),
     ]
     ext = [
         ("https://github.com/zhangxunck/WhiteStoneSpring", "GitHub", "GitHub"),
@@ -1088,11 +1088,11 @@ archive_page = f"""<!DOCTYPE html>
 </html>"""
 open(os.path.join(ROOT, "archive.html"), "w", encoding="utf-8").write(archive_page)
 
-# 3. 编译 README.md -> README.html（发刊词页，导航锚点；默认繁体）
+# 3. 编译 README.md -> README.html（简介页，导航锚点；默认繁体）
 readme_md = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
 readme_parser = markdown.Markdown(extensions=['extra', 'tables', 'fenced_code', 'toc'])
 readme_html = readme_parser.convert(readme_md)
-# 发刊词页：双语逐节配对（与文章页同一套 .parallel-body 机制）
+# 简介页：双语逐节配对（与文章页同一套 .parallel-body 机制）
 # ⚠ trad() 绝不能作用于整个 HTML —— 会把 href/src 里的路径也转成繁体，
 #   而实际文件名是简体，导致全站链接 404（2026-09-30 实测 8/8 断链）。
 # 做法：只转换节点文本，属性一律不动。
@@ -1191,7 +1191,7 @@ for _i, (_h3, _cbody) in enumerate(_cn[1]):
         f'<div class="para-sec-en para-col-en">{_e_html}</div>')
 
 _readme_pre_tr = _trad_keep_attrs(_render_md(_readme_pre)) if _readme_pre.strip() else ""
-_readme_title = _re.sub(r'^#+\s*', '', _readme_pre.split("\n")[0]).strip() if _readme_pre.strip() else "發刊詞"
+_readme_title = _re.sub(r'^#+\s*', '', _readme_pre.split("\n")[0]).strip() if _readme_pre.strip() else "簡介"
 
 _readme_tabs = (
     '<div class="para-tabs" role="tablist">'
@@ -1216,8 +1216,8 @@ readme_page = f"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noimageindex">
 <meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
-<title>發刊詞 · 白石溪</title>
-<meta name="description" content="白石溪發刊詞：關於這個站是什麼、怎麼寫、怎麼讀。">
+<title>簡介 · 白石溪</title>
+<meta name="description" content="白石溪簡介：關於這個站是什麼、怎麼寫、怎麼讀。">
 <link rel="icon" type="image/svg+xml" href="assets/v32/v32_logo_xi_white.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="assets/style.css?v={css_v}">
 </head>
@@ -1232,7 +1232,7 @@ readme_page = f"""<!DOCTYPE html>
 
 <main class="article-container">
   <div class="article-kicker">關於本站</div>
-  <h1 class="article-title">發刊詞</h1>
+  <h1 class="article-title">簡介</h1>
   <div class="article-body">
 {_readme_pre_tr}
   </div>
@@ -1256,12 +1256,12 @@ readme_page = f"""<!DOCTYPE html>
 </body>
 </html>"""
 open(os.path.join(ROOT, "README.html"), "w", encoding="utf-8").write(readme_page)
-print("Generated README.html (发刊词, 中英逐节配对)")
+print("Generated README.html (简介, 中英逐节配对)")
 
-# 3b. 发刊词目录里未发布篇目的链接降级为纯文本 + 「待發布」角标。
-# README.md 是发刊词正本，9 篇目录要保留（SSOT 不改），
+# 3b. 简介目录里未发布篇目的链接降级为纯文本 + 「待發布」角标。
+# README.md 是简介正本，9 篇目录要保留（SSOT 不改），
 # 但已下架篇目不能留死链（读者点了 404）。
-# ⚠ 发刊词的 <a> 锚文本被 _render_md 清空成 <a href="..."></a>，
+# ⚠ 简介的 <a> 锚文本被 _render_md 清空成 <a href="..."></a>，
 #   所以匹配式里锚文本部分是 [^<]* 的空串，不是 .*?。
 _published = {a["basename"] + ".html" for a in article_metadata}
 _demoted = []
