@@ -3,6 +3,10 @@ import json
 import markdown
 import time
 
+# 生产站点域名。历史上手写死链（whitestonespring.org）导致域名漂移，
+# 此处集中定义并由 _inject_site_url 在渲染时注入，源文件写 {SITE_URL} 占位符。
+SITE_URL = "https://blog.zhangxunnj.cc.cd"
+
 # 簡繁转换（发刊默认繁体；OpenCC 大陆地区规范字形 s2tw）。构建 venv 已装 opencc-python-reimplemented。
 try:
     from opencc import OpenCC as _OpenCC
@@ -893,7 +897,7 @@ index_html = f"""<!DOCTYPE html>
 
 <main class="home-container">
   <div class="home-intro">
-    <div class="home-motto">“It's all made up, but you get to make it up.”</div>
+    <div class="home-motto">Borrow everything. Become yourself.<span class="motto-si"> · 借萬物，成自己。</span></div>
   </div>
 
   <section class="home-series">
@@ -1109,8 +1113,21 @@ if readme_raw.startswith("---"):
 else:
     readme_body = readme_raw
 
+def _inject_site_url(txt):
+    """把源文件里的 {SITE_URL} 占位符替换为生产域名，并清理历史遗留的错误域名。
+
+    历史上手写 https://whitestonespring.org/... 而仓库无 CNAME、真实域名是
+    blog.zhangxunnj.cc.cd，导致文章页"Original (Chinese)"深链指向不存在的站。
+    此处同时兜住存量错链：把 whitestonespring.org 换成真实域名。
+    """
+    if not txt:
+        return txt
+    txt = txt.replace('{SITE_URL}', SITE_URL)
+    txt = txt.replace('https://whitestonespring.org', SITE_URL)
+    return txt
+
 def _render_md(txt):
-    h = _md_html(txt)
+    h = _md_html(_inject_site_url(txt))
     h = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', h, flags=_re.S)
     h = _re.sub(r'(<a [^>]*href="[^"]*"[^>]*>)(.*?)(</a>)', r'\1\3', h, flags=_re.S)  # 链接只留壳
     return h

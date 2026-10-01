@@ -1,6 +1,6 @@
 # 白石溪 · White Stone Spring
 
-> “It's all made up, but you get to make it up.”  
+> Borrow everything. Become yourself. · 借萬物，成自己。  
 > 一条持续调查「语言、写作与思想」的溪。  
 > Maintained by [@zhangxunnj](https://github.com/zhangxunnj)
 
@@ -56,7 +56,7 @@
 <a name="english-introduction"></a>
 ## English Introduction
 
-> *"It's all made up, but you get to make it up."*  
+> *Borrow everything. Become yourself.* · *借萬物，成自己。*  
 > A continuous inquiry into language, prose, and thought.
 
 White Stone Spring is a public repository and an independent site. It carries two series, nine long pieces in all. Each rests on **recomputable data and primary sources** — no loose rhetoric.
