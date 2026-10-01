@@ -525,6 +525,14 @@ def _md_html(mdtext):
     h = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', h, flags=_re.S)
     return h
 
+# 内部工作节：md 源保留，公开页剥离（Eva 品牌审计 P0 草稿外泄）
+INTERNAL_SECTIONS = ("待核实清单", "待核實清單", "To verify")
+
+def strip_internal_sections(md):
+    for title in INTERNAL_SECTIONS:
+        md = _re.sub(r"\n##+\s*%s\s*\n[\s\S]*?(?=\n##\s|\Z)" % _re.escape(title), "\n", md)
+    return _re.sub(r"\n{3,}", "\n\n", md).strip()
+
 # 题图映射：basename -> assets 短名（卡片图 PNG + 交互 HTML 查看器成对）
 CARD_IMG = {
     "翻译如何重塑中文_两千年来五波外来语与现代写作真相": "翻译如何重塑中文",
@@ -606,6 +614,12 @@ for md_path in md_files:
         en_raw = open(en_path, encoding="utf-8").read()
         en_content = en_raw.split("---", 2)[2] if en_raw.startswith("---") else en_raw
     has_en = bool(en_content.strip())
+
+    # 内部工作节剥离（Eva 品牌审计 P0）：事实核查台账是内部资产，
+    # md 源保留（交稿稿要全），公开页不得展示。渲染层是最后一道闸——
+    # publish.py 只管中文投影，英文 .en.md 是直写进来的，得在这里兜住。
+    content = strip_internal_sections(content)
+    en_content = strip_internal_sections(en_content) if has_en else en_content
     
     # 中文按 ## 切段；每段给 简体(原文) 与 繁体(s2tw) 双份；英文按 ## 切段
     cn_pream, cn_secs = split_by_h2(content)

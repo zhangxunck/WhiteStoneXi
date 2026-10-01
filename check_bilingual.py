@@ -67,9 +67,21 @@ def read(path):
     return open(path, encoding='utf-8').read()
 
 
+# 内部工作节公开页会被剥离（build_site.strip_internal_sections）。
+# 检查要针对**将要公开的形态**，所以两侧读入后都先剥一次，
+# 否则英文 .en.md 的 To verify 会被算成「多出的节」→ 节数不等假阳性。
+INTERNAL_SECTIONS = ("待核实清单", "待核實清單", "To verify")
+
+def strip_internal(md):
+    for title in INTERNAL_SECTIONS:
+        md = re.sub(r"\n##+\s*%s\s*\n[\s\S]*?(?=\n##\s|\Z)" % re.escape(title), "\n", md)
+    return re.sub(r"\n{3,}", "\n\n", md).strip()
+
+
 def analyse(md_fn, label, key):
-    cn = split_h2(read(md_fn))
-    en = split_h2(read(md_fn[:-3] + '.en.md')) if os.path.exists(md_fn[:-3] + '.en.md') else []
+    cn = split_h2(strip_internal(read(md_fn)))
+    en_path = md_fn[:-3] + '.en.md'
+    en = split_h2(strip_internal(read(en_path))) if os.path.exists(en_path) else []
 
     print(f"\n{'='*74}\n{label}\n{'='*74}")
     if not en:
