@@ -1281,7 +1281,7 @@ if _demoted:
 
 
 # 4. 生成 sitemap.xml（供收录与版权锚点，主入口 = blog 域）
-BASE = "https://blog.zhangxunnj.cc.cd/"
+BASE = SITE_URL + "/"
 urls = ['<url><loc>' + BASE + '</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>',
         '<url><loc>' + BASE + 'archive.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>',
         '<url><loc>' + BASE + 'podcasts.html</loc><changefreq>daily</changefreq><priority>0.9</priority></url>',
@@ -1292,6 +1292,41 @@ for a in article_metadata:
     urls.append('<url><loc>' + BASE + 'articles/' + a["basename"] + '.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>')
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + '\n</urlset>'
 open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write(sitemap)
+
+# 5. 生成播客 RSS（feed.xml）——Spotify 提交需要，Eva 侧卡在粘贴这一步。
+# 单集音频放 assets/podcast/；无音频时生成合法但空的 feed（channel 级元数据齐全，
+# 不伪造 episode）。build 时按 mtime 定 pubDate，加 ?v= 由平台侧自行抓取。
+import email.utils as _eu
+_pod_dir = os.path.join(ROOT, "assets", "podcast")
+_eps = []
+if os.path.isdir(_pod_dir):
+    for _f in sorted(glob.glob(os.path.join(_pod_dir, "*.mp3")) + glob.glob(os.path.join(_pod_dir, "*.m4a"))):
+        _bn = os.path.splitext(os.path.basename(_f))[0]
+        _eps.append((_bn, _f, time.strftime("%a, %d %b %Y %H:%M:%S +0800",
+                     time.localtime(os.path.getmtime(_f)))))
+_feed = ['<?xml version="1.0" encoding="UTF-8"?>',
+         '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">',
+         '<channel>',
+         '<title>白石溪播客</title>',
+         '<link>' + BASE + '</link>',
+         '<description>白石溪 WhiteStoneSpring — 持续调查语言、写作与思想。三人对谈。</description>',
+         '<language>zh-cn</language>',
+         '<itunes:author>白石溪 WhiteStoneSpring</itunes:author>',
+         '<itunes:owner><itunes:name>白石溪</itunes:name></itunes:owner>',
+         '<itunes:category text="Society &amp; Culture"/>',
+         '<itunes:explicit>false</itunes:explicit>']
+for _bn, _fp2, _pd in _eps:
+    _feed += ['<item>',
+              '<title>' + _re.sub(r'[-_]+', ' ', _bn) + '</title>',
+              '<description>白石溪播客单集。</description>',
+              '<enclosure url="' + BASE + 'assets/podcast/' + os.path.basename(_fp2) + '"'
+              ' type="audio/mpeg" length="%d"/>' % os.path.getsize(_fp2),
+              '<guid isPermaLink="false">' + _bn + '</guid>',
+              '<pubDate>' + _pd + '</pubDate>',
+              '</item>']
+_feed += ['</channel>', '</rss>']
+open(os.path.join(ROOT, "feed.xml"), "w", encoding="utf-8").write("\n".join(_feed))
+print("feed.xml: %d 单集（%s）" % (len(_eps), "有音频" if _eps else "空 feed，勿提交平台"))
 
 # 加星播客页（数据 podcasts_data.json 在则刷新骨架；缺则保留旧页，不误删）
 _podcast_page()
