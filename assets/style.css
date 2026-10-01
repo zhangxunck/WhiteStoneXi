@@ -925,6 +925,20 @@ body.nav-open .burger-bar:nth-child(3) { transform: translateY(-6.5px) rotate(-4
   align-self: center;
 }
 .series-item:hover .series-item-arrow { opacity: 1; transform: translateX(4px); }
+/* 未发布占位项：无指针、灰调、不响应 hover（Eva spec v1.0 §连载结构） */
+.series-item.is-upcoming { cursor: default; color: var(--gray); }
+.series-item.is-upcoming:hover { background: none; padding-left: 4px; }
+.series-item.is-upcoming .series-item-title { color: var(--gray); font-weight: 500; }
+.series-item.is-upcoming .series-item-num { opacity: 0.28; }
+.series-item.is-upcoming .series-item-arrow { opacity: 1; }
+.badge-status {
+  display: inline-block; font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.06em; padding: 2px 8px; margin-left: 8px;
+  border-radius: 2px; vertical-align: 2px; line-height: 1.6;
+  font-family: -apple-system, "PingFang SC", sans-serif;
+}
+.badge-status.is-published { color: var(--series-accent, #8C3A2E); background: rgba(224, 48, 48, 0.07); }
+.badge-status.is-upcoming { color: var(--gray); background: rgba(168, 168, 168, 0.14); }
 .series-back {
   display: flex; gap: 28px; margin-top: 44px;
   padding-top: 26px; border-top: 1px solid var(--rule);

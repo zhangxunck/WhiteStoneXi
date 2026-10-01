@@ -100,6 +100,9 @@ def analyse(md_fn, label, key):
         # 但不能反用段落数——英文常把中文长段拆成多段（中文 8 段 ↔ 英文 14 段
         # 是地道英文的正常形态，非缺译）。表格节只豁免字数比，不设段落数下限。
         is_table = cb.count('|') >= 10 and eb.count('|') >= 10
+        # X thread / 传播素材节：英文独有的运营资产，中文版故意不设对应节
+        # （并排阅读时不展示 tweet 串）。属结构性豁免，不是漏译。
+        is_en_only = et.startswith('X thread') and ct == '—'
         n_cn_ref = len(re.findall(r'(?m)^\s*\[(\d+)\]', cb))
         n_en_ref = len(re.findall(r'(?m)^\s*\[(\d+)\]', eb))
         cn_nums = re.findall(r'(?m)^\s*\[(\d+)\]', cb)
@@ -111,7 +114,9 @@ def analyse(md_fn, label, key):
         yr_gap = (cn_yrs != en_yrs) if is_ref else False
 
         flag = ''
-        if wrd == 0:
+        if is_en_only:
+            flag = '  · 英文独有（传播素材，不计）'
+        elif wrd == 0:
             flag = '  ✗ 英文空节'
         elif ref_gap:
             flag = f'  ✗ 参考文献编号序列不等(中{len(cn_nums)}/英{len(en_nums)})'

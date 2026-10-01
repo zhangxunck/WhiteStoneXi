@@ -650,19 +650,22 @@ for md_path in md_files:
         _lst = _sd["order"]
         _idx = _lst.index(basename)
         _nm, _tg = _bi(_sd["name"]), _bi(_sd["tagline"])
+        # 未发布篇目不下架显示：目录/上下篇只列已上线篇（Eva spec v1.0）
+        _pub = [b for b in _lst if b in _TITLE_OF]
+        _pub_idx = _pub.index(basename)
         def _one(b):
             return (f'<li><a href="{b}.html"><span class="sn-num">'
                     f'{_lst.index(b)+1:02d}</span>'
                     f'<span class="sn-t">{trad(_TITLE_OF.get(b, b))}</span></a></li>')
-        _toc = "".join(_one(b) for b in _lst)
+        _toc = "".join(_one(b) for b in _pub)
         def _pager(b, label, cls):
             if not b: return '<span class="pn-empty"></span>'
             return (f'<a class="{cls}" href="{b}.html">'
                     f'<span class="pn-label">{label}</span>'
                     f'<span class="pn-title">{trad(_TITLE_OF.get(b, b))}</span>'
                     f'<span class="pn-arrow">→</span></a>')
-        _prev = _lst[_idx-1] if _idx > 0 else None
-        _next = _lst[_idx+1] if _idx < len(_lst)-1 else None
+        _prev = _pub[_pub_idx-1] if _pub_idx > 0 else None
+        _next = _pub[_pub_idx+1] if _pub_idx < len(_pub)-1 else None
         series_nav_html = f"""
   <nav class="series-nav" style="--series-accent:{_sd['accent']}">
     <div class="series-nav-head">
@@ -774,6 +777,7 @@ def _card(a, depth=""):
     </a>"""
 
 # 2a. 系列入口卡（带 Xi 章角押 + 篇数）
+_BY_BASE = {a["basename"]: a for a in article_metadata}
 series_cards_html = ""
 for slug in SERIES_ORDER:
     sd = SERIES[slug]
@@ -787,7 +791,7 @@ for slug in SERIES_ORDER:
       <div class="series-entry-body">
         <div class="series-entry-tag">
           <span class="site-tr">{g_tr}</span><span class="site-si">{g_si}</span>
-          <span class="series-count">{n_art} <span class="site-tr">篇</span><span class="site-si">篇</span></span>
+          <span class="series-count">已發布 {sum(1 for b in sd['order'] if b in _BY_BASE)} / 共 {n_art} <span class="site-tr">篇</span><span class="site-si">篇</span></span>
         </div>
         <h2 class="series-entry-name">
           <span class="site-tr">{n_tr}</span><span class="site-si">{n_si}</span>
@@ -885,23 +889,38 @@ open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(index_html)
 
 # 2d. 系列子页 series/<slug>.html
 os.makedirs(os.path.join(ROOT, "series"), exist_ok=True)
-_BY_BASE = {a["basename"]: a for a in article_metadata}
 for slug in SERIES_ORDER:
     sd = SERIES[slug]
     nm, tg, ds = _bi(sd["name"]), _bi(sd["tagline"]), _bi(sd["desc"])
-    items = [_BY_BASE[b] for b in sd["order"] if b in _BY_BASE]
-    if not items:
-        continue
-    body = "".join(f"""
-    <a class="series-item" id="s-{sd['order'].index(a['basename'])+1}" href="../articles/{a['basename']}.html">
-      <span class="series-item-num">{sd['order'].index(a['basename'])+1:02d}</span>
+    
+    items_body = []
+    for idx, b in enumerate(sd["order"]):
+        num_str = f"{idx+1:02d}"
+        if b in _BY_BASE:
+            a = _BY_BASE[b]
+            items_body.append(f"""
+    <a class="series-item" id="s-{idx+1}" href="../articles/{a['basename']}.html">
+      <span class="series-item-num">{num_str}</span>
       <span class="series-item-body">
-        <span class="series-item-title">{trad(a['title'])}</span>
+        <span class="series-item-title">{trad(a['title'])} <span class="badge-status is-published">已發布</span></span>
         <span class="series-item-abs">{trad(a['abstract'])}</span>
         <span class="series-item-meta">{trad(a['category_label'])} · {a['date']}</span>
       </span>
       <span class="series-item-arrow">→</span>
-    </a>""" for a in items)
+    </a>""")
+        else:
+            placeholder_title = trad(_TITLE_OF.get(b, b.replace("硅基神殿的隐喻_", "").replace("写作与判断力_", "")))
+            items_body.append(f"""
+    <div class="series-item is-upcoming" id="s-{idx+1}">
+      <span class="series-item-num">{num_str}</span>
+      <span class="series-item-body">
+        <span class="series-item-title">{placeholder_title} <span class="badge-status is-upcoming">連載中 · 每週一更新</span></span>
+        <span class="series-item-abs">即將上線，敬請期待。</span>
+      </span>
+      <span class="series-item-arrow lock">⏳</span>
+    </div>""")
+            
+    body = "".join(items_body)
     series_page = f"""<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -926,7 +945,7 @@ for slug in SERIES_ORDER:
     <span class="series-hero-seal">{_brand_wordmark('Xi章_阴刻_圆_朱红', '../')}</span>
     <div class="series-hero-tag">
       <span class="site-tr">{tg[0]}</span><span class="site-si">{tg[1]}</span>
-      <span class="series-count">{len(items)} <span class="site-tr">篇</span><span class="site-si">篇</span></span>
+      <span class="series-count">{len(sd['order'])} <span class="site-tr">篇</span><span class="site-si">篇</span></span>
     </div>
     <h1 class="series-hero-name">
       <span class="site-tr">{nm[0]}</span><span class="site-si">{nm[1]}</span></h1>
@@ -1179,6 +1198,27 @@ readme_page = f"""<!DOCTYPE html>
 </html>"""
 open(os.path.join(ROOT, "README.html"), "w", encoding="utf-8").write(readme_page)
 print("Generated README.html (发刊词, 中英逐节配对)")
+
+# 3b. 发刊词目录里未发布篇目的链接降级为纯文本 + 「待發布」角标。
+# README.md 是发刊词正本，9 篇目录要保留（SSOT 不改），
+# 但已下架篇目不能留死链（读者点了 404）。
+# ⚠ 发刊词的 <a> 锚文本被 _render_md 清空成 <a href="..."></a>，
+#   所以匹配式里锚文本部分是 [^<]* 的空串，不是 .*?。
+_published = {a["basename"] + ".html" for a in article_metadata}
+_demoted = []
+def _demote_anchor(m):
+    href = m.group(1)
+    if os.path.basename(href) in _published:
+        return m.group(0)
+    _demoted.append(os.path.basename(href))
+    return ('<span class="upcoming-link" title="待发布">%s'
+            '<span class="badge-status is-upcoming">待發布</span></span>' % m.group(1))
+_fp = os.path.join(ROOT, "README.html")
+_h_src = open(_fp, encoding="utf-8").read()
+_h = _re.sub(r'<a href="(articles/[^"]+\.html)">([^<]*)</a>', _demote_anchor, _h_src)
+open(_fp, "w", encoding="utf-8").write(_h)
+if _demoted:
+    print("README.html: %d 个未发布篇目降级为「待發布」" % len(_demoted))
 
 
 # 4. 生成 sitemap.xml（供收录与版权锚点，主入口 = blog 域）
