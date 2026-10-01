@@ -550,6 +550,24 @@ CARD_IMG = {
     "写作是学习的发生地_意外连接与开发自己的三道工序": "写作是学习的发生地",
     "AI认知判断力内化与外部化双钢人": "AI认知判断力",
 }
+# 硅基神殿系列题图：吴冠中风格 SVG，无交互版（纯矢量，不配卡片 HTML）
+SERIES_HERO = {
+    "硅基神殿的隐喻_代号的神学":      "硅基神殿_01_吴冠中.svg",
+    "硅基神殿的隐喻_诸神的联邦":      "硅基神殿_02_吴冠中.svg",
+    "硅基神殿的隐喻_轴心的倒流":      "硅基神殿_03_吴冠中.svg",
+    "硅基神殿的隐喻_无我者与语言游戏": "硅基神殿_04_吴冠中.svg",
+    "硅基神殿的隐喻_有限游戏的造物主": "硅基神殿_05_吴冠中.svg",
+}
+def _series_hero_figure(base, title):
+    """系列题图（SVG）：cache-bust 用 mtime，内容改了必须换戳。"""
+    svg = SERIES_HERO.get(base)
+    if not svg or not os.path.exists(os.path.join(ROOT, "assets", svg)):
+        return ""
+    v = str(int(os.path.getmtime(os.path.join(ROOT, "assets", svg))))
+    return f'''<figure class="card-hero">
+  <img src="../assets/{svg}?v={v}" alt="{title} 题图" loading="lazy">
+  <figcaption>白石溪 · 硅基神殿系列</figcaption>
+</figure>'''
 def _hero_figure(base, title):
     s = CARD_IMG.get(base)
     if not s:
@@ -741,7 +759,7 @@ for md_path in md_files:
     <span>{date}</span>
   </div>
 
-  {_hero_figure(basename, title)}
+  {_hero_figure(basename, title) or _series_hero_figure(basename, title)}
   <div class="article-body">
 {card_html}
   </div>
