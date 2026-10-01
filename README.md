@@ -2,7 +2,6 @@
 
 > Borrow everything. Become yourself. · 借萬物，成自己。  
 > 一条持续调查「语言、写作与思想」的溪。  
-> Maintained by [@zhangxunnj](https://github.com/zhangxunnj)
 
 [English Introduction Below](#english-introduction)
 
