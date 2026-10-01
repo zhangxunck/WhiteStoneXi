@@ -318,7 +318,7 @@ def _podcast_page():
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noimageindex">
 <title>加星播客 · 白石溪</title>
-<link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
+<link rel="icon" type="image/svg+xml" href="assets/v32/v32_logo_xi_white.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="assets/style.css?v={css_v}">
 </head>
 <body>
@@ -546,30 +546,36 @@ def _hero_figure(base, title):
 </figure>'''
 
 
-# 品牌字标：从 .brand_logo.py 产出的零字体依赖 SVG（v31 三色×活字印刷体系），cache-bust 用
-# variant: ('字标', '白底') 等；favicon 用 ('Xi章', '白底') 圆章
-_BRAND_VARIANTS = {
-    "字标_白底": "brand-wordmark",
-    "字标_红底": "brand-wordmark is-red",
-    "字标_黑底": "brand-wordmark is-black",
-    "Xi章_白底": "brand-wordmark is-seal",
-    "Xi章_红底": "brand-wordmark is-seal is-red",
-    "Xi章_黑底": "brand-wordmark is-seal is-black",
+# 品牌字标与 Logo：从 .brand_logo.py 产出的 v32 商用水准极简资产体系，cache-bust 用
+_BRAND_V32_MAP = {
+    # 常用别名映射到 assets/v32/ 下的标准文件名
+    "字标_白底": ("v32/v32_wordmark_cn_white.svg", "brand-wordmark"),
+    "字标_黑底": ("v32/v32_wordmark_cn_black.svg", "brand-wordmark is-black"),
+    "英文字标_白底": ("v32/v32_wordmark_en_white.svg", "brand-wordmark"),
+    "英文字标_黑底": ("v32/v32_wordmark_en_black.svg", "brand-wordmark is-black"),
+    "Logo_Xi_白底": ("v32/v32_logo_xi_white.svg", "brand-logo-xi"),
+    "Logo_Xi_黑底": ("v32/v32_logo_xi_black.svg", "brand-logo-xi is-black"),
+    "单色_黑": ("v32/v32_mono_black.svg", "brand-mono"),
+    "单色_白": ("v32/v32_mono_white.svg", "brand-mono is-white"),
+    # 兼容原 v31 印章位（全站角押、系列角押平滑过渡为 v32 Xi 极简 Logo）
+    "Xi章_白底": ("v32/v32_logo_xi_white.svg", "brand-wordmark is-seal"),
+    "Xi章_阴刻_圆_朱红": ("v32/v32_logo_xi_white.svg", "brand-wordmark is-seal"),
+    "Xi章_阴刻_圆_玄黑": ("v32/v32_logo_xi_white.svg", "brand-wordmark is-seal"),
+    "Xi章_阴刻_方_朱红": ("v32/v32_logo_xi_white.svg", "brand-wordmark is-seal"),
 }
 
 
 def _brand_wordmark(variant="字标_白底", depth=""):
-    """variant: '字标_白底' / 'Xi章_白底' 等。depth: '' 用于根目录 (index.html)，
-    '../' 用于 articles/ 子目录；返回带 ?v= 的 <img> 标签。"""
-    fn = f"brand_白石溪_{variant}.svg"
-    p = os.path.join(ROOT, "assets", fn)
+    """variant 映射到 assets/v32/ 实物资产。depth: '' 或 '../'；返回带 ?v= 的 <img> 标签。"""
+    rel_fn, css_cls = _BRAND_V32_MAP.get(variant, ("v32/v32_wordmark_cn_white.svg", "brand-wordmark"))
+    p = os.path.join(ROOT, "assets", rel_fn)
     if not os.path.exists(p):
         return ""
     v = str(int(os.path.getmtime(p)))
-    return f'<img src="{depth}assets/{fn}?v={v}" alt="白石溪" class="{_BRAND_VARIANTS.get(variant, "brand-wordmark")}">'
+    return f'<img src="{depth}assets/{rel_fn}?v={v}" alt="白石溪" class="{css_cls}">'
 
 
-_BRAND_FAVICON_V = "1790580667"  # cache-bust for favicon (Xi章 白底 圆章)
+_BRAND_FAVICON_V = "1790580668"  # cache-bust for favicon (v32 Logo Xi)
 for md_path in md_files:
     raw = open(md_path, encoding="utf-8").read()
     basename = os.path.splitext(os.path.basename(md_path))[0]
@@ -687,7 +693,7 @@ for md_path in md_files:
 <meta name="robots" content="noimageindex">
 <meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
 <title>{trad(title)} · 白石溪</title>
-<link rel="icon" type="image/svg+xml" href="../assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
+<link rel="icon" type="image/svg+xml" href="../assets/v32/v32_logo_xi_white.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="../assets/style.css?v={css_v}">
 </head>
 <body class="{body_cls}">
@@ -827,7 +833,7 @@ index_html = f"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>白石溪 · White Stone Spring</title>
 <meta name="description" content="白石溪 · 長文寫作：中文與寫作、AI 認知、硅基神殿的隱喻。">
-<link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
+<link rel="icon" type="image/svg+xml" href="assets/v32/v32_logo_xi_white.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="assets/style.css?v={css_v}">
 </head>
 <body>
@@ -903,7 +909,7 @@ for slug in SERIES_ORDER:
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{nm[0]} · 白石溪</title>
 <meta name="description" content="{ds[0]}">
-<link rel="icon" type="image/svg+xml" href="../assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
+<link rel="icon" type="image/svg+xml" href="../assets/v32/v32_logo_xi_white.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="../assets/style.css?v={css_v}">
 </head>
 <body>
@@ -988,7 +994,7 @@ archive_page = f"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>目錄 · 白石溪</title>
 <meta name="description" content="白石溪全部文章目錄，按系列分組。">
-<link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
+<link rel="icon" type="image/svg+xml" href="assets/v32/v32_logo_xi_white.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="assets/style.css?v={css_v}">
 </head>
 <body>
@@ -1134,7 +1140,7 @@ readme_page = f"""<!DOCTYPE html>
 <meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
 <title>發刊詞 · 白石溪</title>
 <meta name="description" content="白石溪發刊詞：關於這個站是什麼、怎麼寫、怎麼讀。">
-<link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
+<link rel="icon" type="image/svg+xml" href="assets/v32/v32_logo_xi_white.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="assets/style.css?v={css_v}">
 </head>
 <body class="has-parallel">
