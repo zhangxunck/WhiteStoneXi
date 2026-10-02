@@ -94,6 +94,57 @@ body {
 .home-intro {
   margin-bottom: 56px;
 }
+/* 首屏副标题 + 订阅 CTA（2026-10-02 品牌审计 P1-3/P1-4，Alex 终审文案） */
+.home-subtitle {
+  margin: 18px 0 0;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ink);
+  letter-spacing: 0.4px;
+}
+.home-subtitle-en {
+  margin: 6px 0 0;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gray);
+}
+.home-cta { margin: 22px 0 0; }
+.home-cta-btn {
+  display: inline-block;
+  font-size: 13.5px;
+  letter-spacing: 0.6px;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 2px;
+  padding: 9px 22px;
+  transition: opacity 0.15s;
+}
+.home-cta-btn:hover { opacity: 0.82; }
+/* 2026-10-02 P1-3/4：首页 CTA 小字注记 + 播客页正式入口 feed 行 */
+.home-cta-note {
+  font-size: 12px;
+  color: var(--gray);
+}
+.podcast-feed-line {
+  margin: 22px 0 0;
+  font-size: 14px;
+  color: var(--ink);
+}
+.podcast-feed-line .podcast-listen-btn {
+  display: inline-block;
+  margin-right: 14px;
+  padding: 6px 14px;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  font-size: 13.5px;
+  letter-spacing: 0.5px;
+  color: var(--ink);
+  transition: background .15s ease, color .15s ease;
+}
+.podcast-feed-line .podcast-listen-btn:hover { background: var(--ink); color: #fff; }
+.podcast-feed-line.is-empty { color: var(--gray); font-style: italic; }
 .home-motto {
   font-family: Georgia, serif;
   font-style: italic;
@@ -832,6 +883,13 @@ body.nav-open .burger-bar:nth-child(3) { transform: translateY(-6.5px) rotate(-4
   border: 1px solid var(--rule);
   border-radius: 2px; padding: 1px 6px;
 }
+/* 空货架降级（2026-10-02 P1-5）：0 篇系列不摆大计数，改「即将推出」小字 */
+.series-count.is-empty {
+  border-style: dashed;
+  color: #9a9a9a;
+  letter-spacing: 1px;
+}
+.series-entry.is-empty .series-entry-desc { opacity: 0.85; }
 .series-entry-name {
   font-size: 21px; font-weight: 600; line-height: 1.4;
   margin: 0 0 10px; color: var(--ink);

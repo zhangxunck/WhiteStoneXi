@@ -1,6 +1,6 @@
 # 白石溪 · White Stone Spring
 
-> Borrow everything. Become yourself. · 借萬物，成自己。  
+> Borrow everything. Become yourself. · 假萬物，成自己。  
 > 一条持续调查「语言、写作与思想」的溪。  
 
 [English Introduction Below](#english-introduction)
@@ -55,7 +55,7 @@
 <a name="english-introduction"></a>
 ## English Introduction
 
-> *Borrow everything. Become yourself.* · *借萬物，成自己。*  
+> *Borrow everything. Become yourself.* · *假萬物，成自己。*  
 > A continuous inquiry into language, prose, and thought.
 
 White Stone Spring is a public repository and an independent site. It carries two series, nine long pieces in all. Each rests on **recomputable data and primary sources** — no loose rhetoric.

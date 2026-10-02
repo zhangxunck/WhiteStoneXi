@@ -279,41 +279,36 @@ PODCAST_JSON = os.path.join(ROOT, "podcasts_data.json")
 PODCAST_HTML = os.path.join(ROOT, "podcasts.html")
 
 def _podcast_page():
-    """加星播客页：数据走 podcasts_data.json（sync_podcasts.py 只刷新它），
-    页面骨架走全站统一模板（共享导航+汉堡+繁简按钮+共享页脚+同版 CSS）。"""
-    if not os.path.exists(PODCAST_JSON):
-        return False
-    data = json.load(open(PODCAST_JSON, encoding="utf-8"))
+    """白石溪播客页（2026-10-02 起为正式入口页）。
 
-    def _card(it):
-        acts = "".join(
-            f'<a href="{a.get("href","")}" target="_blank" rel="noopener" class="podcast-listen-btn">{a.get("label","")}</a>'
-            for a in it.get("actions", []))
-        dur = f'<span class="podcast-dot">·</span><span class="podcast-dur">{it.get("duration","")}</span>' if it.get("duration") else ""
-        return f'''<article class="podcast-card">
-              <div class="podcast-card-meta">
-                <span class="podcast-name">{it.get("name","")}</span>
-                <span class="podcast-dot">·</span>
-                <span class="podcast-date">{it.get("date","")}</span>
-                {dur}
-              </div>
-              <h3 class="podcast-title">{it.get("title","")}</h3>
-              <div class="podcast-actions">{acts}</div>
-            </article>'''
-    sections = []
-    for cat in data.get("categories", []):
-        items = cat.get("items", [])
-        if not items:
-            continue
-        body = "\n".join(_card(it) for it in items)
-        sections.append(f'''    <div class="podcast-section">
-      <h2 class="podcast-sec-title">{cat.get("category","")} <span class="podcast-count">({len(items)})</span></h2>
-      <div class="podcast-list">
-{body}
-      </div>
-    </div>''')
-    cards_html = "\n".join(sections)
-    total = sum(len(c.get("items", [])) for c in data.get("categories", []))
+    此前是 Alex 的 Pocket Casts 个人加星听单镜像——私人听单不该上公开站
+    （Eva 品牌审计：读者看到的是别人的收听清单，与站点内容无关，且属隐私外露）。
+    现改为正式播客入口：站点自办节目的订阅/收听入口，第一期发布后由
+    build_site.py 的 feed.xml（assets/podcast/*.mp3 真单集）挂正式 feed。
+    podcasts_data.json 仍由 sync_podcasts.py 每日刷新，仅作**本地**选材池，
+    不再渲染进公开页。"""
+    data = {"total": 0, "categories": []}
+    if os.path.exists(PODCAST_JSON):
+        try:
+            data = json.load(open(PODCAST_JSON, encoding="utf-8"))
+        except Exception:
+            data = {"total": 0, "categories": []}
+
+    # 正式单集已落地才显示 feed 链接（0 单集时挂空 feed=平台校验必挂，2026-10-01 铁律）
+    _pod_dir = os.path.join(ROOT, "assets", "podcast")
+    _eps = sorted(f for f in os.listdir(_pod_dir)
+                   if f.lower().endswith(".mp3")) if os.path.isdir(_pod_dir) else []
+    if _eps:
+        _feed_html = (
+            '<p class="podcast-feed-line">'
+            '<a class="podcast-listen-btn" href="feed.xml" target="_blank" rel="noopener">'
+            '<span class="site-tr">訂閱 RSS</span><span class="site-si">订阅 RSS</span></a>'
+            f'<span class="podcast-dur">{len(_eps)} <span class="site-tr">集已上線</span>'
+            '<span class="site-si">集已上线</span></span></p>')
+    else:
+        _feed_html = ('<p class="podcast-feed-line is-empty">'
+                      '<span class="site-tr">第一期即將推出</span>'
+                      '<span class="site-si">第一期即将推出</span></p>')
 
     page = f'''<!DOCTYPE html>
 <html lang="zh-Hant">
@@ -321,7 +316,7 @@ def _podcast_page():
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noimageindex">
-<title>加星播客 · 白石溪</title>
+<title>播客 · 白石溪</title>
 <link rel="icon" type="image/svg+xml" href="assets/v32/v32_logo_xi_white.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="assets/style.css?v={css_v}">
 </head>
@@ -337,16 +332,15 @@ def _podcast_page():
 <main class="podcasts-container">
   <div class="podcast-intro">
     <h1 class="podcast-header-title">
-      <span class="site-tr">加星單集 · Podcast Inquiries</span><span class="site-si">加星单集 · Podcast Inquiries</span>
+      <span class="site-tr">播客 · 白石溪電台</span><span class="site-si">播客 · 白石溪电台</span>
     </h1>
     <p class="podcast-header-desc">
-      <span class="site-tr">從數百期收聽實踐中篩選出的高信息密度對談與思想切片。涵蓋商業投資認知框架、人文閱讀抵抗、科技演進與歷史譜系。</span>
-      <span class="site-si">从数百期收听实践中筛选出的高信息密度对谈与思想切片。涵盖商业投资认知框架、人文阅读抵抗、科技演进与历史谱系。</span>
-      <span class="site-tr">數據與 Pocket Casts 個人加星庫雙向保真同步。</span><span class="site-si">数据与 Pocket Casts 个人加星库双向保真同步。</span>
+      <span class="site-tr">本站自辦節目：以長文為底稿的對談與思辨，議題從中文與寫作，到 AI 時代的認知與判斷。</span>
+      <span class="site-si">本站自办节目：以长文为底稿的对谈与思辨，议题从中文与写作，到 AI 时代的认知与判断。</span>
     </p>
+    {_feed_html}
   </div>
 
-{cards_html}
 </main>
 
 {_footer_html()}
@@ -356,7 +350,8 @@ def _podcast_page():
 </body>
 </html>'''
     open(PODCAST_HTML, "w", encoding="utf-8").write(page)
-    print(f"  podcasts.html: 加星播客 {total} 单集 / {os.path.getsize(PODCAST_HTML):,}B")
+    _local_n = data.get("total", 0)
+    print(f"  podcasts.html: 正式入口页（正式单集 {len(_eps)} 集；本地选材池 {_local_n} 单集不渲染）")
     return True
 
 
@@ -392,6 +387,19 @@ SERIES = {
             "写作是学习的发生地_意外连接与开发自己的三道工序",
             "AI认知判断力内化与外部化双钢人",
         ],
+        # 未发布篇目在公开仓没有 md → _TITLE_OF 取不到 frontmatter 标题，
+        # 简介目录降级时会退化成露出文件名（2026-10-02 P0-2 残余）。
+        # 这里显式登记真标题（取自 X61 Articles_文章 的 frontmatter，2026-10-02 实读）。
+        "titles": {
+            "翻译如何重塑中文_两千年来五波外来语与现代写作真相":
+                "翻译如何重塑中文：两千年来五波外来语浪潮，与现代写作的文体真相",
+            "什么是好的中文_十人十策与可执行规范":
+                "什么是好的中文：十位写作者的十条路，与一套可执行的规范",
+            "写作是学习的发生地_意外连接与开发自己的三道工序":
+                "写作是学习的发生地：意外连接、知识网络，与开发自己的三道工序",
+            "AI认知判断力内化与外部化双钢人":
+                "AI 时代最大的认知分歧：把判断力焊进脑子，还是写进文件？",
+        },
     },
 }
 # basename -> series slug
@@ -534,6 +542,13 @@ for _p in md_files:
         _TITLE_OF[_bn] = _fm.get("title", _bn)
 
 def _md_html(mdtext):
+    # 域名单源注入（2026-10-02 P0 修复）：文章双栏走的是本函数，不是 _render_md，
+    # 过去只有 README 路径经 _inject_site_url，导致 .en.md 里的 {SITE_URL} 占位符
+    # 原样渲染进线上文章页（Eva 实测《代號的神學》"Original (Chinese)"段裸奔）。
+    # 注入下沉到唯一的 md→html 出口，一次修净所有调用方；替换幂等。
+    if mdtext:
+        mdtext = mdtext.replace('{SITE_URL}', SITE_URL)
+        mdtext = mdtext.replace('https://whitestonespring.org', SITE_URL)
     p = markdown.Markdown(extensions=['extra', 'tables', 'fenced_code', 'toc'])
     h = p.convert(mdtext)
     h = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', h, flags=_re.S)
@@ -829,15 +844,26 @@ for slug in SERIES_ORDER:
     sd = SERIES[slug]
     n_tr, n_si = _bi(sd["name"])
     g_tr, g_si = _bi(sd["tagline"])
-    d_tr, d_si = _bi(sd["desc"])
+    d_tr, d_si = _bi(sd, "desc")
     n_art = len(sd["order"])
+    n_pub = sum(1 for b in sd["order"] if b in _BY_BASE)
+    # 空货架降级（2026-10-02 品牌审计 P1-5）：0 篇已发布的系列不再打「已發布 0 / 共 4 篇」
+    # 的大计数（读者视角=货架是空的），改显示「即將推出」小字，系列页照常可达。
+    if n_pub == 0:
+        count_html = ('<span class="series-count is-empty">'
+                      '<span class="site-tr">即將推出</span><span class="site-si">即将推出</span></span>')
+        cta_tr, cta_si = "了解規劃", "了解规划"
+    else:
+        count_html = (f'<span class="series-count">已發布 {n_pub} / 共 {n_art} '
+                      '<span class="site-tr">篇</span><span class="site-si">篇</span></span>')
+        cta_tr, cta_si = "進入系列", "进入系列"
     series_cards_html += f"""
-    <a class="series-entry" href="series/{slug}.html" style="--series-accent:{sd['accent']}">
+    <a class="series-entry{' is-empty' if n_pub == 0 else ''}" href="series/{slug}.html" style="--series-accent:{sd['accent']}">
       <span class="series-seal">{_brand_wordmark('Xi章_阴刻_方_朱红')}</span>
       <div class="series-entry-body">
         <div class="series-entry-tag">
           <span class="site-tr">{g_tr}</span><span class="site-si">{g_si}</span>
-          <span class="series-count">已發布 {sum(1 for b in sd['order'] if b in _BY_BASE)} / 共 {n_art} <span class="site-tr">篇</span><span class="site-si">篇</span></span>
+          {count_html}
         </div>
         <h2 class="series-entry-name">
           <span class="site-tr">{n_tr}</span><span class="site-si">{n_si}</span>
@@ -846,7 +872,7 @@ for slug in SERIES_ORDER:
           <span class="site-tr">{d_tr}</span><span class="site-si">{d_si}</span>
         </p>
         <div class="series-entry-cta">
-          <span class="site-tr">進入系列</span><span class="site-si">进入系列</span>
+          <span class="site-tr">{cta_tr}</span><span class="site-si">{cta_si}</span>
           <span class="arrow">→</span>
         </div>
       </div>
@@ -897,7 +923,10 @@ index_html = f"""<!DOCTYPE html>
 
 <main class="home-container">
   <div class="home-intro">
-    <div class="home-motto">Borrow everything. Become yourself.<span class="motto-si"> · 借萬物，成自己。</span></div>
+    <div class="home-motto">Borrow everything. Become yourself.<span class="motto-si"> · 假萬物，成自己。</span></div>
+    <p class="home-subtitle"><span class="site-tr">在 AI 時代，重新學會學習。</span><span class="site-si">在 AI 时代，重新学会学习。</span></p>
+    <p class="home-subtitle-en">Essays on learning, language, and judgment in the age of AI.</p>
+    <p class="home-cta"><a class="home-cta-btn" href="https://substack.com/@whitestonexi" target="_blank" rel="noopener"><span class="site-tr">訂閱 Substack</span><span class="site-si">订阅 Substack</span></a></p>
   </div>
 
   <section class="home-series">
@@ -1267,11 +1296,30 @@ _published = {a["basename"] + ".html" for a in article_metadata}
 _demoted = []
 def _demote_anchor(m):
     href = m.group(1)
-    if os.path.basename(href) in _published:
+    bn = os.path.basename(href)
+    if bn in _published:
         return m.group(0)
-    _demoted.append(os.path.basename(href))
+    _demoted.append(bn)
+    # 显示人读标题而非原始文件路径（2026-10-02 P0-2，Eva 实测目录表裸露
+    # articles/硅基神殿的隐喻_诸神的联邦.html）。取不到标题才退回 basename，
+    # 且剥掉系列前缀，避免再露出文件名。
+    stem = bn[:-5] if bn.endswith(".html") else bn
+    title = _TITLE_OF.get(stem, "")
+    if not title:
+        # 未发布篇目：公开仓无 md → 查 SERIES 里显式登记的真标题（单源，见 SERIES[*].titles）
+        for _sd in SERIES.values():
+            if stem in _sd.get("titles", {}):
+                title = _sd["titles"][stem]
+                break
+    if not title:
+        for pre in ("硅基神殿的隐喻_", "写作与判断力_"):
+            if stem.startswith(pre):
+                title = stem[len(pre):]
+                break
+    if not title:
+        title = stem
     return ('<span class="upcoming-link" title="待发布">%s'
-            '<span class="badge-status is-upcoming">待發布</span></span>' % m.group(1))
+            '<span class="badge-status is-upcoming">待發布</span></span>' % title)
 _fp = os.path.join(ROOT, "README.html")
 _h_src = open(_fp, encoding="utf-8").read()
 _h = _re.sub(r'<a href="(articles/[^"]+\.html)">([^<]*)</a>', _demote_anchor, _h_src)
