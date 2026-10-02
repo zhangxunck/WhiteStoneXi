@@ -464,8 +464,8 @@ def _footer_html(depth=""):
     return (
         f'<footer class="site-footer">'
         f'<div class="footer-seal">{seal}</div>'
-        f'<div class="footer-line">© 2026 zhangxunnj · 白石溪 White Stone Spring · 保留所有權利</div>'
-        f'<div class="footer-line">@zhangxunnj</div>'
+        f'<div class="footer-line"><span class="site-tr">© 2026 白石溪 WhiteStoneSpring · 保留所有權利</span>'
+        f'<span class="site-si">© 2026 白石溪 WhiteStoneSpring · 保留所有权利</span></div>'
         f'</footer>'
     )
 
@@ -692,7 +692,6 @@ for md_path in md_files:
         '<button class="para-toggle" type="button">'
         '<span class="opt on" data-v="tr">繁體</span><span class="sep">／</span>'
         '<span class="opt" data-v="si">簡體</span></button>'
-        '<span class="para-hint">中文欄：預設繁體，按右側切換簡體 · 右欄 English</span>'
         '</div>'
     )
     tabs_html = (
@@ -1157,7 +1156,10 @@ def _inject_site_url(txt):
 def _render_md(txt):
     h = _md_html(_inject_site_url(txt))
     h = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', h, flags=_re.S)
-    h = _re.sub(r'(<a [^>]*href="[^"]*"[^>]*>)(.*?)(</a>)', r'\1\3', h, flags=_re.S)  # 链接只留壳
+    # 链接文本：站内 articles/ 链接先空化（Eva 品牌审计：目录表不该出现文件名，
+    # 活链标题由下方 _demote_anchor 重建；死链降级为「待發布」纯文字）。
+    # 非 articles/ 链接（站内栏目页等）保留文本——空化会让目录页整行变空。
+    h = _re.sub(r'(<a [^>]*href="articles/[^"]*"[^>]*>)(.*?)(</a>)', r'\1\3', h, flags=_re.S)
     return h
 
 # 中文导言 / English Introduction 两段；其余 H3 逐节配对
@@ -1233,7 +1235,6 @@ _readme_toolbar = (
     '<button class="para-toggle" type="button">'
     '<span class="opt on" data-v="tr">繁體</span><span class="sep">／</span>'
     '<span class="opt" data-v="si">簡體</span></button>'
-    '<span class="para-hint">中文欄：預設繁體，按右側切換簡體 · 右欄 English</span>'
     '</div>'
 )
 
@@ -1296,8 +1297,12 @@ _demoted = []
 def _demote_anchor(m):
     href = m.group(1)
     bn = os.path.basename(href)
+    stem = bn[:-5] if bn.endswith(".html") else bn
     if bn in _published:
-        return m.group(0)
+        # 活链：_render_md 已把锚文本清空成 <a href="..."></a>，这里补回人读标题
+        # （Eva 品牌审计：第 1 行「篇」单元格是空链接，读者看不到标题）。
+        _t = _TITLE_OF.get(stem) or stem
+        return '<a href="%s">%s</a>' % (href, _t)
     _demoted.append(bn)
     # 显示人读标题而非原始文件路径（2026-10-02 P0-2，Eva 实测目录表裸露
     # articles/硅基神殿的隐喻_诸神的联邦.html）。取不到标题才退回 basename，
