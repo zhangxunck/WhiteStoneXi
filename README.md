@@ -98,5 +98,3 @@ Citations follow **GB/T 7714—2025**, traced to originals with page numbers.
 ### The Name
 
 "White Stone Spring" comes from an unremarkable name in the landscape: the stone is white, the water is real, it grows nothing and pretends nothing.
-
-<!-- identity-probe-20261002 -->
