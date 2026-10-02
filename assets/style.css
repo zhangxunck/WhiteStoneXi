@@ -1012,7 +1012,7 @@ body.nav-open .burger-bar:nth-child(3) { transform: translateY(-6.5px) rotate(-4
   font-family: -apple-system, "PingFang SC", sans-serif;
 }
 .badge-status.is-published { color: var(--series-accent, #8C3A2E); background: rgba(224, 48, 48, 0.07); }
-.badge-status.is-upcoming { color: var(--gray); background: rgba(168, 168, 168, 0.14); }
+.badge-status.is-upcoming { color: var(--gray); background: transparent; border: 1px solid rgba(168,168,168,0.55); font-weight: 500; }
 .series-back {
   display: flex; gap: 28px; margin-top: 44px;
   padding-top: 26px; border-top: 1px solid var(--rule);
@@ -1317,3 +1317,10 @@ body.nav-open .burger-bar:nth-child(3) { transform: translateY(-6.5px) rotate(-4
   border-color: var(--rule-hover);
   color: var(--ink);
 }
+
+/* CRAP 重排（Eva 2026-10-02）：对比原则——已发布 vs 待发布 视觉截然不同。
+   待发布行整行降至约 55% 不透明度；已发布篇名靠链接色+加粗。 */
+tr:has(.badge-status.is-upcoming) td { opacity: 0.55; }
+tr:has(.badge-status.is-upcoming) td:first-child { text-decoration: none; }
+/* 已发布篇名（活链）加粗强化 */
+td a { font-weight: 600; }
