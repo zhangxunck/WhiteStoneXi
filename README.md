@@ -4,7 +4,6 @@
 > 假萬物，成自己。  
 > 一條持續調查「語言、寫作與思想」的溪。  
 
-
 ---
 
 ## 中文导言
@@ -31,10 +30,6 @@
 | 写作是学习的发生地 <span class="badge-status is-upcoming">待發布</span> | **工序** · 怎么把别人的话变成自己的判断 |
 | AI 认知判断力 <span class="badge-status is-upcoming">待發布</span> | **归属** · 判断力最终存在哪 |
 两个系列都能独立读；先读哪篇都成立。
-
-### 各篇的证据底座与配图
-
-写作四篇各配一张丝带图，四色对应四篇，标出该篇在论证里的位置而非装饰。硅基神殿五篇各配一幅吴冠中画作，取画中的结构意象对应正文主题。
 
 ### 读之前要知道的
 
@@ -122,8 +117,6 @@ Each series reads on its own. Any order works.
 
 The four writing pieces carry one ribbon each; four colors mark four positions in the argument rather than decoration. The five Silicon Temple pieces each carry a Wu Guanzhong painting, chosen so the structure in the picture answers the theme in the text.
 
-
-
 ### Principles of the Inquiries
 
 1. **Data is recomputable.** Percentages, densities, and quotations trace to primary material.
@@ -178,5 +171,4 @@ Gazing at the ocean.
 Looking up at the mountain.  
 Striking the water midstream —  
 Seeking white stones in the Spring.
-
 
