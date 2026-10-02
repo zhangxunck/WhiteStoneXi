@@ -446,9 +446,13 @@ def _nav_html(depth=""):
         f'</nav>'
     )
 
-# ── 共享页脚（阴刻印章 + 二维码锚点） ───────────────────────────
-# 个人服务（相册/音乐/投资）从主导航移到这里——品牌审计 P1-4：
-# 它们是 Alex 的个人站，不是白石溪内容，混在主导览里稀释品牌。
+# ── 共享页脚（阴刻印章） ───────────────────────────
+# 个人服务（相册/音乐/投资）2026-10-02 已从页脚撤除。
+# 沿革：品牌审计 P1-4 先从主导航移到页脚（2026-10-01），但同日「审稿翻车现场」
+# 仍判 footer「定位混乱——读者分不清这是品牌博客还是个人主页」；品牌定位书亦定
+# 「投资/商业不进入品牌内容（防滑向财经人格）」。三处口径一致 → 撤，而非搬。
+# Alex 2026-10-02 定调「听 Eva 的」，据此撤除。三个站本身不受影响，仅不在品牌站露出。
+# 保留本常量与下方 CSS 作回滚路径：恢复只需把 personal 一行塞回 _footer_html。
 PERSONAL_SITES = [
     ("https://photos.zhangxunnj.cc.cd",    "相冊", "相册"),
     ("https://music.zhangxunnj.cc.cd",     "音樂", "音乐"),
@@ -457,16 +461,11 @@ PERSONAL_SITES = [
 
 def _footer_html(depth=""):
     seal = _brand_wordmark('Xi章_阴刻_圆_玄黑', depth)
-    personal = "".join(
-        f'<a href="{h}" target="_blank" rel="noopener" class="footer-personal-link">'
-        f'<span class="site-tr">{tr}</span><span class="site-si">{si}</span></a>'
-        for h, tr, si in PERSONAL_SITES)
     return (
         f'<footer class="site-footer">'
         f'<div class="footer-seal">{seal}</div>'
         f'<div class="footer-line">© 2026 zhangxunnj · 白石溪 White Stone Spring · 保留所有權利</div>'
         f'<div class="footer-line">@zhangxunnj</div>'
-        f'<div class="footer-personal" aria-label="個人服務">{personal}</div>'
         f'</footer>'
     )
 
