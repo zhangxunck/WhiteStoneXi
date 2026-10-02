@@ -26,7 +26,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Songti SC", "SimSun", "Noto Serif SC", serif;
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
-  word-break: break-word;
+  overflow-wrap: break-word;
   overflow-x: hidden;
 }
 
