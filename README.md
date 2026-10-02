@@ -1,7 +1,8 @@
 # 白石溪 · White Stone Spring
 
-> Borrow everything. Become yourself. · 假萬物，成自己。  
-> 一条持续调查「语言、写作与思想」的溪。  
+> Borrow everything. Becoming yourself.  
+> 假萬物，成自己。  
+> 一條持續調查「語言、寫作與思想」的溪。  
 
 [English Introduction Below](#english-introduction)
 
@@ -47,13 +48,55 @@
 
 「白石溪」取自山水里一条不起眼的名字：石头是白的，水是真的，不长高东西，也不装。
 
+### 品牌故事：白石在溪
+
+望洋兴叹，高山仰止。  
+中流击水，白石在溪。
+
+四川大巴山，是家。  
+南京紫金山，也是。  
+廿五年前，从一座山到一座山。  
+十五年前，顺流而下直面大海。
+
+山厚重养人，山一直在。  
+人走走停停，不免徘徊。  
+来处，是山。  
+下山，入水。
+
+汉水源自大巴山，汇入长江，路过金陵，奔流入海。  
+在南方的海边，另一条水，叫白石溪。  
+不是谁的支流，生机勃勃，径直入海。
+
+十年前，兜兜转转，重回山边。  
+五年前，下了大船，轻舟一帆。  
+白石溪浅，仓皇上岸。  
+一溪活水，心中潺潺。
+
+一片海，就在那里，海是什么？  
+两条水，分头入海，各自奔流。  
+中流击水，浪遏飞舟。  
+溪水潺潺，白石几颗。
+
+《启示录》说：  
+"一块白石，上面写着新名。"  
+山被水磨，变成石头。  
+山的质地，水的形状。  
+来自空间，写满时间。
+
+英文没有"山水"，"Landscape"无非土地风景。  
+"山水"在中文别有指代，仁智寿乐，得鱼忘筌。
+
+望洋兴叹，高山仰止。  
+中流击水，白石在溪。
+
 ---
 
 <a name="english-introduction"></a>
 ## English Introduction
 
-> *Borrow everything. Become yourself.* · *假萬物，成自己。*  
-> A continuous inquiry into language, prose, and thought.
+> *Borrow everything. Becoming yourself.*  
+> *假萬物，成自己。*  
+> *一條持續調查「語言、寫作與思想」的溪。*
 
 White Stone Spring is a public repository and an independent site. It carries two series, nine long pieces in all. Each rests on **recomputable data and primary sources** — no loose rhetoric.
 
@@ -95,5 +138,50 @@ The four writing pieces carry one ribbon each; four colors mark four positions i
 ### The Name
 
 "White Stone Spring" comes from an unremarkable name in the landscape: the stone is white, the water is real, it grows nothing and pretends nothing.
+
+### The Brand Story: White Stone in the Spring
+
+Gazing at the ocean.  
+Looking up at the mountain.  
+Striking the water midstream —  
+Seeking white stones in the Spring.
+
+Daba Shan, Sichuan — home.  
+Zijin Shan, Nanjing — home too.  
+Twenty-five years ago, from one mountain to another.  
+Fifteen years ago, drifted downstream to the sea.
+
+Mountain stays.  
+People come and go.  
+All began in the mountains.  
+Transforming into the water.
+
+River Han rises in Daba Shan, joins the Yangtze, passes Jinling, rushes to the sea.  
+Another water — called WhiteStoneSpring, also leads to the sea.  
+Tributary to none — thriving, straight to the sea.
+
+Ten years ago, circling and wandering, back to the mountainside.  
+Five years ago, off the big ship: solo in a small boat.  
+WhiteStoneSpring ran shallow. Scrambling ashore.  
+One stream of living water — murmuring in the heart.
+
+The same sea. Right over there. What is the sea?  
+Two waters, entering the sea apart, each in full flow.  
+Striking the water midstream, waves holding back the flying boats.  
+The stream murmurs — a few white stones in the spring.
+
+As Revelation says:  
+"a white stone, with a new name written on it."  
+Polished by water, the mountain becomes stone:  
+Substance as mountain, shape as water.  
+Made of space, written by time.
+
+English has no "shanshui" — "landscape" is merely the scenery of land.  
+"Shanshui" in Chinese means more than it says — ren, zhi, shou, le; catch the fish, forget the trap.
+
+Gazing at the ocean.  
+Looking up at the mountain.  
+Striking the water midstream —  
+Seeking white stones in the Spring.
 
 

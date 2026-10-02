@@ -921,7 +921,7 @@ index_html = f"""<!DOCTYPE html>
 
 <main class="home-container">
   <div class="home-intro">
-    <div class="home-motto">Borrow everything. Become yourself.<span class="motto-si"> · 假萬物，成自己。</span></div>
+    <div class="home-motto">Borrow everything. Becoming yourself.<span class="motto-si">假萬物，成自己。<br>一條持續調查「語言、寫作與思想」的溪。</span></div>
     <p class="home-subtitle"><span class="site-tr">在 AI 時代，重新學會學習。</span><span class="site-si">在 AI 时代，重新学会学习。</span></p>
     <p class="home-subtitle-en">Essays on learning, language, and judgment in the age of AI.</p>
     <p class="home-cta"><a class="home-cta-btn" href="https://substack.com/@whitestonexi" target="_blank" rel="noopener"><span class="site-tr">訂閱 Substack</span><span class="site-si">订阅 Substack</span></a></p>
