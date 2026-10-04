@@ -1,14 +1,13 @@
-__pycache__/
+
+# 归档区：本地保留原文（X61/交接库已有真源），绝不进 git 以免 Pages 公开未审稿
+# 本地 QA 工具：隐私检测正则含内部结构字面量，不入公开仓
 *.pyc
 .DS_Store
 .venv/
-
 .wrangler/
-
-# 本地 QA 工具：隐私检测正则含内部结构字面量，不入公开仓
-audit_series.py
-
-# 归档区：本地保留原文（X61/交接库已有真源），绝不进 git 以免 Pages 公开未审稿
+__pycache__/
 _archive_articles/
-podcasts_data.json
 _drafts/
+assets/podcast/*.mp3
+audit_series.py
+podcasts_data.json
