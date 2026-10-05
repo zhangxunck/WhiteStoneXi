@@ -426,7 +426,7 @@ def _nav_html(depth=""):
         (f"{d}README.html",       "簡介", "简介"),
     ]
     ext = [
-        ("https://github.com/zhangxunck/WhiteStoneSpring", "GitHub", "GitHub"),
+        ("https://github.com/zhangxunck/WhiteStoneXi", "GitHub", "GitHub"),
     ]
     def a(href, tr, si, cls=""):
         # 站内链接同页跳转；仅外链（http）新开标签
@@ -464,8 +464,8 @@ def _footer_html(depth=""):
     return (
         f'<footer class="site-footer">'
         f'<div class="footer-seal">{seal}</div>'
-        f'<div class="footer-line"><span class="site-tr">© 2026 白石溪 WhiteStoneSpring · 保留所有權利</span>'
-        f'<span class="site-si">© 2026 白石溪 WhiteStoneSpring · 保留所有权利</span></div>'
+        f'<div class="footer-line"><span class="site-tr">© 2026 白石溪 WhiteStoneXi · 保留所有權利</span>'
+        f'<span class="site-si">© 2026 白石溪 WhiteStoneXi · 保留所有权利</span></div>'
         f'</footer>'
     )
 
@@ -753,7 +753,7 @@ for md_path in md_files:
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noimageindex">
-<meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
+<meta name="copyright" content="zhangxunnj (白石溪 WhiteStoneXi), 2026, 保留所有权利">
 <title>{trad(title)} · 白石溪</title>
 <link rel="icon" type="image/svg+xml" href="../assets/v32/v32_logo_xi_white.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="../assets/style.css?v={css_v}">
@@ -905,7 +905,7 @@ index_html = f"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>白石溪 · White Stone Spring</title>
+<title>白石溪 · WhiteStoneXi</title>
 <meta name="description" content="白石溪 · 長文寫作：中文與寫作、AI 認知、硅基神殿的隱喻。">
 <link rel="icon" type="image/svg+xml" href="assets/v32/v32_logo_xi_white.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="assets/style.css?v={css_v}">
@@ -1244,7 +1244,7 @@ readme_page = f"""<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noimageindex">
-<meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
+<meta name="copyright" content="zhangxunnj (白石溪 WhiteStoneXi), 2026, 保留所有权利">
 <title>簡介 · 白石溪</title>
 <meta name="description" content="白石溪簡介：關於這個站是什麼、怎麼寫、怎麼讀。">
 <link rel="icon" type="image/svg+xml" href="assets/v32/v32_logo_xi_white.svg?v={_BRAND_FAVICON_V}">
@@ -1361,9 +1361,9 @@ _feed = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<channel>',
          '<title>白石溪播客</title>',
          '<link>' + BASE + '</link>',
-         '<description>白石溪 WhiteStoneSpring — 持续调查语言、写作与思想。三人对谈。</description>',
+         '<description>白石溪 WhiteStoneXi — 持续调查语言、写作与思想。三人对谈。</description>',
          '<language>zh-cn</language>',
-         '<itunes:author>白石溪 WhiteStoneSpring</itunes:author>',
+         '<itunes:author>白石溪 WhiteStoneXi</itunes:author>',
          '<itunes:owner><itunes:name>白石溪</itunes:name></itunes:owner>',
          '<itunes:category text="Society &amp; Culture"/>',
          '<itunes:explicit>false</itunes:explicit>']

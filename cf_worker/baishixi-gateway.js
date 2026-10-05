@@ -22,7 +22,7 @@ export default {
 
     // 路径重写：CF 自定义域名 -> GitHub Pages 子路径
     const targetUrl = new URL(
-      url.pathname === '/' ? '/WhiteStoneSpring/' : '/WhiteStoneSpring' + url.pathname,
+      url.pathname === '/' ? '/WhiteStoneXi/' : '/WhiteStoneXi' + url.pathname,
       'https://zhangxunck.github.io'
     );
     targetUrl.search = url.search;

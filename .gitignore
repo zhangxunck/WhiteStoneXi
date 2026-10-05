@@ -11,3 +11,7 @@ _drafts/
 assets/podcast/*.mp3
 audit_series.py
 podcasts_data.json
+
+# 本地备份文件不入仓
+*.bak
+*.bak_*
