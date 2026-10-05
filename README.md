@@ -1,4 +1,4 @@
-# 白石溪 · White Stone Spring
+# 白石溪 · WhiteStoneXi
 
 > Borrow everything. Becoming yourself.  
 > 假萬物，成自己。  
@@ -49,7 +49,7 @@
 > *假萬物，成自己。*  
 > *一條持續調查「語言、寫作與思想」的溪。*
 
-White Stone Spring is a public repository and an independent site. It carries two series, nine long pieces in all. Each rests on **recomputable data and primary sources** — no loose rhetoric.
+WhiteStoneXi is a public repository and an independent site. It carries two series, nine long pieces in all. Each rests on **recomputable data and primary sources** — no loose rhetoric.
 
 ### The Two Series
 
@@ -84,4 +84,4 @@ The four writing pieces carry one ribbon each; four colors mark four positions i
 
 ### The Name
 
-"White Stone Spring" comes from an unremarkable name in the landscape: the stone is white, the water is real, it grows nothing and pretends nothing.
+"WhiteStoneXi" keeps 白石溪 untranslated: the stone is white and in front, the stream recedes into the background — read it and you hear the accent. "Xi" is 溪, stream, left in pinyin on purpose.
