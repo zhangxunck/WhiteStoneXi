@@ -11,10 +11,15 @@ SITE_URL = "https://blog.zhangxunnj.cc.cd"
 try:
     from opencc import OpenCC as _OpenCC
     _CC = _OpenCC('s2tw')
+    _CC_SIMP = _OpenCC('tw2s')
     def trad(text):
         return _CC.convert(text) if text else text
+    def simp(text):
+        return _CC_SIMP.convert(text) if text else text
 except Exception:
     def trad(text):
+        return text
+    def simp(text):
         return text
 
 def split_by_h2(mdtext):
@@ -1069,13 +1074,18 @@ for slug in SERIES_ORDER:
 # 未归系列的单篇
 _orphan = [a for a in article_metadata if a["basename"] not in BASENAME_SERIES]
 if _orphan:
+    # 优先展示实际栏目名（如「快軌 · 倫理與問責」），杜绝粗糙的「其他」
+    _grp_title = _orphan[0].get("category_label") or "快軌"
+    _grp_tr = trad(_grp_title)
+    _grp_si = simp(_grp_title)
     rows = "".join(
         f'<li><a href="articles/{a["basename"]}.html">'
         f'<span class="ar-t">{trad(a["title"])}</span>'
         f'<span class="ar-d">{a["date"]}</span></a></li>' for a in _orphan)
     groups_html += f"""
-  <section class="ar-group">
-    <h2 class="ar-group-head"><span class="site-tr">其他</span><span class="site-si">其他</span></h2>
+  <section class="ar-group" style="--series-accent:#4A6B82">
+    <h2 class="ar-group-head"><span class="site-tr">{_grp_tr}</span><span class="site-si">{_grp_si}</span></h2>
+    <div class="ar-group-tag"><span class="site-tr">短評 · 深度 · 敏捷回應</span><span class="site-si">短评 · 深度 · 敏捷回应</span></div>
     <ul class="ar-list">{rows}</ul>
   </section>"""
 
@@ -1156,10 +1166,7 @@ def _inject_site_url(txt):
 def _render_md(txt):
     h = _md_html(_inject_site_url(txt))
     h = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', h, flags=_re.S)
-    # 链接文本：站内 articles/ 链接先空化（Eva 品牌审计：目录表不该出现文件名，
-    # 活链标题由下方 _demote_anchor 重建；死链降级为「待發布」纯文字）。
-    # 非 articles/ 链接（站内栏目页等）保留文本——空化会让目录页整行变空。
-    h = _re.sub(r'(<a [^>]*href="articles/[^"]*"[^>]*>)(.*?)(</a>)', r'\1\3', h, flags=_re.S)
+    # 保留已有锚文本（中/英文标题各安其位；仅在下文 _demote_anchor 中对空文本或死链统一规范）
     return h
 
 # 中文导言 / English Introduction 两段；其余 H3 逐节配对
@@ -1299,10 +1306,11 @@ def _demote_anchor(m):
     bn = os.path.basename(href)
     stem = bn[:-5] if bn.endswith(".html") else bn
     if bn in _published:
-        # 活链：_render_md 已把锚文本清空成 <a href="..."></a>，这里补回人读标题
-        # （Eva 品牌审计：第 1 行「篇」单元格是空链接，读者看不到标题）。
-        _t = _TITLE_OF.get(stem) or stem
-        return '<a href="%s">%s</a>' % (href, _t)
+        # 活链：若原 html 中已有非空锚文本（如英文栏中的英文标题），保留原标题；
+        # 若为空才补回人读标题（Eva 品牌审计：第 1 行「篇」单元格为空链接时兜底）。
+        _existing = m.group(2).strip()
+        _t = _existing if _existing else (_TITLE_OF.get(stem) or stem)
+        return '<a href="%s" class="is-published-link"><strong>%s</strong></a>' % (href, _t)
     _demoted.append(bn)
     # 显示人读标题而非原始文件路径（2026-10-02 P0-2，Eva 实测目录表裸露
     # articles/硅基神殿的隐喻_诸神的联邦.html）。取不到标题才退回 basename，
