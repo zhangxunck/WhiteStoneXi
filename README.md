@@ -57,7 +57,7 @@ WhiteStoneXi is a public repository and an independent site. It carries two seri
 
 | Piece | In one line |
 |---|---|
-| [The Theology of Codenames](articles/硅基神殿的隐喻_代号的神学.html) | When technology takes over the senses, excitement at the extension covers the amputation; you never notice what you lost. |
+| [The Theology of Code](articles/硅基神殿的隐喻_代号的神学.html) | When technology takes over the senses, excitement at the extension covers the amputation; you never notice what you lost. |
 | The Federation of Gods <span class="badge-status is-upcoming">Forthcoming</span> | The monolithic model is the collapsed tower; the Unix razor is the antidote; Gödel's circle marks the ceiling of self-reference. |
 | The Axial Reflux <span class="badge-status is-upcoming">Forthcoming</span> | Cave, Babel, small state: civilization runs downward, not upward — three historical episodes happening at once in the AI era. |
 | The Selfless and the Language Game <span class="badge-status is-upcoming">Forthcoming</span> | Ālayavijñāna and the beetle-in-a-box point at one gap: moving pieces is not understanding the game. |
