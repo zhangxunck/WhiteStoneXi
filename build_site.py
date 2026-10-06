@@ -927,7 +927,11 @@ index_html = f"""<!DOCTYPE html>
 
 <main class="home-container">
   <div class="home-intro">
-    <div class="home-motto">Borrow everything. Becoming yourself.<span class="motto-si">假萬物，成自己。<br>一條持續調查「語言、寫作與思想」的溪。</span></div>
+    <div class="home-motto">
+      <div class="motto-en">Borrow everything. Becoming yourself.</div>
+      <div class="motto-zh">假萬物，成自己。</div>
+      <span class="motto-si">一條持續調查「語言、寫作與思想」的溪。</span>
+    </div>
     <p class="home-subtitle"><span class="site-tr">在 AI 時代，重新學會學習。</span><span class="site-si">在 AI 时代，重新学会学习。</span></p>
     <p class="home-subtitle-en">Essays on learning, language, and judgment in the age of AI.</p>
     <p class="home-cta"><a class="home-cta-btn" href="https://substack.com/@whitestonexi" target="_blank" rel="noopener"><span class="site-tr">訂閱 Substack</span><span class="site-si">订阅 Substack</span></a><a class="home-cta-btn" href="https://open.spotify.com/show/2Zc8KcG9XmngIyz93yQOVW" target="_blank" rel="noopener"><span class="site-tr">Spotify 播客</span><span class="site-si">Spotify 播客</span></a></p>
@@ -973,12 +977,14 @@ for slug in SERIES_ORDER:
     nm, tg, ds = _bi(sd["name"]), _bi(sd["tagline"]), _bi(sd["desc"])
     
     items_body = []
-    for idx, b in enumerate(sd["order"]):
-        num_str = f"{idx+1:02d}"
+    pub_idx = 0
+    for b in sd["order"]:
         if b in _BY_BASE:
+            pub_idx += 1
+            num_str = f"{pub_idx:02d}"
             a = _BY_BASE[b]
             items_body.append(f"""
-    <a class="series-item" id="s-{idx+1}" href="../articles/{a['basename']}.html">
+    <a class="series-item" id="s-{pub_idx}" href="../articles/{a['basename']}.html">
       <span class="series-item-num">{num_str}</span>
       <span class="series-item-body">
         <span class="series-item-title">{trad(a['title'])} <span class="badge-status is-published">已發布</span></span>
@@ -987,19 +993,17 @@ for slug in SERIES_ORDER:
       </span>
       <span class="series-item-arrow">→</span>
     </a>""")
-        else:
-            placeholder_title = trad(_TITLE_OF.get(b, b.replace("硅基神殿的隐喻_", "").replace("写作与判断力_", "")))
-            items_body.append(f"""
-    <div class="series-item is-upcoming" id="s-{idx+1}">
-      <span class="series-item-num">{num_str}</span>
+    if not items_body:
+        items_body.append("""
+    <div class="series-item is-upcoming">
       <span class="series-item-body">
-        <span class="series-item-title">{placeholder_title} <span class="badge-status is-upcoming">連載中 · 每週一更新</span></span>
-        <span class="series-item-abs">即將上線，敬請期待。</span>
+        <span class="series-item-abs">即將發布，敬請期待。</span>
       </span>
-      <span class="series-item-arrow lock">⏳</span>
     </div>""")
             
     body = "".join(items_body)
+    n_published = sum(1 for b in sd["order"] if b in _BY_BASE)
+    count_label = f"{n_published} <span class=\"site-tr\">篇</span><span class=\"site-si\">篇</span>" if n_published > 0 else "<span class=\"site-tr\">籌備中</span><span class=\"site-si\">筹备中</span>"
     series_page = f"""<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -1024,7 +1028,7 @@ for slug in SERIES_ORDER:
     <span class="series-hero-seal">{_brand_wordmark('Xi章_阴刻_圆_朱红', '../')}</span>
     <div class="series-hero-tag">
       <span class="site-tr">{tg[0]}</span><span class="site-si">{tg[1]}</span>
-      <span class="series-count">{len(sd['order'])} <span class="site-tr">篇</span><span class="site-si">篇</span></span>
+      <span class="series-count">{count_label}</span>
     </div>
     <h1 class="series-hero-name">
       <span class="site-tr">{nm[0]}</span><span class="site-si">{nm[1]}</span></h1>

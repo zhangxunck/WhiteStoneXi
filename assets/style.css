@@ -146,11 +146,28 @@ body {
 .podcast-feed-line .podcast-listen-btn:hover { background: var(--ink); color: #fff; }
 .podcast-feed-line.is-empty { color: var(--gray); font-style: italic; }
 .home-motto {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.home-motto .motto-en {
   font-family: Georgia, serif;
   font-style: italic;
   font-size: 20px;
   color: var(--gray);
   letter-spacing: 1px;
+}
+.home-motto .motto-zh {
+  font-family: "Noto Serif SC", "Source Han Serif SC", serif;
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 2px;
+}
+.home-motto .motto-si {
+  font-size: 14px;
+  color: var(--gray);
+  letter-spacing: 0.5px;
 }
 
 /* ---- 极简文章流列表 (Minimal Article List) ---- */
