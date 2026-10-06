@@ -9,5 +9,12 @@
 <itunes:owner><itunes:name>白石溪</itunes:name></itunes:owner>
 <itunes:category text="Society &amp; Culture"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>第一期 代号的神学 定稿 v8r3</title>
+<description>白石溪播客单集。</description>
+<enclosure url="https://blog.zhangxunnj.cc.cd/assets/podcast/第一期_代号的神学_定稿_v8r3.mp3" type="audio/mpeg" length="6988738"/>
+<guid isPermaLink="false">第一期_代号的神学_定稿_v8r3</guid>
+<pubDate>Tue, 06 Oct 2026 11:48:28 +0800</pubDate>
+</item>
 </channel>
 </rss>
