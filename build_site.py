@@ -571,40 +571,38 @@ def strip_internal_sections(md):
 
 # 题图映射：basename -> assets 短名（卡片图 PNG + 交互 HTML 查看器成对）
 CARD_IMG = {
-    "翻译如何重塑中文_两千年来五波外来语与现代写作真相": "翻译如何重塑中文",
-    "什么是好的中文_十人十策与可执行规范": "什么是好的中文",
-    "写作是学习的发生地_意外连接与开发自己的三道工序": "写作是学习的发生地",
-    "AI认知判断力内化与外部化双钢人": "AI认知判断力",
+    "翻译如何重塑中文_两千年来五波外来语与现代写作真相": "06_翻译如何重塑中文",
+    "什么是好的中文_十人十策与可执行规范": "07_什么是好的中文",
+    "写作是学习的发生地_意外连接与开发自己的三道工序": "08_写作是学习的发生地",
+    "AI认知判断力内化与外部化双钢人": "09_AI认知判断力双钢人",
 }
-# 硅基神殿系列题图：SVG 矢量（2026-10-02 去吴冠中命名），无交互版（纯矢量，不配卡片 HTML）
+# 硅基神殿系列题图：Alex 实拍（2026-10-06 替换 AI 生成图）
 SERIES_HERO = {
-    "硅基神殿的隐喻_代号的神学":      "硅基神殿_01.svg",
-    "硅基神殿的隐喻_诸神的联邦":      "硅基神殿_02.svg",
-    "硅基神殿的隐喻_轴心的倒流":      "硅基神殿_03.svg",
-    "硅基神殿的隐喻_无我者与语言游戏": "硅基神殿_04.svg",
-    "硅基神殿的隐喻_有限游戏的造物主": "硅基神殿_05.svg",
+    "硅基神殿的隐喻_代号的神学":      "01_代号的神学.jpg",
+    "硅基神殿的隐喻_诸神的联邦":      "02_诸神的联邦.jpg",
+    "硅基神殿的隐喻_轴心的倒流":      "03_轴心的倒流.jpg",
+    "硅基神殿的隐喻_无我者与语言游戏": "04_无我者与语言游戏.jpg",
+    "硅基神殿的隐喻_有限游戏的造物主": "05_有限游戏的造物主.jpg",
 }
 def _series_hero_figure(base, title):
-    """系列题图（SVG）：cache-bust 用 mtime，内容改了必须换戳。"""
-    svg = SERIES_HERO.get(base)
-    if not svg or not os.path.exists(os.path.join(ROOT, "assets", svg)):
+    """系列题图（Alex 实拍）：cache-bust 用 mtime，内容改了必须换戳。"""
+    img = SERIES_HERO.get(base)
+    if not img or not os.path.exists(os.path.join(ROOT, "assets", img)):
         return ""
-    v = str(int(os.path.getmtime(os.path.join(ROOT, "assets", svg))))
+    v = str(int(os.path.getmtime(os.path.join(ROOT, "assets", img))))
     return f'''<figure class="card-hero">
-  <img src="../assets/{svg}?v={v}" alt="{title} 题图" loading="lazy">
-  <figcaption>白石溪 · 硅基神殿系列</figcaption>
+  <img src="../assets/{img}?v={v}" alt="{title} 题图" loading="lazy">
+  <figcaption>白石溪 · 硅基神殿系列 · 作者摄</figcaption>
 </figure>'''
 def _hero_figure(base, title):
     s = CARD_IMG.get(base)
     if not s:
         return ""
     # 图片内容变更后必须换 v=，否则浏览器/CDN 一直给旧版
-    v = str(int(os.path.getmtime(os.path.join(ROOT, "assets", f"{s}_卡片图.png"))))
+    v = str(int(os.path.getmtime(os.path.join(ROOT, "assets", f"{s}.jpg"))))
     return f'''<figure class="card-hero">
-  <a href="../assets/{s}_卡片图.html?v={v}" target="_blank" title="点击查看交互卡片">
-    <img src="../assets/{s}_卡片图.png?v={v}" alt="{title} 卡片图" loading="lazy">
-  </a>
-  <figcaption>卡片图 · <a href="../assets/{s}_卡片图.html?v={v}" target="_blank">点击查看交互版</a></figcaption>
+  <img src="../assets/{s}.jpg?v={v}" alt="{title} 题图" loading="lazy">
+  <figcaption>白石溪 · 写作与判断力 · 作者摄</figcaption>
 </figure>'''
 
 
