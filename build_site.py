@@ -309,7 +309,10 @@ def _podcast_page():
             '<a class="podcast-listen-btn" href="feed.xml" target="_blank" rel="noopener">'
             '<span class="site-tr">訂閱 RSS</span><span class="site-si">订阅 RSS</span></a>'
             f'<span class="podcast-dur">{len(_eps)} <span class="site-tr">集已上線</span>'
-            '<span class="site-si">集已上线</span></span></p>')
+            '<span class="site-si">集已上线</span></span>'
+            '<a class="podcast-listen-btn" href="https://open.spotify.com/show/2Zc8KcG9XmngIyz93yQOVW" target="_blank" rel="noopener">'
+            '<span class="site-tr">Spotify</span><span class="site-si">Spotify</span></a>'
+            '</p>')
     else:
         _feed_html = ('<p class="podcast-feed-line is-empty">'
                       '<span class="site-tr">第一期即將推出</span>'
@@ -929,7 +932,7 @@ index_html = f"""<!DOCTYPE html>
     <div class="home-motto">Borrow everything. Becoming yourself.<span class="motto-si">假萬物，成自己。<br>一條持續調查「語言、寫作與思想」的溪。</span></div>
     <p class="home-subtitle"><span class="site-tr">在 AI 時代，重新學會學習。</span><span class="site-si">在 AI 时代，重新学会学习。</span></p>
     <p class="home-subtitle-en">Essays on learning, language, and judgment in the age of AI.</p>
-    <p class="home-cta"><a class="home-cta-btn" href="https://substack.com/@whitestonexi" target="_blank" rel="noopener"><span class="site-tr">訂閱 Substack</span><span class="site-si">订阅 Substack</span></a></p>
+    <p class="home-cta"><a class="home-cta-btn" href="https://substack.com/@whitestonexi" target="_blank" rel="noopener"><span class="site-tr">訂閱 Substack</span><span class="site-si">订阅 Substack</span></a><a class="home-cta-btn" href="https://open.spotify.com/show/2Zc8KcG9XmngIyz93yQOVW" target="_blank" rel="noopener"><span class="site-tr">Spotify 播客</span><span class="site-si">Spotify 播客</span></a></p>
   </div>
 
   <section class="home-series">
