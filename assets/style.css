@@ -57,7 +57,10 @@ body {
 }
 .brand-wordmark.is-seal { width: 116px; }
 @media (max-width: 768px) {
-  .brand-wordmark { width: 116px; }
+  /* 116px 时坎卦三爻退化：红中爻 5px 实色 vs 灰上下爻 1px 发丝（2.38:1），
+     红杠在无参照下读成删除线。132px 让三爻都拿到足够像素，恢复「水」意象。
+     v32 规范锁死水纹粗细/振幅/颜色，故只调渲染尺寸，不动 SVG。 */
+  .brand-wordmark { width: 132px; }
   .brand-wordmark.is-seal { width: 92px; }
 }
 .site-tagline {
@@ -154,7 +157,8 @@ body {
   font-family: Georgia, serif;
   font-style: italic;
   font-size: 20px;
-  color: var(--gray);
+  /* 加深灰度：--gray #777 在手机屏上对比度不足，落到 ink-soft 之上 */
+  color: var(--ink-soft);
   letter-spacing: 1px;
 }
 .home-motto .motto-zh {
@@ -608,6 +612,13 @@ body.zh-simple .para-col-zh .zh-si { display: block; }
   .home-motto {
     font-size: 16.5px;
     line-height: 1.5;
+  }
+  /* 移动端：题词加大字号 + 提灰度，避免小屏灰字发飘读不清 */
+  .home-motto .motto-en {
+    font-size: 17px;
+  }
+  .home-motto .motto-zh {
+    font-size: 18px;
   }
 
   /* 文章流卡片转为移动端垂直排布 */
