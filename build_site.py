@@ -314,7 +314,7 @@ def _podcast_page():
             '<span class="site-tr">Spotify</span><span class="site-si">Spotify</span></a>'
             '</p>')
         # 单集四要素（门3）：标题 / 封面 / 时长 / Spotify 单集+节目链接
-        _ep_cover = "assets/01_代号的神学.jpg"
+        _ep_cover = "assets/podcast_cover_v2.png"
         _ep_cover_v = (str(int(os.path.getmtime(os.path.join(ROOT, _ep_cover))))
                        if os.path.exists(os.path.join(ROOT, _ep_cover)) else "1")
         _ep_list = (
