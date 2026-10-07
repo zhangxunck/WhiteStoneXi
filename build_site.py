@@ -575,6 +575,11 @@ CARD_IMG = {
     "什么是好的中文_十人十策与可执行规范": "07_什么是好的中文",
     "写作是学习的发生地_意外连接与开发自己的三道工序": "08_写作是学习的发生地",
     "AI认知判断力内化与外部化双钢人": "09_AI认知判断力双钢人",
+    "建造手记之一磨": "10_建造手记之一磨",
+}
+# 题图 caption 覆盖：默认「白石溪 · 写作与判断力 · 作者摄」，有特例在此登记
+HERO_CAPTION = {
+    "建造手记之一磨": "河边，脚下都是白石头，要不要捡？——作者摄",
 }
 # 硅基神殿系列题图：Alex 实拍（2026-10-06 替换 AI 生成图）
 SERIES_HERO = {
@@ -600,9 +605,10 @@ def _hero_figure(base, title):
         return ""
     # 图片内容变更后必须换 v=，否则浏览器/CDN 一直给旧版
     v = str(int(os.path.getmtime(os.path.join(ROOT, "assets", f"{s}.jpg"))))
+    cap = HERO_CAPTION.get(base, "白石溪 · 写作与判断力 · 作者摄")
     return f'''<figure class="card-hero">
   <img src="../assets/{s}.jpg?v={v}" alt="{title} 题图" loading="lazy">
-  <figcaption>白石溪 · 写作与判断力 · 作者摄</figcaption>
+  <figcaption>{cap}</figcaption>
 </figure>'''
 
 
@@ -1076,17 +1082,23 @@ for slug in SERIES_ORDER:
       <span class="site-tr">{tg[0]}</span><span class="site-si">{tg[1]}</span></div>
     <ul class="ar-list">{rows}</ul>
   </section>"""
-# 未归系列的单篇
+# 未归系列的单篇：按 category_label 分组（同栏目一节，不同栏目各成一节）
 _orphan = [a for a in article_metadata if a["basename"] not in BASENAME_SERIES]
-if _orphan:
-    # 优先展示实际栏目名（如「快軌 · 倫理與問責」），杜绝粗糙的「其他」
-    _grp_title = _orphan[0].get("category_label") or "快軌"
+_orphan_groups, _seen_groups = [], {}
+for a in _orphan:
+    g = a.get("category_label") or "快軌"
+    if g not in _seen_groups:
+        _seen_groups[g] = []
+        _orphan_groups.append((g, _seen_groups[g]))
+    _seen_groups[g].append(a)
+for _grp_title, _items in _orphan_groups:
+    # 优先展示实际栏目名（如「Drops · 倫理與問責」），杜绝粗糙的「其他」
     _grp_tr = trad(_grp_title)
     _grp_si = simp(_grp_title)
     rows = "".join(
         f'<li><a href="articles/{a["basename"]}.html">'
         f'<span class="ar-t">{trad(a["title"])}</span>'
-        f'<span class="ar-d">{a["date"]}</span></a></li>' for a in _orphan)
+        f'<span class="ar-d">{a["date"]}</span></a></li>' for a in _items)
     groups_html += f"""
   <section class="ar-group" style="--series-accent:#4A6B82">
     <h2 class="ar-group-head"><span class="site-tr">{_grp_tr}</span><span class="site-si">{_grp_si}</span></h2>
