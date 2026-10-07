@@ -10,10 +10,14 @@
 
 白石溪是一个公开的文章仓与独立站点，收录并持续更新关于语言、写作与思想的长文与播客。每篇的论点都落在可核查的事实与一手文献上——不留空泛修辞。
 
-目前已发布 3 篇（首篇长文与两篇快轨手记）：
-- [硅基神殿的隐喻：代号的神学](articles/硅基神殿的隐喻_代号的神学.html)（长文首篇）
-- [脫軌之後，誰負責？](articles/脱轨之后_谁负责.html)（快轨首篇，博客与播客联动）
-- [兩種 1%](articles/兩種1percent.html)（快轨第二篇）
+目前已发布 4 篇（首篇长文、两篇 Drops 手记与一建造手记）：
+
+| 篇目 | 分类 |
+| :--- | :--- |
+| [硅基神殿的隐喻：代号的神学](articles/硅基神殿的隐喻_代号的神学.html) | 长文首篇 |
+| [脫軌之後，誰負責？](articles/脱轨之后_谁负责.html) | Drops #1（博客与播客联动） |
+| [兩種 1%](articles/兩種1percent.html) | Drops #2 |
+| [建造手记之一·磨](articles/建造手记之一磨.html) | Drops · 建造手记 #1 |
 
 ### 规划中的系列
 
@@ -58,10 +62,14 @@
 
 WhiteStoneXi is a public repository and an independent site. It publishes essays and podcasts on learning, language, and judgment in the age of AI. Each rests on **recomputable data and primary sources** — no loose rhetoric.
 
-Currently published (3 pieces):
-- [Theology of the Code Name](articles/硅基神殿的隐喻_代号的神学.html) (Lead essay)
-- [After Derailment, Who Answers?](articles/脱轨之后_谁负责.html) (Fast-track note #1)
-- [Two Kinds of 1%](articles/兩種1percent.html) (Fast-track note #2)
+Currently published (4 pieces):
+
+| Piece | Series |
+| :--- | :--- |
+| [Theology of the Code Name](articles/硅基神殿的隐喻_代号的神学.html) | Lead essay |
+| [After Derailment, Who Answers?](articles/脱轨之后_谁负责.html) | Drops #1 (blog + podcast) |
+| [Two Kinds of 1%](articles/兩種1percent.html) | Drops #2 |
+| [Builder's Note No. 1 · 磨](articles/建造手记之一磨.html) | Drops · Builder's Notes #1 |
 
 ### Planned Series
 
@@ -90,11 +98,12 @@ Each series reads on its own. Any order works.
 
 The four writing pieces carry one ribbon each; four colors mark four positions in the argument rather than decoration. The five Silicon Temple pieces each carry a Wu Guanzhong painting, chosen so the structure in the picture answers the theme in the text.
 
+四篇长文各系一条丝带；四种颜色标记论证中的四个位置，不是装饰。五篇《硅基神殿》各配一幅吴冠中，画中结构回应文中主题。
+
 ### Principles of the Inquiries
 
-1. **Data is recomputable.** Percentages, densities, and quotations trace to primary material.
-2. **Bilingual throughout.** Each piece ships in Simplified Chinese, Traditional Chinese, and English, side by side, switchable at the top.
-3. **Native-rendered visuals.** Figures are pure HTML/SVG in flow — no bitmap blur, selectable text, scalable.
+1. **Bilingual throughout.** Each piece ships in Simplified Chinese, Traditional Chinese, and English, side by side, switchable at the top.
+2. **Data is recomputable.** Percentages, densities, and quotations trace to primary material.
 
 ### The Name
 
