@@ -8,7 +8,6 @@
 __pycache__/
 _archive_articles/
 _drafts/
-assets/podcast/*.mp3
 audit_series.py
 podcasts_data.json
 
