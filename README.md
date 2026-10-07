@@ -59,7 +59,7 @@
 WhiteStoneXi is a public repository and an independent site. It publishes essays and podcasts on learning, language, and judgment in the age of AI. Each rests on **recomputable data and primary sources** — no loose rhetoric.
 
 Currently published (3 pieces):
-- [The Theology of Code](articles/硅基神殿的隐喻_代号的神学.html) (Lead essay)
+- [Theology of the Code Name](articles/硅基神殿的隐喻_代号的神学.html) (Lead essay)
 - [After Derailment, Who Answers?](articles/脱轨之后_谁负责.html) (Fast-track note #1)
 - [Two Kinds of 1%](articles/兩種1percent.html) (Fast-track note #2)
 
@@ -69,7 +69,7 @@ Currently published (3 pieces):
 
 | Piece | Status | In one line |
 |---|---|---|
-| [The Theology of Code](articles/硅基神殿的隐喻_代号的神学.html) | <span class="badge-status is-published">Published</span> | When technology takes over the senses, excitement at the extension covers the amputation; you never notice what you lost. |
+| [Theology of the Code Name](articles/硅基神殿的隐喻_代号的神学.html) | <span class="badge-status is-published">Published</span> | When technology takes over the senses, excitement at the extension covers the amputation; you never notice what you lost. |
 | The Federation of Gods | <span class="badge-status is-upcoming">Forthcoming</span> | The monolithic model is the collapsed tower; the Unix razor is the antidote; Gödel's circle marks the ceiling of self-reference. |
 | The Axial Reflux | <span class="badge-status is-upcoming">Forthcoming</span> | Cave, Babel, small state: civilization runs downward, not upward — three historical episodes happening at once in the AI era. |
 | The Selfless and the Language Game | <span class="badge-status is-upcoming">Forthcoming</span> | Ālayavijñāna and the beetle-in-a-box point at one gap: moving pieces is not understanding the game. |
