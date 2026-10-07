@@ -313,10 +313,37 @@ def _podcast_page():
             '<a class="podcast-listen-btn" href="https://open.spotify.com/show/2Zc8KcG9XmngIyz93yQOVW" target="_blank" rel="noopener">'
             '<span class="site-tr">Spotify</span><span class="site-si">Spotify</span></a>'
             '</p>')
+        # 单集四要素（门3）：标题 / 封面 / 时长 / Spotify 单集+节目链接
+        _ep_cover = "assets/01_代号的神学.jpg"
+        _ep_cover_v = (str(int(os.path.getmtime(os.path.join(ROOT, _ep_cover))))
+                       if os.path.exists(os.path.join(ROOT, _ep_cover)) else "1")
+        _ep_list = (
+            '<div class="podcast-ep-list">'
+            '<article class="podcast-ep">'
+            f'<a class="podcast-ep-cover" href="https://open.spotify.com/episode/2pAZg5gSi1Ck2m94j2yH1z" target="_blank" rel="noopener">'
+            f'<img src="{_ep_cover}?v={_ep_cover_v}" alt="《代號的神學》單集封面" loading="lazy"></a>'
+            '<div class="podcast-ep-body">'
+            '<h2 class="podcast-ep-title">'
+            '<span class="site-tr">第一期 · 代號的神學</span>'
+            '<span class="site-si">第一期 · 代号的神学</span></h2>'
+            '<p class="podcast-ep-desc">'
+            '<span class="site-tr">以長文《矽基神殿的隱喻·代號的神學》為底稿：神話命名如何成為機器的止痛藥。</span>'
+            '<span class="site-si">以长文《硅基神殿的隐喻·代号的神学》为底稿：神话命名如何成为机器的止痛药。</span></p>'
+            '<p class="podcast-ep-meta">'
+            '<span class="podcast-ep-dur">7:17</span>'
+            '<a class="podcast-listen-btn" href="https://open.spotify.com/episode/2pAZg5gSi1Ck2m94j2yH1z" target="_blank" rel="noopener">'
+            '<span class="site-tr">Spotify 單集</span><span class="site-si">Spotify 单集</span></a>'
+            '<a class="podcast-listen-btn" href="https://open.spotify.com/show/2Zc8KcG9XmngIyz93yQOVW" target="_blank" rel="noopener">'
+            '<span class="site-tr">節目主頁</span><span class="site-si">节目主页</span></a>'
+            '</p>'
+            '</div>'
+            '</article>'
+            '</div>')
     else:
         _feed_html = ('<p class="podcast-feed-line is-empty">'
                       '<span class="site-tr">第一期即將推出</span>'
                       '<span class="site-si">第一期即将推出</span></p>')
+        _ep_list = ""
 
     page = f'''<!DOCTYPE html>
 <html lang="zh-Hant">
@@ -348,6 +375,8 @@ def _podcast_page():
     </p>
     {_feed_html}
   </div>
+
+  {_ep_list}
 
 </main>
 

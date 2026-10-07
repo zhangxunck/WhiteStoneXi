@@ -1346,6 +1346,65 @@ body.nav-open .burger-bar:nth-child(3) { transform: translateY(-6.5px) rotate(-4
   color: var(--ink);
 }
 
+/* 单集卡片（门3 四要素）：封面 / 标题 / 描述 / 时长+链接 */
+.podcast-ep-list { display: flex; flex-direction: column; gap: 1.5rem; }
+.podcast-ep {
+  display: flex;
+  gap: 1.4rem;
+  align-items: flex-start;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1.4rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.podcast-ep:hover {
+  border-color: var(--rule-hover);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+.podcast-ep-cover {
+  flex: 0 0 160px;
+  display: block;
+  border-radius: 6px;
+  overflow: hidden;
+  line-height: 0;
+}
+.podcast-ep-cover img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+.podcast-ep-body { flex: 1 1 auto; min-width: 0; }
+.podcast-ep-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+  line-height: 1.35;
+}
+.podcast-ep-desc {
+  font-size: 0.95rem;
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 0.9rem;
+}
+.podcast-ep-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.podcast-ep-dur {
+  font-size: 0.82rem;
+  color: var(--gray);
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 640px) {
+  .podcast-ep { flex-direction: column; gap: 1rem; }
+  .podcast-ep-cover, .podcast-ep-cover img { width: 100%; height: auto; flex-basis: auto; }
+}
+
 /* CRAP 重排（Eva 2026-10-02）：对比原则——已发布 vs 待发布 视觉截然不同。
    待发布行整行降至约 55% 不透明度；已发布篇名靠链接色+加粗。 */
 tr:has(.badge-status.is-upcoming) td { opacity: 0.55; }
