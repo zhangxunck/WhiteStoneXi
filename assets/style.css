@@ -790,7 +790,7 @@ body.zh-simple .para-col-zh .zh-si { display: block; }
 /* 题图角落版权水印（IP 盘点 §图片 IP 保护）：渲染层叠加，不改源文件
    ——高清原图不进公开仓（源文件隔离），水印让盗用自带归属痕迹。 */
 .card-hero::after {
-  content: "© 白石溪 WhiteStoneSpring";
+  content: "© 白石溪 WhiteStoneXi";
   position: absolute;
   top: 12px;
   right: 14px;            /* 图右上角——img 是 .card-hero 首个子元素，无歧义 */
