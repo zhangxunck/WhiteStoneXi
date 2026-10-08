@@ -96,9 +96,9 @@ Each series reads on its own. Any order works.
 
 ### Evidence Base and Visual Artifacts
 
-The four writing pieces carry one ribbon each; four colors mark four positions in the argument rather than decoration. The five Silicon Temple pieces each carry a Wu Guanzhong painting, chosen so the structure in the picture answers the theme in the text.
+The four writing pieces carry one ribbon each; four colors mark four positions in the argument rather than decoration. The five Silicon Temple pieces each carry an original photograph by the author, credited "photo by the author."
 
-四篇长文各系一条丝带；四种颜色标记论证中的四个位置，不是装饰。五篇《硅基神殿》各配一幅吴冠中，画中结构回应文中主题。
+四篇长文各系一条丝带；四种颜色标记论证中的四个位置，不是装饰。五篇《硅基神殿》各配一幅作者实拍，署名「作者摄」。
 
 ### Principles of the Inquiries
 
