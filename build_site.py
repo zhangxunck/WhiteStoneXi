@@ -5,7 +5,7 @@ import time
 
 # 生产站点域名。历史上手写死链（whitestonespring.org）导致域名漂移，
 # 此处集中定义并由 _inject_site_url 在渲染时注入，源文件写 {SITE_URL} 占位符。
-SITE_URL = "https://blog.zhangxunnj.cc.cd"
+SITE_URL = "https://whitestonexi.com"
 
 # 簡繁转换（发刊默认繁体；OpenCC 大陆地区规范字形 s2tw）。构建 venv 已装 opencc-python-reimplemented。
 try:

@@ -7,4 +7,4 @@ Allow: /articles/
 # 图片资源不进入图片搜索，压缩盗链收益
 Disallow: /assets/
 
-Sitemap: https://blog.zhangxunnj.cc.cd/sitemap.xml
+Sitemap: https://whitestonexi.com/sitemap.xml
