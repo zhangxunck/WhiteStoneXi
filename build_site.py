@@ -1435,7 +1435,10 @@ _feed = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<itunes:author>白石溪 WhiteStoneXi</itunes:author>',
          '<itunes:owner><itunes:name>白石溪</itunes:name></itunes:owner>',
          '<itunes:category text="Society &amp; Culture"/>',
-         '<itunes:explicit>false</itunes:explicit>']
+         '<itunes:explicit>false</itunes:explicit>',
+         # Apple Podcasts 收录必需：channel 级封面（1400–3000px 正方形，实测 1600×1600）
+         '<itunes:image href="' + BASE + 'assets/podcast_cover_v2.png"/>',
+         '<itunes:summary>白石溪 WhiteStoneXi — 持续调查语言、写作与思想。三人对谈。</itunes:summary>']
 for _bn, _fp2, _pd in _eps:
     _feed += ['<item>',
               '<title>' + _re.sub(r'[-_]+', ' ', _bn) + '</title>',
