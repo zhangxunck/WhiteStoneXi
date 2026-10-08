@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
 <channel>
 <title>白石溪播客</title>
-<link>https://blog.zhangxunnj.cc.cd/</link>
+<link>https://whitestonexi.com/</link>
 <description>白石溪 WhiteStoneXi — 持续调查语言、写作与思想。三人对谈。</description>
 <language>zh-cn</language>
 <itunes:author>白石溪 WhiteStoneXi</itunes:author>
@@ -12,7 +12,7 @@
 <item>
 <title>第一期 代号的神学 定稿 v8r3</title>
 <description>白石溪播客单集。</description>
-<enclosure url="https://blog.zhangxunnj.cc.cd/assets/podcast/第一期_代号的神学_定稿_v8r3.mp3" type="audio/mpeg" length="6988738"/>
+<enclosure url="https://whitestonexi.com/assets/podcast/第一期_代号的神学_定稿_v8r3.mp3" type="audio/mpeg" length="6988738"/>
 <guid isPermaLink="false">第一期_代号的神学_定稿_v8r3</guid>
 <pubDate>Tue, 06 Oct 2026 11:48:28 +0800</pubDate>
 </item>
