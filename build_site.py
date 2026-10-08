@@ -598,6 +598,19 @@ def strip_internal_sections(md):
         md = _re.sub(r"\n##+\s*%s\s*\n[\s\S]*?(?=\n##\s|\Z)" % _re.escape(title), "\n", md)
     return _re.sub(r"\n{3,}", "\n\n", md).strip()
 
+# 来源分级标记剥离（Eva 品牌审计 P0-1，2026-10-08）：[Primary]/[Secondary]/[Unverified]
+# 是内部审稿分级，公开页只保留干净来源列表。md 源保留（交稿稿要全），渲染层剥离
+# ——同 strip_internal_sections 原则（publish.py 只管中文投影，英文 .en.md 直写进来）。
+_SOURCE_GRADES = _re.compile(r"\*{0,2}\[(?:Primary|Secondary|Unverified)\]\*{0,2}[ \t]*")
+def strip_source_grades(md):
+    # 删分级说明段（"Graded as follows: …"整行）
+    md = _re.sub(r"(?m)^[ \t]*Graded as follows:.*(?:\n|$)", "", md)
+    # 删行内分级标记（如 "1. **[Primary]** McLuhan" → "1. McLuhan"）
+    md = _SOURCE_GRADES.sub("", md)
+    # 删条目内「待核实/发稿前」内部批注（如 "*…a primary source is needed before publication.*"）
+    md = _re.sub(r"[ \t]*\*[^*\n]*(?:before publication|待核实|待核實)[^*\n]*\*", "", md)
+    return _re.sub(r"\n{3,}", "\n\n", md)
+
 # 题图映射：basename -> assets 短名（卡片图 PNG + 交互 HTML 查看器成对）
 CARD_IMG = {
     "翻译如何重塑中文_两千年来五波外来语与现代写作真相": "06_翻译如何重塑中文",
@@ -706,6 +719,9 @@ for md_path in md_files:
     # publish.py 只管中文投影，英文 .en.md 是直写进来的，得在这里兜住。
     content = strip_internal_sections(content)
     en_content = strip_internal_sections(en_content) if has_en else en_content
+    # 来源分级标记剥离（Eva 品牌审计 P0-1）：公开页只留干净来源列表
+    content = strip_source_grades(content)
+    en_content = strip_source_grades(en_content) if has_en else en_content
     
     # 中文按 ## 切段；每段给 简体(原文) 与 繁体(s2tw) 双份；英文按 ## 切段
     cn_pream, cn_secs = split_by_h2(content)
