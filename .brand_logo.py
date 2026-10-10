@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""白石溪 / White Stone Spring — 品牌标识 v32（极简版）
+"""白石溪 / WhiteStoneXi — 品牌标识 v32（极简版）
 
 方向（2026-10-01 Alex 批准）：
   保留：三色 #1A1A1A/#FFFFFF/#E03030、坎卦水波 ☵、红色点睛
@@ -262,7 +262,7 @@ def _wordmark(items, total_w, ink, bg, title, label, i_tops=None, mono=False):
     H = bot_wave_bottom + pad_bot
     W = wave_w + 40.0
 
-    s = [f'<desc>White Stone Spring v32 minimal ({bg}).</desc>',
+    s = [f'<desc>WhiteStoneXi v32 minimal ({bg}).</desc>',
          f'<rect width="{W:.1f}" height="{H:.1f}" fill="{bg_fill}"/>']
     tx0 = (W - total_w) / 2.0
     for d, tx in items:
@@ -280,15 +280,15 @@ def _wordmark(items, total_w, ink, bg, title, label, i_tops=None, mono=False):
 def build_wordmark_cn(bg="white", mono=False):
     face = _cn_face()
     items, total_w, ink = _cn_layout(face)
-    return _wordmark(items, total_w, ink, bg, "白石溪 White Stone Spring",
+    return _wordmark(items, total_w, ink, bg, "白石溪 WhiteStoneXi",
                      "白石溪", mono=mono)
 
 
 def build_wordmark_en(bg="white"):
     face = _en_face()
     items, total_w, ink, i_tops = _en_caps_layout(face)
-    return _wordmark(items, total_w, ink, bg, "White Stone Spring",
-                     "White Stone Spring", i_tops=i_tops)
+    return _wordmark(items, total_w, ink, bg, "WhiteStoneXi",
+                     "WhiteStoneXi", i_tops=i_tops)
 
 
 def _xi_layout(face, size=92.0, track=-3.0):
@@ -352,7 +352,7 @@ def build_logo_xi(bg="white"):
     yin_axis_y = baseline_y + red_half + 1.0
     kan = _kan_paths(amp_mul=0.30)
 
-    s = [f'<desc>White Stone Spring v32 logo — Xi standing on water ({bg}).</desc>',
+    s = [f'<desc>WhiteStoneXi v32 logo — Xi standing on water ({bg}).</desc>',
          f'<rect width="{S:.0f}" height="{S:.0f}" fill="{bg_fill}"/>']
     for d, tx in items:
         s.append(f'<path d="{d}" transform="translate({tx0+tx:.1f},{ty:.1f})" fill="{text_c}"/>')
@@ -360,7 +360,7 @@ def build_logo_xi(bg="white"):
         s.append(f'<circle cx="{tx0+cx:.2f}" cy="{ty+cy:.2f}" r="{r:.2f}" fill="{RED}"/>')
     wave_x = (S - wave_w) / 2.0
     s.extend(render_waves_flat(wave_x, yin_axis_y, wave_w, hero_c, aux_c, kan=kan))
-    return _svg_wrap(S, S, "Xi · White Stone Spring", "Xi", s)
+    return _svg_wrap(S, S, "Xi · WhiteStoneXi", "Xi", s)
 
 
 if __name__ == "__main__":

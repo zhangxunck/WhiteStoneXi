@@ -591,7 +591,8 @@ def _md_html(mdtext):
     return h
 
 # 内部工作节：md 源保留，公开页剥离（Eva 品牌审计 P0 草稿外泄）
-INTERNAL_SECTIONS = ("待核实清单", "待核實清單", "To verify")
+INTERNAL_SECTIONS = ("待核实清单", "待核實清單", "To verify",
+                     "概念索引", "Concept index", "下一篇", "Next")
 
 def strip_internal_sections(md):
     for title in INTERNAL_SECTIONS:
@@ -877,9 +878,10 @@ article_metadata.sort(key=lambda x: (x["date"], x["basename"]), reverse=True)
 
 def _card(a, depth=""):
     """单篇文章卡片（首页与系列页共用）。"""
+    art = f'\n      <div class="minimal-art-box">{a["svg_art"]}</div>' if a["svg_art"] else ""
     return f"""
     <a class="minimal-article-card" href="{depth}articles/{a['basename']}.html">
-      <div class="minimal-art-box">{a['svg_art']}</div>
+      {art}
       <div class="minimal-text-box">
         <div class="minimal-meta-top">
           <span class="minimal-kicker">{trad(a['category_label'])}</span>
