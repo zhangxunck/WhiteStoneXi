@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-label="Waves">
-  <title>White Stone Spring · Kan Waves</title>
+  <title>WhiteStoneXi · Kan Waves</title>
   <defs>
     <filter id="movable-type-edge" x="-5%" y="-5%" width="110%" height="110%">
       <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" result="noise" seed="7" />

@@ -16,7 +16,7 @@ export default {
       ];
       const isAllowed = allowed.some(d => refUrl.hostname === d || refUrl.hostname.endsWith('.' + d));
       if (!isAllowed) {
-        return new Response('Hotlinking Forbidden by White Stone Spring', { status: 403 });
+        return new Response('Hotlinking Forbidden by WhiteStoneXi', { status: 403 });
       }
     }
 

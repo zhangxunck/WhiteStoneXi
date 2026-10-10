@@ -1,4 +1,4 @@
-# 白石溪 White Stone Spring · robots.txt
+# 白石溪 WhiteStoneXi · robots.txt
 # 目标：允许搜索与正常阅读，同时降低整站被批量镜像、图片被搜索引擎收录（减少盗链面）
 User-agent: *
 # 文章正文与导览允许被索引（公开发表，需要读者）
