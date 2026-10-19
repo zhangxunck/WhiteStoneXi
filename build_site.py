@@ -16,11 +16,21 @@ try:
         return _CC.convert(text) if text else text
     def simp(text):
         return _CC_SIMP.convert(text) if text else text
+
 except Exception:
     def trad(text):
         return text
     def simp(text):
         return text
+
+
+def _trad_keep_attrs(html):
+    """把标签间文本转繁体，但 href/src 属性值原样保留。"""
+    parts = _re.split(r'(<[^>]+>)', html)
+    out = []
+    for k, seg in enumerate(parts):
+        out.append(seg if k % 2 else trad(seg))
+    return "".join(out)
 
 def split_by_h2(mdtext):
     """按 `## ` 切分：返回 (preamble_text, [ [lines] ])，各 section 首行即其 `## ` 标题。"""
@@ -462,9 +472,7 @@ def _nav_html(depth=""):
         (f"{d}podcasts.html",     "播客", "播客"),
         (f"{d}README.html",       "簡介", "简介"),
     ]
-    ext = [
-        ("https://github.com/zhangxunck/WhiteStoneXi", "GitHub", "GitHub"),
-    ]
+    ext = []
     def a(href, tr, si, cls=""):
         # 站内链接同页跳转；仅外链（http）新开标签
         ext = ' target="_blank" rel="noopener"' if href.startswith("http") else ""
@@ -739,7 +747,7 @@ for md_path in md_files:
         c = "\n".join(cn_secs[i]) if i < len(cn_secs) else ""
         e = "\n".join(en_secs[i]) if i < len(en_secs) else ""
         si = _md_html(c)
-        tr = trad(si) if si else ""
+        tr = _trad_keep_attrs(si) if si else ""
         para_cells.append(f'<div class="para-sec para-col-zh"><div class="zh-tr">{tr}</div>'
                           f'<div class="zh-si">{si}</div></div>')
         if has_en:
@@ -776,10 +784,11 @@ for md_path in md_files:
         _toc = "".join(_one(b) for b in _pub)
         def _pager(b, label, cls):
             if not b: return '<span class="pn-empty"></span>'
+            _ar = '←' if cls == 'pn-prev' else '→'
             return (f'<a class="{cls}" href="{b}.html">'
                     f'<span class="pn-label">{label}</span>'
                     f'<span class="pn-title">{trad(_TITLE_OF.get(b, b))}</span>'
-                    f'<span class="pn-arrow">→</span></a>')
+                    f'<span class="pn-arrow">{_ar}</span></a>')
         _prev = _pub[_pub_idx-1] if _pub_idx > 0 else None
         _next = _pub[_pub_idx+1] if _pub_idx < len(_pub)-1 else None
         series_nav_html = f"""
@@ -1198,13 +1207,6 @@ readme_html = readme_parser.convert(readme_md)
 # 做法：只转换节点文本，属性一律不动。
 _ATTR_RE = _re.compile(r'(<[a-zA-Z][^>]*?)\s(href|src)="([^"]*)"([^>]*>)')
 
-def _trad_keep_attrs(html):
-    """把标签间文本转繁体，但 href/src 属性值原样保留。"""
-    parts = _re.split(r'(<[^>]+>)', html)   # 偶数位=标签，奇数位=文本
-    out = []
-    for k, seg in enumerate(parts):
-        out.append(seg if k % 2 else trad(seg))   # k%2==1 才是文本
-    return "".join(out)
 
 readme_raw = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
 # 取正文（剥 frontmatter）
@@ -1425,6 +1427,8 @@ _eps = []
 if os.path.isdir(_pod_dir):
     for _f in sorted(glob.glob(os.path.join(_pod_dir, "*.mp3")) + glob.glob(os.path.join(_pod_dir, "*.m4a"))):
         _bn = os.path.splitext(os.path.basename(_f))[0]
+        if _bn.upper().startswith("EP02"):
+            continue  # 未发布单集不进 feed（Eva spec）
         _eps.append((_bn, _f, time.strftime("%a, %d %b %Y %H:%M:%S +0800",
                      time.localtime(os.path.getmtime(_f)))))
 _feed = ['<?xml version="1.0" encoding="UTF-8"?>',
@@ -1433,7 +1437,7 @@ _feed = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<title>白石溪播客</title>',
          '<link>' + BASE + '</link>',
          '<description>白石溪 WhiteStoneXi — 持续调查语言、写作与思想。三人对谈。</description>',
-         '<language>zh-cn</language>',
+         '<language>zh-Hant</language>',
          '<itunes:author>白石溪 WhiteStoneXi</itunes:author>',
          '<itunes:owner><itunes:name>白石溪</itunes:name></itunes:owner>',
          '<itunes:category text="Society &amp; Culture"/>',
@@ -1443,7 +1447,7 @@ _feed = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<itunes:summary>白石溪 WhiteStoneXi — 持续调查语言、写作与思想。三人对谈。</itunes:summary>']
 for _bn, _fp2, _pd in _eps:
     _feed += ['<item>',
-              '<title>' + _re.sub(r'[-_]+', ' ', _bn) + '</title>',
+              '<title>' + (_bn.upper() if _bn.isascii() else _bn) + '</title>',
               '<description>白石溪播客单集。</description>',
               '<enclosure url="' + BASE + 'assets/podcast/' + os.path.basename(_fp2) + '"'
               ' type="audio/mpeg" length="%d"/>' % os.path.getsize(_fp2),
