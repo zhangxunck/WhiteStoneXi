@@ -1406,20 +1406,32 @@ def _fix_series_badge(html_text):
     import re
     # 已发布文章的 basename 集合
     _published_basenames = {a["basename"] for a in article_metadata}
-    # 从 SERIES 构建：标题(摘要列的标题) -> basename
-    _series_title_to_bn = {}
-    for slug, sd in SERIES.items():
-        for b in sd.get("order", []):
-            # SERIES 里没有标题，需要用 article_metadata 的 title 匹配
-            for a in article_metadata:
-                if a["basename"] == b:
-                    _series_title_to_bn[a["title"]] = b
-    # 也处理摘要列标题（如"轴心的倒流"）
-    # README.md 系列表第一列是标题，第二列是 badge + 摘要
+    # basename -> 短标题映射（用于匹配系列表第一列的短标题）
+    _bn_to_short = {}
+    for a in article_metadata:
+        bn = a["basename"]
+        title = a["title"]
+        # 从完整标题提取短标题：去掉系列前缀
+        for pre in ("硅基神殿的隐喻_", "硅基神殿的隱喻_", "写作与判断力_", "寫作與判斷力_"):
+            if bn.startswith(pre):
+                _bn_to_short[bn] = bn[len(pre):]
+                break
+        else:
+            _bn_to_short[bn] = title
+    # 反向：短标题 -> basename
+    _short_to_bn = {v: k for k, v in _bn_to_short.items()}
+    # 也加上完整标题映射
+    for a in article_metadata:
+        _short_to_bn[a["title"]] = a["basename"]
+    
     def _rep(m):
         col1_title = m.group(1).strip()
         status = m.group(2)
-        bn = _series_title_to_bn.get(col1_title, "")
+        # 繁简互查
+        from opencc import OpenCC
+        s2t = OpenCC('s2t').convert
+        t2s = OpenCC('t2s').convert
+        bn = _short_to_bn.get(col1_title, "") or _short_to_bn.get(s2t(col1_title), "") or _short_to_bn.get(t2s(col1_title), "")
         if bn in _published_basenames:
             return f'<td><span class="badge-status is-published">已發布</span></td>'
         return m.group(0)
@@ -1475,8 +1487,14 @@ _feed = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<itunes:image href="' + BASE + 'assets/podcast_cover_v2.png"/>',
          '<itunes:summary>白石溪 WhiteStoneXi — 持续调查语言、写作与思想。三人对谈。</itunes:summary>']
 for _bn, _fp2, _pd in _eps:
+    # 映射 basename -> 正式标题
+    _ep_titles = {
+        "ep01": "第一期 · 代號的神學",
+        "EP01": "第一期 · 代號的神學",
+    }
+    _ep_title = _ep_titles.get(_bn, _bn.upper() if _bn.isascii() else _bn)
     _feed += ['<item>',
-              '<title>' + (_bn.upper() if _bn.isascii() else _bn) + '</title>',
+              '<title>' + _ep_title + '</title>',
               '<description>以长文《硅基神殿的隐喻·代号的神学》为底稿：神话命名如何成为机器的止痛药。7分17秒。</description>',
               '<enclosure url="' + BASE + 'assets/podcast/' + os.path.basename(_fp2) + '"'
               ' type="audio/mpeg" length="%d"/>' % os.path.getsize(_fp2),

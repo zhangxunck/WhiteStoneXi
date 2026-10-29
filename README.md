@@ -40,7 +40,7 @@
 | 写作是学习的发生地 | **工序** · 怎么把别人的话变成自己的判断 | <span class="badge-status is-upcoming">待发布</span> |
 | AI 认知判断力 | **归属** · 判断力最终存在哪 | <span class="badge-status is-upcoming">待发布</span> |
 
-两个系列都能独立读；先读哪篇都成立。
+
 
 ### 读之前要知道的
 
@@ -92,13 +92,13 @@ Currently published (4 pieces):
 | Writing Is Where Learning Happens | **Craft** · turning others' words into your own judgment | <span class="badge-status is-upcoming">Forthcoming</span> |
 | The Great Cognitive Divide in the AI Age | **Ownership** · where judgment finally lives | <span class="badge-status is-upcoming">Forthcoming</span> |
 
-Each series reads on its own. Any order works.
+
 
 ### Evidence Base and Visual Artifacts
 
-The four writing pieces carry one ribbon each; four colors mark four positions in the argument rather than decoration. The five Silicon Temple pieces each carry an original photograph by the author, credited "photo by the author."
 
-四篇长文各系一条丝带；四种颜色标记论证中的四个位置，不是装饰。五篇《硅基神殿》各配一幅作者实拍，署名「作者摄」。
+
+
 
 ### Principles of the Inquiries
 
