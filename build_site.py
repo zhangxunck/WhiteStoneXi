@@ -1400,6 +1400,35 @@ def _demote_anchor(m):
 _fp = os.path.join(ROOT, "README.html")
 _h_src = open(_fp, encoding="utf-8").read()
 _h = _re.sub(r'<a href="(articles/[^"]+\.html)">([^<]*)</a>', _demote_anchor, _h_src)
+
+# 同步修正系列表格中的 badge（README.md 静态表格转换而来，不走 _demote_anchor）
+def _fix_series_badge(html_text):
+    import re
+    # 已发布文章的 basename 集合
+    _published_basenames = {a["basename"] for a in article_metadata}
+    # 从 SERIES 构建：标题(摘要列的标题) -> basename
+    _series_title_to_bn = {}
+    for slug, sd in SERIES.items():
+        for b in sd.get("order", []):
+            # SERIES 里没有标题，需要用 article_metadata 的 title 匹配
+            for a in article_metadata:
+                if a["basename"] == b:
+                    _series_title_to_bn[a["title"]] = b
+    # 也处理摘要列标题（如"轴心的倒流"）
+    # README.md 系列表第一列是标题，第二列是 badge + 摘要
+    def _rep(m):
+        col1_title = m.group(1).strip()
+        status = m.group(2)
+        bn = _series_title_to_bn.get(col1_title, "")
+        if bn in _published_basenames:
+            return f'<td><span class="badge-status is-published">已發布</span></td>'
+        return m.group(0)
+    # 表格行：<tr><td>标题</td><td><span class="badge-status is-upcoming">状态</span></td>
+    html_text = re.sub(r'<tr>\s*<td>([^<]+)</td>\s*<td><span class="badge-status is-upcoming">(待發布|待发布|Forthcoming)</span></td>', _rep, html_text)
+    return html_text
+
+_h = _fix_series_badge(_h)
+
 open(_fp, "w", encoding="utf-8").write(_h)
 if _demoted:
     print("README.html: %d 个未发布篇目降级为「待發布」" % len(_demoted))
@@ -1448,7 +1477,7 @@ _feed = ['<?xml version="1.0" encoding="UTF-8"?>',
 for _bn, _fp2, _pd in _eps:
     _feed += ['<item>',
               '<title>' + (_bn.upper() if _bn.isascii() else _bn) + '</title>',
-              '<description>白石溪播客单集。</description>',
+              '<description>以长文《硅基神殿的隐喻·代号的神学》为底稿：神话命名如何成为机器的止痛药。7分17秒。</description>',
               '<enclosure url="' + BASE + 'assets/podcast/' + os.path.basename(_fp2) + '"'
               ' type="audio/mpeg" length="%d"/>' % os.path.getsize(_fp2),
               '<guid isPermaLink="false">' + _bn + '</guid>',

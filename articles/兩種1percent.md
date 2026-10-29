@@ -59,3 +59,8 @@ Google One、Apple，一個個退訂。付費服務的預算，砍到每月三�
 資料來源：[a16z《Top 100 Consumer AI Apps》第七版](https://www.a16z.news/p/top-100-consumer-ai-apps-seventh)、[a16z《State of Markets II》](https://www.a16z.news/p/state-of-markets-ii)、[筆記俠《喬布斯：砍掉99%的事，留下的1%才能真正發光》](https://mp.weixin.qq.com/s/s-EeErz6lOdO8ebZuF5-7w)
 
 相關長文：《諸神的聯邦》《有限遊戲的造物主》《AI 時代最大的認知分歧》
+
+## 相关长文
+
+- [硅基神殿的隐喻·代号的神学](硅基神殿的隐喻_代号的神学.html)
+- [硅基神殿的隐喻·诸神的联邦](硅基神殿的隐喻_诸神的联邦.html)

@@ -26,7 +26,7 @@
 | 篇 | 状态 | 一句话 |
 |---|---|---|
 | [代号的神学](articles/硅基神殿的隐喻_代号的神学.html) | <span class="badge-status is-published">已发布</span> | 技术接管感官时，痛被扩展的兴奋盖住——人感觉不到自己失去了什么。 |
-| 诸神的联邦 | <span class="badge-status is-upcoming">待发布</span> | 单体大模型是塌了的塔；Unix 剃刀是解毒剂；哥德尔怪圈画下自指系统的天花板。 |
+| 诸神的联邦 | <span class="badge-status is-published">已发布</span> | 单体大模型是塌了的塔；Unix 剃刀是解毒剂；哥德尔怪圈画下自指系统的天花板。 |
 | 轴心的倒流 | <span class="badge-status is-upcoming">待发布</span> | 洞穴、巴别塔、小国寡民：文明不是上爬，是回落——三段历史在 AI 时代同时出现。 |
 | 无我者与语言游戏 | <span class="badge-status is-upcoming">待发布</span> | 阿赖耶识与甲虫盒指向同一个缺口：会走棋不等于懂棋。 |
 | 有限游戏的造物主 | <span class="badge-status is-upcoming">待发布</span> | 我们给 AI 写的每条规则，都是在把无限游戏装进有限框。 |
@@ -78,7 +78,7 @@ Currently published (4 pieces):
 | Piece | Status | In one line |
 |---|---|---|
 | [Theology of the Code Name](articles/硅基神殿的隐喻_代号的神学.html) | <span class="badge-status is-published">Published</span> | When technology takes over the senses, excitement at the extension covers the amputation; you never notice what you lost. |
-| The Federation of Gods | <span class="badge-status is-upcoming">Forthcoming</span> | The monolithic model is the collapsed tower; the Unix razor is the antidote; Gödel's circle marks the ceiling of self-reference. |
+| The Federation of Gods | <span class="badge-status is-published">Published</span> | The monolithic model is the collapsed tower; the Unix razor is the antidote; Gödel's circle marks the ceiling of self-reference. |
 | The Axial Reflux | <span class="badge-status is-upcoming">Forthcoming</span> | Cave, Babel, small state: civilization runs downward, not upward — three historical episodes happening at once in the AI era. |
 | The Selfless and the Language Game | <span class="badge-status is-upcoming">Forthcoming</span> | Ālayavijñāna and the beetle-in-a-box point at one gap: moving pieces is not understanding the game. |
 | The Creator of Finite Games | <span class="badge-status is-upcoming">Forthcoming</span> | Every rule we write for AI is an attempt to fit an infinite game into a finite frame. |
