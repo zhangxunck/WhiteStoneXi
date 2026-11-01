@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noimageindex">
+<meta name="copyright" content="zhangxunnj (白石溪 WhiteStoneXi), 2026, 保留所有权利">
+<title>什麼算底座 · 白石溪</title>
+<link rel="icon" type="image/svg+xml" href="../assets/v32/v32_logo_xi_white.svg?v=1790580668">
+<link rel="stylesheet" href="../assets/style.css?v=1791629309">
+</head>
+<body class="">
+
+<header class="site-header">
+  <div class="site-title">
+    <a href="../index.html"><img src="../assets/v32/v32_wordmark_cn_white.svg?v=1791629214" alt="白石溪" class="brand-wordmark"></a>
+  </div>
+  <button class="nav-burger" type="button" aria-label="選單" aria-expanded="false"><span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span></button><nav class="site-nav" id="siteNav"><div class="nav-core"><a href="../index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a><a href="../archive.html"><span class="site-tr">目錄</span><span class="site-si">目录</span></a><a href="../podcasts.html"><span class="site-tr">播客</span><span class="site-si">播客</span></a><a href="../README.html"><span class="site-tr">簡介</span><span class="site-si">简介</span></a></div><div class="nav-more"></div><button class="lang-toggle" type="button">切換簡體</button></nav>
+</header>
+
+<main class="article-container">
+  <div class="article-kicker">特稿</div>
+  <h1 class="article-title">什麼算底座</h1>
+  
+  <div class="article-meta">
+    <span>白石溪</span>
+    <span>2026-11-01</span>
+  </div>
+
+  
+  <div class="article-body">
+<h1 id="_1">什麼算底座</h1>
+<p>這套系統，有三個名字。</p>
+<p>一個是人，叫 Alex。兩個是 AI，一個叫 Eva，一個叫 WALLe。</p>
+<p>文章進來，知識沉下去。問題進來，決定出去。跑了一陣子，Alex 停下來問：這套系統，底下墊著什麼？</p>
+<p>Alex 先定了一條線。壞了，全線受影響；其他東西都建在它上面。這樣的東西，才配叫底座。</p>
+<p>按這條線數，只數出八件。</p>
+<p>一條資訊的河，管什麼進來、什麼沉下去。一套做決定的方法，管判斷往哪裡放。一條連回世界的通道，斷了，系統就是孤島。一間知識庫和它的憲法，管東西存放在哪裡、按什麼規矩存。一組不能丟的帳號——鏈可以重建，號沒了，全沒了。一套三人的分工：Eva 負責想和驗，WALLe 負責做，Alex 負責定。一池輪換的模型，這家停了，那家頂上。一層雲與網絡，域名、內網、備份，各就其位。</p>
+<p>多一件，是贅肉。少一件，是窟窿。</p>
+<p>數完，Alex 又問 Eva：MECE 要不要請進來，做第九條？</p>
+<p>Eva 說，MECE 是個好東西。互斥，窮盡。不重疊，不遺漏。但不能升它做原則。原則判方案，MECE 查清單。層級不同。尺子是尺子，量東西的動作，是另一個動作。</p>
+  </div>
+
+  <div class="para-tabs" role="tablist"><button type="button" class="on" data-view="zh">中文</button><button type="button" data-view="en">English</button></div>
+  <div class="para-toolbar"><button class="para-toggle" type="button"><span class="opt on" data-v="tr">繁體</span><span class="sep">／</span><span class="opt" data-v="si">簡體</span></button></div>
+  <div class="parallel-body">
+    
+  </div>
+
+  
+</main>
+
+<footer class="site-footer"><div class="footer-seal"><img src="../assets/v32/v32_logo_xi_white.svg?v=1791629214" alt="白石溪" class="brand-wordmark is-seal"></div><div class="footer-line"><span class="site-tr">© 2026 白石溪 WhiteStoneXi · 保留所有權利</span><span class="site-si">© 2026 白石溪 WhiteStoneXi · 保留所有权利</span></div></footer>
+
+<script>
+(function(){
+  var b=document.body;
+  document.querySelectorAll('.para-toggle').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      b.classList.toggle('zh-simple');
+      document.querySelectorAll('.para-toggle .opt').forEach(function(o){
+        o.classList.toggle('on', (o.dataset.v==='si')===b.classList.contains('zh-simple'));
+      });
+    });
+  });
+  // 移动端分段控件：中文 / English / 對照（body.m-en / body.m-duo；默认中文单栏）
+  var VIEWS=['zh','en','duo'];
+  function applyView(v){
+    if(VIEWS.indexOf(v)<0) v='zh';
+    b.classList.remove('m-en','m-duo');
+    if(v==='en') b.classList.add('m-en');
+    if(v==='duo') b.classList.add('m-duo');
+    document.querySelectorAll('.para-tabs button').forEach(function(x){
+      x.classList.toggle('on', x.dataset.view===v);
+    });
+    try{ localStorage.setItem('wss_view', v); }catch(e){}
+  }
+  var saved='zh';
+  try{
+    // ?v=zh|en|duo 优先（可分享/可测），否则读上次选择
+    var q=(new URLSearchParams(location.search)).get('v');
+    saved=q||localStorage.getItem('wss_view')||'zh';
+  }catch(e){}
+  applyView(saved);
+  document.querySelectorAll('.para-tabs button').forEach(function(btn){
+    btn.addEventListener('click',function(){ applyView(btn.dataset.view); });
+  });
+  // 站点级（导览/简介）繁/简：点按钮切 body.zh-simple，站名/导航用 site-tr/site-si 成对
+  document.querySelectorAll('.lang-toggle').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      var on=b.classList.toggle('zh-simple');
+      // on = 当前为简体 → 按钮提示「切回繁體」；off = 当前繁体 → 提示「切換簡體」
+      btn.textContent = on ? '切換繁體' : '切換簡體';
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var b=document.body;
+  var burger=document.querySelector('.nav-burger');
+  var nav=document.getElementById('siteNav');
+  if(burger&&nav){
+    burger.addEventListener('click',function(){
+      var open=b.classList.toggle('nav-open');
+      burger.setAttribute('aria-expanded', open?'true':'false');
+    });
+    // 点菜单外/点链接后收起
+    nav.addEventListener('click',function(e){
+      if(e.target.closest('a')) b.classList.remove('nav-open');
+    });
+  }
+  // 系列子页：滚动时高亮当前篇
+  var links=[].slice.call(document.querySelectorAll('.series-toc a'));
+  if(links.length && 'IntersectionObserver' in window){
+    var map={};
+    links.forEach(function(a){ var el=document.querySelector(a.getAttribute('href')); if(el) map[el.id]=a; });
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var a=map[en.target.id]; if(!a) return;
+        if(en.isIntersecting){
+          links.forEach(function(x){x.classList.remove('on');});
+          a.classList.add('on');
+        }
+      });
+    },{rootMargin:'-20% 0px -70% 0px'});
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+})();
+</script>
+</body>
+</html>
