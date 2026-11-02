@@ -97,7 +97,7 @@ TOGGLE_JS = """
 })();
 """
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # style.css 缓存戳：每次 build 刷新（mtime 整秒），保证简介/并排版式即时生效
 css_v = str(int(os.path.getmtime(os.path.join(ROOT, "assets", "style.css"))))
 
