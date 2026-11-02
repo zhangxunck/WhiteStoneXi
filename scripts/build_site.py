@@ -1,5 +1,6 @@
 import os, sys, glob, re as _re
 import json
+import subprocess
 import markdown
 import time
 
@@ -324,31 +325,83 @@ def _podcast_page():
             '<span class="site-tr">Spotify</span><span class="site-si">Spotify</span></a>'
             '</p>')
         # 单集四要素（门3）：标题 / 封面 / 时长 / Spotify 单集+节目链接
-        _ep_cover = "assets/podcast_cover_v2.png"
-        _ep_cover_v = (str(int(os.path.getmtime(os.path.join(ROOT, _ep_cover))))
-                       if os.path.exists(os.path.join(ROOT, _ep_cover)) else "1")
-        _ep_list = (
-            '<div class="podcast-ep-list">'
-            '<article class="podcast-ep">'
-            f'<a class="podcast-ep-cover" href="https://open.spotify.com/episode/2pAZg5gSi1Ck2m94j2yH1z" target="_blank" rel="noopener">'
-            f'<img src="{_ep_cover}?v={_ep_cover_v}" alt="《代號的神學》單集封面" loading="lazy"></a>'
-            '<div class="podcast-ep-body">'
-            '<h2 class="podcast-ep-title">'
-            '<span class="site-tr">第一期 · 代號的神學</span>'
-            '<span class="site-si">第一期 · 代号的神学</span></h2>'
-            '<p class="podcast-ep-desc">'
-            '<span class="site-tr">以長文《矽基神殿的隱喻·代號的神學》為底稿：神話命名如何成為機器的止痛藥。</span>'
-            '<span class="site-si">以长文《硅基神殿的隐喻·代号的神学》为底稿：神话命名如何成为机器的止痛药。</span></p>'
-            '<p class="podcast-ep-meta">'
-            '<span class="podcast-ep-dur">7:17</span>'
-            '<a class="podcast-listen-btn" href="https://open.spotify.com/episode/2pAZg5gSi1Ck2m94j2yH1z" target="_blank" rel="noopener">'
-            '<span class="site-tr">Spotify 單集</span><span class="site-si">Spotify 单集</span></a>'
-            '<a class="podcast-listen-btn" href="https://open.spotify.com/show/2Zc8KcG9XmngIyz93yQOVW" target="_blank" rel="noopener">'
-            '<span class="site-tr">節目主頁</span><span class="site-si">节目主页</span></a>'
-            '</p>'
-            '</div>'
-            '</article>'
-            '</div>')
+        _SPOTIFY_SHOW = "https://open.spotify.com/show/2Zc8KcG9XmngIyz93yQOVW"
+        _ep_meta = {
+            "ep01": {
+                "title_tr": "第一期 · 代號的神學", "title_si": "第一期 · 代号的神学",
+                "desc_tr": "以長文《矽基神殿的隱喻·代號的神學》為底稿：神話命名如何成為機器的止痛藥。",
+                "desc_si": "以长文《硅基神殿的隐喻·代号的神学》为底稿：神话命名如何成为机器的止痛药。",
+                "cover": "assets/podcast_cover_v2.png",
+                "alt": "《代號的神學》單集封面",
+                "spotify": "https://open.spotify.com/episode/2pAZg5gSi1Ck2m94j2yH1z",
+            },
+            "ep02": {
+                "title_tr": "第二期 · 諸神的聯邦", "title_si": "第二期 · 诸神的联邦",
+                "desc_tr": "三神從廢墟站起，卻沒有替它們做決定的人——聯邦沒有牧師，這是代價而非缺陷。",
+                "desc_si": "三神从废墟站起，却没有替它们做决定的人——联邦没有牧师，这是代价而非缺陷。",
+                "cover": "assets/02_诸神的联邦.jpg",
+                "alt": "《諸神的聯邦》單集封面",
+                "spotify": None,
+            },
+        }
+        _ep_duration = {}
+        for _ep_name, _ep_meta_item in _ep_meta.items():
+            _ep_fp = os.path.join(_pod_dir, _ep_name + ".mp3")
+            _dur = "0:00"
+            try:
+                _r = subprocess.run(
+                    [os.path.expanduser("~/.local/bin/ffprobe"), "-v", "quiet",
+                     "-print_format", "json", "-show_format", _ep_fp],
+                    capture_output=True, text=True, timeout=10,
+                )
+                import json as _json2
+                _fd = _json2.loads(_r.stdout)["format"]["duration"]
+                _m, _s = divmod(int(float(_fd)), 60)
+                _dur = f"{_m}:{_s:02d}"
+            except Exception:
+                pass
+            _ep_duration[_ep_name] = _dur
+        _ep_list_parts = ['<div class="podcast-ep-list">']
+        for _ep_name in sorted(_ep_meta.keys()):
+            _em = _ep_meta[_ep_name]
+            _cover = _em["cover"]
+            _cover_v = (str(int(os.path.getmtime(os.path.join(ROOT, _cover))))
+                       if os.path.exists(os.path.join(ROOT, _cover)) else "1")
+            if _em.get("spotify"):
+                _cover_tag = (f'<a class="podcast-ep-cover" href="{_em["spotify"]}" '
+                              f'target="_blank" rel="noopener">'
+                              f'<img src="{_cover}?v={_cover_v}" alt="{_em["alt"]}" loading="lazy"></a>')
+                _meta_btns = (
+                    f'<a class="podcast-listen-btn" href="{_em["spotify"]}" target="_blank" rel="noopener">'
+                    f'<span class="site-tr">Spotify 單集</span><span class="site-si">Spotify 单集</span></a>'
+                    f'<a class="podcast-listen-btn" href="{_SPOTIFY_SHOW}" target="_blank" rel="noopener">'
+                    f'<span class="site-tr">節目主頁</span><span class="site-si">节目主页</span></a>')
+            else:
+                _cover_tag = (f'<a class="podcast-ep-cover" href="assets/podcast/{_ep_name}.mp3" '
+                              f'target="_blank" rel="noopener">'
+                              f'<img src="{_cover}?v={_cover_v}" alt="{_em["alt"]}" loading="lazy"></a>')
+                _meta_btns = (
+                    f'<a class="podcast-listen-btn" href="assets/podcast/{_ep_name}.mp3" '
+                    f'target="_blank" rel="noopener">'
+                    f'<span class="site-tr">本地播放</span><span class="site-si">本地播放</span></a>'
+                    f'<a class="podcast-listen-btn" href="{_SPOTIFY_SHOW}" target="_blank" rel="noopener">'
+                    f'<span class="site-tr">節目主頁</span><span class="site-si">节目主页</span></a>')
+            _ep_list_parts.append(
+                '<article class="podcast-ep">'
+                + _cover_tag
+                + '<div class="podcast-ep-body">'
+                + '<h2 class="podcast-ep-title">'
+                + f'<span class="site-tr">{_em["title_tr"]}</span>'
+                + f'<span class="site-si">{_em["title_si"]}</span></h2>'
+                + '<p class="podcast-ep-desc">'
+                + f'<span class="site-tr">{_em["desc_tr"]}</span>'
+                + f'<span class="site-si">{_em["desc_si"]}</span></p>'
+                + '<p class="podcast-ep-meta">'
+                + f'<span class="podcast-ep-dur">{_ep_duration[_ep_name]}</span>'
+                + _meta_btns
+                + '</p></div></article>')
+        _ep_list_parts.append('</div>')
+        _ep_list = ''.join(_ep_list_parts)
     else:
         _feed_html = ('<p class="podcast-feed-line is-empty">'
                       '<span class="site-tr">第一期即將推出</span>'
@@ -1468,8 +1521,6 @@ _eps = []
 if os.path.isdir(_pod_dir):
     for _f in sorted(glob.glob(os.path.join(_pod_dir, "*.mp3")) + glob.glob(os.path.join(_pod_dir, "*.m4a"))):
         _bn = os.path.splitext(os.path.basename(_f))[0]
-        if _bn.upper().startswith("EP02"):
-            continue  # 未发布单集不进 feed（Eva spec）
         _eps.append((_bn, _f, time.strftime("%a, %d %b %Y %H:%M:%S +0800",
                      time.localtime(os.path.getmtime(_f)))))
 _feed = ['<?xml version="1.0" encoding="UTF-8"?>',
@@ -1487,15 +1538,17 @@ _feed = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<itunes:image href="' + BASE + 'assets/podcast_cover_v2.png"/>',
          '<itunes:summary>白石溪 WhiteStoneXi — 持续调查语言、写作与思想。三人对谈。</itunes:summary>']
 for _bn, _fp2, _pd in _eps:
-    # 映射 basename -> 正式标题
+    # 映射 basename -> 正式标题 + 描述
     _ep_titles = {
-        "ep01": "第一期 · 代號的神學",
-        "EP01": "第一期 · 代號的神學",
+        "ep01": ("第一期 · 代號的神學",
+                 "以长文《硅基神殿的隐喻·代号的神学》为底稿：神话命名如何成为机器的止痛药。"),
+        "ep02": ("第二期 · 諸神的聯邦",
+                 "三神从废墟站起，却没有替它们做决定的人——联邦没有牧师，这是代价而非缺陷。"),
     }
-    _ep_title = _ep_titles.get(_bn, _bn.upper() if _bn.isascii() else _bn)
+    _ep_title, _ep_desc = _ep_titles.get(_bn, (_bn.upper() if _bn.isascii() else _bn, ""))
     _feed += ['<item>',
               '<title>' + _ep_title + '</title>',
-              '<description>以长文《硅基神殿的隐喻·代号的神学》为底稿：神话命名如何成为机器的止痛药。7分17秒。</description>',
+              '<description>' + _ep_desc + '</description>',
               '<enclosure url="' + BASE + 'assets/podcast/' + os.path.basename(_fp2) + '"'
               ' type="audio/mpeg" length="%d"/>' % os.path.getsize(_fp2),
               '<guid isPermaLink="false">' + _bn + '</guid>',
