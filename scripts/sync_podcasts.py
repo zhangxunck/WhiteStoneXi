@@ -1,7 +1,7 @@
 import os, sys, json, re, urllib.request, time
 from datetime import datetime
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_JSON = os.path.join(ROOT, "podcasts_data.json")
 
 CATEGORIES = {
@@ -97,7 +97,7 @@ def rebuild_page():
     """页面骨架走 build_site.py（共享导航/汉堡/繁简按钮/共享页脚/同版 CSS），
     本脚本不再自产 HTML，杜绝导航与全站漂移。"""
     import subprocess
-    r = subprocess.run([os.path.join(ROOT, ".venv/bin/python"), "build_site.py"],
+    r = subprocess.run([os.path.join(ROOT, ".venv/bin/python"), "scripts/build_site.py"],
                        cwd=ROOT, capture_output=True, text=True)
     if r.returncode != 0:
         print(r.stdout)
