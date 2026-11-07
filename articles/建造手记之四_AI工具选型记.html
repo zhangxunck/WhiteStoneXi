@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noimageindex">
+<meta name="copyright" content="zhangxunnj (白石溪 WhiteStoneXi), 2026, 保留所有权利">
+<title>建造手記之四：AI 工具選型記 · 白石溪</title>
+<link rel="icon" type="image/svg+xml" href="../assets/v32/v32_logo_xi_white.svg?v=1790580668">
+<link rel="stylesheet" href="../assets/style.css?v=1791629309">
+</head>
+<body class="">
+
+<header class="site-header">
+  <div class="site-title">
+    <a href="../index.html"><img src="../assets/v32/v32_wordmark_cn_white.svg?v=1791629214" alt="白石溪" class="brand-wordmark"></a>
+  </div>
+  <button class="nav-burger" type="button" aria-label="選單" aria-expanded="false"><span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span></button><nav class="site-nav" id="siteNav"><div class="nav-core"><a href="../index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a><a href="../archive.html"><span class="site-tr">目錄</span><span class="site-si">目录</span></a><a href="../podcasts.html"><span class="site-tr">播客</span><span class="site-si">播客</span></a><a href="../README.html"><span class="site-tr">簡介</span><span class="site-si">简介</span></a></div><div class="nav-more"></div><button class="lang-toggle" type="button">切換簡體</button></nav>
+</header>
+
+<main class="article-container">
+  <div class="article-kicker">建造手記 · 選型</div>
+  <h1 class="article-title">建造手記之四：AI 工具選型記</h1>
+  <p class="article-subtitle">模型不是區別，記憶、工作流、治理才是</p>
+  <div class="article-meta">
+    <span>白石溪</span>
+    <span>2026-11-07</span>
+  </div>
+
+  
+  <div class="article-body">
+
+  </div>
+
+  <div class="para-tabs" role="tablist"><button type="button" class="on" data-view="zh">中文</button><button type="button" data-view="en">English</button></div>
+  <div class="para-toolbar"><button class="para-toggle" type="button"><span class="opt on" data-v="tr">繁體</span><span class="sep">／</span><span class="opt" data-v="si">簡體</span></button></div>
+  <div class="parallel-body">
+    <div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">一、朋友問了一句</h2>
+<p>2026 年 11 月 6 日晚上，朋友發來一條語音，問 Alex：現在 AI 工具都能幹活了，到底還有什麼區別？除了模型不一樣。是不是我自己的問題？我現在都不想折騰換工具了，可又怕錯過什麼？</p>
+<p>這個問題值得認真對待。它不是在問哪個工具更好，而是在問一種焦慮：工具換得越來越快，每一個都說自己能幹活，不換怕錯過，換了怕白折騰。Alex 把這個問題轉給了 Eva。Eva 先給了三條回答：區別在記憶、工作流、治理，不在模型。然後 Alex 說，Grok Bot 最近也比較火，用不同的 Bot 來完成任務，讓 Eva 評估一下，和我們現在這套體系各有什麼優劣。再後來，範圍擴大到國內的 Work Buddy 和飛書豆包。Eva 跑了一輪調研，回來做了四家對照。朋友的一句提問，變成了一次正式的選型。</p>
+<p>這篇手記記的就是這次選型的過程和結果。</p></div><div class="zh-si"><h2 id="_1">一、朋友問了一句</h2>
+<p>2026 年 11 月 6 日晚上，朋友發來一條語音，問 Alex：現在 AI 工具都能幹活了，到底還有什麼區別？除了模型不一樣。是不是我自己的問題？我現在都不想折騰換工具了，可又怕錯過什麼？</p>
+<p>這個問題值得認真對待。它不是在問哪個工具更好，而是在問一種焦慮：工具換得越來越快，每一個都說自己能幹活，不換怕錯過，換了怕白折騰。Alex 把這個問題轉給了 Eva。Eva 先給了三條回答：區別在記憶、工作流、治理，不在模型。然後 Alex 說，Grok Bot 最近也比較火，用不同的 Bot 來完成任務，讓 Eva 評估一下，和我們現在這套體系各有什麼優劣。再後來，範圍擴大到國內的 Work Buddy 和飛書豆包。Eva 跑了一輪調研，回來做了四家對照。朋友的一句提問，變成了一次正式的選型。</p>
+<p>這篇手記記的就是這次選型的過程和結果。</p></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">二、查了三家</h2>
+<h3 id="grok-bot">Grok Bot：一隊有名字的隊友</h3>
+<p>Grok Bot 是 xAI 的產品，2026 年 8 月 11 日上線早期測試版，和 Grok 聊天機器人不是同一個東西。它是一組有名字的 AI 隊友，在一臺共享的雲電腦上 24 小時幹活，登錄真實應用，Bot 之間可以互相傳活。</p>
+<p>它的分工方式是這樣的：你給每一項不同的工作創建一個 Bot，比如人才搜索、費用管理、漏洞復現。多個 Bot 並行跑，上面有一個總管協調。Bot 可以互相發消息、在群聊裡共享上下文、把活交給下一個 Bot。官方的例子是：銷售 Bot 更新客戶關係管理系統、起草跟進郵件；運營 Bot 給新員工辦入職、處理發票；工程 Bot 在產品界面裡復現一個漏洞、建單子，然後把修復交給調試 Bot。一個賬號大約可以有 50 個 Bot，一個群聊裡最多 6 個。</p>
+<p>關鍵的一點是，所有 Bot 共享一臺雲電腦。官方文檔說得很明白：所有 Bot 用同一臺雲電腦，共享它的文件、瀏覽器會話和應用登錄，這讓交接不用重複設置；這臺電腦屬於你的賬號，不屬於某一個 Bot。這既是交接能跑通的原因，也是最大的安全隱患。文檔裡有一句警告，原文是 "Do not use separate Bots as a security boundary."——不要把不同的 Bot 當作安全邊界。一個 Bot 拿到的登錄，另一個 Bot 也可能夠得著。刪掉一個 Bot 會刪掉它的檔案、對話、記憶和慣例，但共享電腦上的文件和瀏覽器會話可能還留著，得另外清理。</p>
+<p>記憶是每個 Bot 各自持久保存的，但官方定性為「建議性」的、會過時。文檔提醒，重要的決定不要只靠記憶，要去查當前的來源。2026 年 8 月 20 日到 21 日，有用戶的共享電腦卡死了，賬號上所有 Bot 同時停擺，重啟電腦才恢復，還可能丟掉最近沒同步的工作。</p>
+<p>價格上，Grok Bot 沒有獨立定價，包含在 X 訂閱裡。入門是 Premium，每月 30 美元；往上有 Super 每月 100 美元、Ultra 每月 200 美元。用量是每週共享池子，沒有公開的絕對額度。2026 年 11 月 1 日，馬斯克在 X 上確認收緊了用量，原因是服務成本相對收入高得不可持續。官方沒有發佈過 Grok Bot 的基準測試成績，也沒有模型選擇器——它按任務自己挑模型，不告訴你用的是哪一個。</p>
+<h3 id="workbuddy">WorkBuddy：模型中立的工作臺</h3>
+<p>WorkBuddy 是騰訊的桌面工作臺，2026 年 3 月 9 日上線，CodeBuddy 團隊做的。做法是一句話進來，規劃分解，並行派給專家團隊，在本地沙盒裡跑，最後交付成稿。</p>
+<p>它最大的特點是模型中立：內置 14 個模型，來自 5 家廠商——混元、GLM、Kimi、MiniMax、DeepSeek，還可以自帶模型，或者接本地部署。治理是另一個賣點：權限分兩檔，默認檔是沙盒約束，越界訪問、寫敏感路徑、刪文件、跑腳本、聯網敏感操作都要確認；完全訪問檔是例外，官方建議平時保持默認檔。另外有技能掃描器、單點登錄、審計日誌，企業版還有私有云版本。</p>
+<p>價格是按點數算的。免費版每月 500 點；標準版每月 99 元；高級版每月 199 元；旗艦版每月 999 元。</p>
+<p>「本地」不等於數據不出機器。本地文件操作在授權的工作目錄裡，但模型處理可能涉及數據片段，資料庫內容存在雲端，上傳的文件走騰訊雲盤服務，日誌和元數據會保留用於狀態、審計和產品運營。只有自帶模型的配置，才能讓內容完全不上騰訊那一側。記憶默認開啟，每晚從對話裡提取事實和偏好，可以查看、編輯、刪除或關掉。</p>
+<p>它的短板是沒有內置的瀏覽器和界面控制，瀏覽器工作依賴技能，不是核心能力；也沒有獨立的質量基準。</p>
+<h3 id="_2">飛書豆包工作夥伴：團隊裡的一位同事</h3>
+<p>豆包是字節跳動的消費級助手，2023 年 8 月上線。豆包工作在 2026 年 8 月 25 日作為獨立品牌上線，個人版每月 68、200、500 元三檔。飛書 8.0 在 2026 年 9 月 15 日發佈，整個飛書為智能體重構，開放給智能體的功能點從 247 個漲到 767 個，同時發佈了豆包工作夥伴，號稱國內首個團隊智能體。</p>
+<p>豆包工作夥伴有自己的組織身份、權限和記憶，像同事一樣進群聊，全隊共用一個。企業配置一次，全員共用，不用每人單獨設置。它在授權範圍內用文檔、表格、會議、日曆和業務系統做信息同步、文檔審閱、週報彙總和代碼分析，隨著工作進展主動推進，還會記住群聊、文檔和會議，積累和複用團隊的技能和經驗。</p>
+<p>它的權限規矩很乾淨：「員工看不到的信息，Agent 也拿不到。」智能體的權限永遠等於使用者；個人數據和企業數據完全隔離；管理員像管人一樣管智能體，追蹤用量、設置用量上限、控制高消耗模型和場景。</p>
+<p>團隊版每月每人 198 元，或者每年每人 1988 元；企業用量包每年 9.9 萬到 99 萬元。發佈時還在定向共創，沒有全面開放。</p>
+<p>個人版豆包默認會把輸入用於模型訓練，可以退出；個人數據存在中國大陸。</p></div><div class="zh-si"><h2 id="_1">二、查了三家</h2>
+<h3 id="grok-bot">Grok Bot：一隊有名字的隊友</h3>
+<p>Grok Bot 是 xAI 的產品，2026 年 8 月 11 日上線早期測試版，和 Grok 聊天機器人不是同一個東西。它是一組有名字的 AI 隊友，在一臺共享的雲電腦上 24 小時幹活，登錄真實應用，Bot 之間可以互相傳活。</p>
+<p>它的分工方式是這樣的：你給每一項不同的工作創建一個 Bot，比如人才搜索、費用管理、漏洞復現。多個 Bot 並行跑，上面有一個總管協調。Bot 可以互相發消息、在羣聊裏共享上下文、把活交給下一個 Bot。官方的例子是：銷售 Bot 更新客戶關係管理系統、起草跟進郵件；運營 Bot 給新員工辦入職、處理發票；工程 Bot 在產品界面裏復現一個漏洞、建單子，然後把修復交給調試 Bot。一個賬號大約可以有 50 個 Bot，一個羣聊裏最多 6 個。</p>
+<p>關鍵的一點是，所有 Bot 共享一臺雲電腦。官方文檔說得很明白：所有 Bot 用同一臺雲電腦，共享它的文件、瀏覽器會話和應用登錄，這讓交接不用重複設置；這臺電腦屬於你的賬號，不屬於某一個 Bot。這既是交接能跑通的原因，也是最大的安全隱患。文檔裏有一句警告，原文是 "Do not use separate Bots as a security boundary."——不要把不同的 Bot 當作安全邊界。一個 Bot 拿到的登錄，另一個 Bot 也可能夠得着。刪掉一個 Bot 會刪掉它的檔案、對話、記憶和慣例，但共享電腦上的文件和瀏覽器會話可能還留着，得另外清理。</p>
+<p>記憶是每個 Bot 各自持久保存的，但官方定性爲「建議性」的、會過時。文檔提醒，重要的決定不要只靠記憶，要去查當前的來源。2026 年 8 月 20 日到 21 日，有用戶的共享電腦卡死了，賬號上所有 Bot 同時停擺，重啓電腦才恢復，還可能丟掉最近沒同步的工作。</p>
+<p>價格上，Grok Bot 沒有獨立定價，包含在 X 訂閱裏。入門是 Premium，每月 30 美元；往上有 Super 每月 100 美元、Ultra 每月 200 美元。用量是每週共享池子，沒有公開的絕對額度。2026 年 11 月 1 日，馬斯克在 X 上確認收緊了用量，原因是服務成本相對收入高得不可持續。官方沒有發佈過 Grok Bot 的基準測試成績，也沒有模型選擇器——它按任務自己挑模型，不告訴你用的是哪一個。</p>
+<h3 id="workbuddy">WorkBuddy：模型中立的工作臺</h3>
+<p>WorkBuddy 是騰訊的桌面工作臺，2026 年 3 月 9 日上線，CodeBuddy 團隊做的。做法是一句話進來，規劃分解，並行派給專家團隊，在本地沙盒裏跑，最後交付成稿。</p>
+<p>它最大的特點是模型中立：內置 14 個模型，來自 5 家廠商——混元、GLM、Kimi、MiniMax、DeepSeek，還可以自帶模型，或者接本地部署。治理是另一個賣點：權限分兩檔，默認檔是沙盒約束，越界訪問、寫敏感路徑、刪文件、跑腳本、聯網敏感操作都要確認；完全訪問檔是例外，官方建議平時保持默認檔。另外有技能掃描器、單點登錄、審計日誌，企業版還有私有云版本。</p>
+<p>價格是按點數算的。免費版每月 500 點；標準版每月 99 元；高級版每月 199 元；旗艦版每月 999 元。</p>
+<p>「本地」不等於數據不出機器。本地文件操作在授權的工作目錄裏，但模型處理可能涉及數據片段，資料庫內容存在雲端，上傳的文件走騰訊雲盤服務，日誌和元數據會保留用於狀態、審計和產品運營。只有自帶模型的配置，才能讓內容完全不上騰訊那一側。記憶默認開啓，每晚從對話裏提取事實和偏好，可以查看、編輯、刪除或關掉。</p>
+<p>它的短板是沒有內置的瀏覽器和界面控制，瀏覽器工作依賴技能，不是核心能力；也沒有獨立的質量基準。</p>
+<h3 id="_2">飛書豆包工作夥伴：團隊裏的一位同事</h3>
+<p>豆包是字節跳動的消費級助手，2023 年 8 月上線。豆包工作在 2026 年 8 月 25 日作爲獨立品牌上線，個人版每月 68、200、500 元三檔。飛書 8.0 在 2026 年 9 月 15 日發佈，整個飛書爲智能體重構，開放給智能體的功能點從 247 個漲到 767 個，同時發佈了豆包工作夥伴，號稱國內首個團隊智能體。</p>
+<p>豆包工作夥伴有自己的組織身份、權限和記憶，像同事一樣進羣聊，全隊共用一個。企業配置一次，全員共用，不用每人單獨設置。它在授權範圍內用文檔、表格、會議、日曆和業務系統做信息同步、文檔審閱、週報彙總和代碼分析，隨着工作進展主動推進，還會記住羣聊、文檔和會議，積累和複用團隊的技能和經驗。</p>
+<p>它的權限規矩很乾淨：「員工看不到的信息，Agent 也拿不到。」智能體的權限永遠等於使用者；個人數據和企業數據完全隔離；管理員像管人一樣管智能體，追蹤用量、設置用量上限、控制高消耗模型和場景。</p>
+<p>團隊版每月每人 198 元，或者每年每人 1988 元；企業用量包每年 9.9 萬到 99 萬元。發佈時還在定向共創，沒有全面開放。</p>
+<p>個人版豆包默認會把輸入用於模型訓練，可以退出；個人數據存在中國大陸。</p></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">三、四家對照</h2>
+<p>把三家和我們自己的體系放在一起，按記憶、工作流、治理、隱私、價格、風險六項比，結果如下。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>維度</th>
+<th>Grok Bot</th>
+<th>WorkBuddy</th>
+<th>飛書豆包工作夥伴</th>
+<th>我們的體系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分工架構</td>
+<td>多個命名 Bot 在一臺共享雲電腦上並行，總管協調；Bot 間可互發消息、傳活</td>
+<td>一句話進，規劃分解，並行派給專家團隊，本地沙盒執行，交付成稿</td>
+<td>團隊智能體，有獨立組織身份、權限與記憶，像同事一樣進群聊</td>
+<td>三人分工：Alex 拍板、Eva 規劃審查、WALLe 本地執行；工單交接</td>
+</tr>
+<tr>
+<td>記憶</td>
+<td>每 Bot 持久記憶，但官方定性為「建議性」、會過時</td>
+<td>記憶默認開啟，每晚提取，可查看、編輯、刪除</td>
+<td>團隊共享記憶，不綁定單個員工，記憶留在團隊</td>
+<td>自建的知識庫，單一事實來源，真憑實據攢出來的</td>
+</tr>
+<tr>
+<td>治理</td>
+<td>官方警告：不要把不同的 Bot 當作安全邊界；審批只管當下動作，不管既往副作用</td>
+<td>默認檔與完全訪問檔兩檔權限分級；技能掃描器；單點登錄、審計；企業私有云版</td>
+<td>員工看不到的信息，智能體也拿不到；權限永遠等於使用者；管理員像管人一樣管智能體</td>
+<td>有幾道關：發佈前要過審查，要有證據，要有人明確點頭才能發</td>
+</tr>
+<tr>
+<td>隱私</td>
+<td>雲端、美國託管；隱私模式下不用於訓練；OAuth 令牌不上電腦；企業級才有網絡控制與審計日誌</td>
+<td>「本地」不等於不出機器：模型處理可能涉及數據片段、雲盤存儲、日誌留存；只有自帶模型才完全不上騰訊側；中國優先，無留存期承諾</td>
+<td>個人版默認可用於訓練（可退出）；個人數據存中國大陸；企業版數據歸組織</td>
+<td>本地優先；執行在本地，記憶留在自己的知識庫裡；隱私一票否決</td>
+</tr>
+<tr>
+<td>價格與額度</td>
+<td>無獨立價；X 訂閱 Premium 每月 30 美元起（含 Grok Bot）；周共享用量池，無公開絕對額度；2026-11-01 馬斯克確認收緊用量</td>
+<td>免費每月 500 點；標準版每月 99 元、高級版每月 199 元、旗艦版每月 999 元</td>
+<td>個人每月 68、200、500 元；團隊每月每人 198 元或每年每人 1988 元；企業用量包每年 9.9 萬到 99 萬元</td>
+<td>免費模型為主；只有一項已付費的服務，不再新增付費項</td>
+</tr>
+<tr>
+<td>結構性風險</td>
+<td>共享電腦單點故障（2026-08-20/21 全 Bot 停擺）；用量不透明且被收緊；無獨立質量基準</td>
+<td>無內置瀏覽器與界面控制（依賴技能）；無獨立質量基準；中國優先</td>
+<td>發佈時仍在定向共創，未全面開放；無獨立基準</td>
+<td>依賴本地單點；雲端是臨時的</td>
+</tr>
+</tbody>
+</table></div></div><div class="zh-si"><h2 id="_1">三、四家對照</h2>
+<p>把三家和我們自己的體系放在一起，按記憶、工作流、治理、隱私、價格、風險六項比，結果如下。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>維度</th>
+<th>Grok Bot</th>
+<th>WorkBuddy</th>
+<th>飛書豆包工作夥伴</th>
+<th>我們的體系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分工架構</td>
+<td>多個命名 Bot 在一臺共享雲電腦上並行，總管協調；Bot 間可互發消息、傳活</td>
+<td>一句話進，規劃分解，並行派給專家團隊，本地沙盒執行，交付成稿</td>
+<td>團隊智能體，有獨立組織身份、權限與記憶，像同事一樣進羣聊</td>
+<td>三人分工：Alex 拍板、Eva 規劃審查、WALLe 本地執行；工單交接</td>
+</tr>
+<tr>
+<td>記憶</td>
+<td>每 Bot 持久記憶，但官方定性爲「建議性」、會過時</td>
+<td>記憶默認開啓，每晚提取，可查看、編輯、刪除</td>
+<td>團隊共享記憶，不綁定單個員工，記憶留在團隊</td>
+<td>自建的知識庫，單一事實來源，真憑實據攢出來的</td>
+</tr>
+<tr>
+<td>治理</td>
+<td>官方警告：不要把不同的 Bot 當作安全邊界；審批只管當下動作，不管既往副作用</td>
+<td>默認檔與完全訪問檔兩檔權限分級；技能掃描器；單點登錄、審計；企業私有云版</td>
+<td>員工看不到的信息，智能體也拿不到；權限永遠等於使用者；管理員像管人一樣管智能體</td>
+<td>有幾道關：發佈前要過審查，要有證據，要有人明確點頭才能發</td>
+</tr>
+<tr>
+<td>隱私</td>
+<td>雲端、美國託管；隱私模式下不用於訓練；OAuth 令牌不上電腦；企業級纔有網絡控制與審計日誌</td>
+<td>「本地」不等於不出機器：模型處理可能涉及數據片段、雲盤存儲、日誌留存；只有自帶模型才完全不上騰訊側；中國優先，無留存期承諾</td>
+<td>個人版默認可用於訓練（可退出）；個人數據存中國大陸；企業版數據歸組織</td>
+<td>本地優先；執行在本地，記憶留在自己的知識庫裏；隱私一票否決</td>
+</tr>
+<tr>
+<td>價格與額度</td>
+<td>無獨立價；X 訂閱 Premium 每月 30 美元起（含 Grok Bot）；周共享用量池，無公開絕對額度；2026-11-01 馬斯克確認收緊用量</td>
+<td>免費每月 500 點；標準版每月 99 元、高級版每月 199 元、旗艦版每月 999 元</td>
+<td>個人每月 68、200、500 元；團隊每月每人 198 元或每年每人 1988 元；企業用量包每年 9.9 萬到 99 萬元</td>
+<td>免費模型爲主；只有一項已付費的服務，不再新增付費項</td>
+</tr>
+<tr>
+<td>結構性風險</td>
+<td>共享電腦單點故障（2026-08-20/21 全 Bot 停擺）；用量不透明且被收緊；無獨立質量基準</td>
+<td>無內置瀏覽器與界面控制（依賴技能）；無獨立質量基準；中國優先</td>
+<td>發佈時仍在定向共創，未全面開放；無獨立基準</td>
+<td>依賴本地單點；雲端是臨時的</td>
+</tr>
+</tbody>
+</table></div></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">四、模型不是區別</h2>
+<p>模型層已經基本商品化，可以替換。真正拉開差距的是記憶、工作流、治理，以及數據迴路、領域專長、智能體腳手架（記憶、工具路由、沙盒、權限、恢復、可觀測性）、機構上下文積累、信任與採購慣性。</p>
+<p>結果證據是冷峻的。MIT 的調查發現，約 95% 的企業生成式 AI 試點沒有可衡量的利潤影響。Gartner 預測，到 2027 年底，超過 40% 的智能體項目會被取消，原因是成本、不明確的價值和不足的風險控制。McKinsey 2026 年的調查裡，只有 6% 的企業認為 AI 貢獻了 5% 以上的息稅前利潤。</p>
+<p>選型應該看四件事：工作已經在哪、權限和治理是否匹配、真實用量下的成本、記憶和上下文能不能帶走——用一個真實工作流實測，而不是看基準分。</p>
+<p>更強的模型會抬升所有用它的工具，而切換成本是真實且在漲的：重新調教、重建集成和技能、重新採購、上下文流失。88% 的企業大模型支出集中在 3 家廠商手裡，模型特定的調優也在抬高切換成本。</p></div><div class="zh-si"><h2 id="_1">四、模型不是區別</h2>
+<p>模型層已經基本商品化，可以替換。真正拉開差距的是記憶、工作流、治理，以及數據迴路、領域專長、智能體腳手架（記憶、工具路由、沙盒、權限、恢復、可觀測性）、機構上下文積累、信任與採購慣性。</p>
+<p>結果證據是冷峻的。MIT 的調查發現，約 95% 的企業生成式 AI 試點沒有可衡量的利潤影響。Gartner 預測，到 2027 年底，超過 40% 的智能體項目會被取消，原因是成本、不明確的價值和不足的風險控制。McKinsey 2026 年的調查裏，只有 6% 的企業認爲 AI 貢獻了 5% 以上的息稅前利潤。</p>
+<p>選型應該看四件事：工作已經在哪、權限和治理是否匹配、真實用量下的成本、記憶和上下文能不能帶走——用一個真實工作流實測，而不是看基準分。</p>
+<p>更強的模型會抬升所有用它的工具，而切換成本是真實且在漲的：重新調教、重建集成和技能、重新採購、上下文流失。88% 的企業大模型支出集中在 3 家廠商手裏，模型特定的調優也在抬高切換成本。</p></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">五、我們的選擇</h2>
+<p>我們的護城河不在模型上，在知識庫記憶、工單治理、本地執行架構。Grok Bot 的模型再好，沒有這些，對我們也是退步。所以這次選型的結論是不換。不是 Grok 不好，是我們的護城河不在模型上。</p>
+<p>選型的辦法是三問：真缺口還是「有了更好」？能不能改進現有流程解決？新工具驗屍過沒有？再加兩條底線：隱私一票否決，成本有約束。只有當工具在某個具體的事上明確掉鏈子時才值得換，為「可能錯過」而換，付的是學習、遷移、重建記憶的成本。</p>
+<p>朋友問的「是不是我自己的問題」，答案是一半是。通用工具不懂你的具體工作，這是工具的侷限；但「不想折騰」本身不是問題，是判斷——當你說不出具體缺口的時候，不換就是對的。</p></div><div class="zh-si"><h2 id="_1">五、我們的選擇</h2>
+<p>我們的護城河不在模型上，在知識庫記憶、工單治理、本地執行架構。Grok Bot 的模型再好，沒有這些，對我們也是退步。所以這次選型的結論是不換。不是 Grok 不好，是我們的護城河不在模型上。</p>
+<p>選型的辦法是三問：真缺口還是「有了更好」？能不能改進現有流程解決？新工具驗屍過沒有？再加兩條底線：隱私一票否決，成本有約束。只有當工具在某個具體的事上明確掉鏈子時才值得換，爲「可能錯過」而換，付的是學習、遷移、重建記憶的成本。</p>
+<p>朋友問的「是不是我自己的問題」，答案是一半是。通用工具不懂你的具體工作，這是工具的侷限；但「不想折騰」本身不是問題，是判斷——當你說不出具體缺口的時候，不換就是對的。</p></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">六、座標系</h2>
+<p>這次選型給出的座標系是：判斷一個工具，不要看它用的模型，看它周圍的系統。模型會換，記憶、工作流、治理留下來。借得好，是本事；借什麼，反而是其次。</p>
+<p>這個座標系不只適用於 AI 工具。任何工具的選擇都一樣：看它能不能接進你已有的工作，看它的權限和治理配不配你的規矩，看它真實用量下的成本，看你的記憶和上下文能不能帶走。模型、功能、價格表都是明面上的，真正決定值不值得換的，是那些看不見的東西：你攢下來的上下文、你定下來的規矩、你跑通的工作流。</p>
+<p>借的反面是追。追新工具，是把判斷交給廠商的發佈節奏；借得好，是把判斷留在自己手裡。工具是借來的，判斷是自己的。</p>
+<hr />
+<p><strong>資料來源</strong>
+- Grok Bot 官方文檔（docs.x.ai/grok-bot）：上線日期、共享雲電腦、安全邊界警告、記憶建議性、用量收緊（2026-11-01 馬斯克確認）。
+- 騰訊 WorkBuddy 官網（workbuddy.cn）：上線日期、14 個模型、5 家廠商、定價。
+- 飛書 8.0 與豆包工作夥伴發佈（2026-09-15）：團隊智能體、權限規矩、定價。
+- MIT NANDA、Gartner、McKinsey 2026：試點無利潤影響比例、項目取消預測、EBIT 貢獻比例。</p>
+<p><strong>出處三件套</strong></p>
+<ol>
+<li>Grok Bot 安全邊界警告</li>
+<li>中文引述：「不要把不同的 Bot 當作安全邊界。」</li>
+<li>英文原文："Do not use separate Bots as a security boundary."（docs.x.ai/grok-bot/security）</li>
+<li>
+<p>傳遞損耗分析：英文原文是祈使句，語氣直接；中文譯文保留了祈使語氣，意思無損耗。值得注意的是，這句話出現在官方安全文檔裡，不是營銷材料，說明 xAI 自己承認共享電腦的邊界問題。</p>
+</li>
+<li>
+<p>馬斯克論 Grok Bot 用量收緊</p>
+</li>
+<li>中文引述：「Grok Bot 的服務成本相對收入高得不可持續。」</li>
+<li>英文原文："The cost of serving Grok Bot was unsustainably high relative to revenue."（Elon Musk, X, 2026-11-01）</li>
+<li>傳遞損耗分析：英文 "unsustainably high relative to revenue" 直譯是「相對收入而言高得不可持續」；中文譯文「服務成本相對收入高得不可持續」意思一致，無損耗。這句話是馬斯克在 X 上回複用戶時說的，不是正式公告，但隨後多家媒體報道確認了用量收緊的事實。</li>
+</ol>
+<p>本文由 AI 輔助寫作。素材、結構與觀點來自作者，文字由 AI 起草、作者改定。</p>
+<hr />
+<p><strong>相關長文</strong>：《AI 時代最大的認知分歧》（即將發布）</p></div><div class="zh-si"><h2 id="_1">六、座標系</h2>
+<p>這次選型給出的座標系是：判斷一個工具，不要看它用的模型，看它周圍的系統。模型會換，記憶、工作流、治理留下來。借得好，是本事；借什麼，反而是其次。</p>
+<p>這個座標系不只適用於 AI 工具。任何工具的選擇都一樣：看它能不能接進你已有的工作，看它的權限和治理配不配你的規矩，看它真實用量下的成本，看你的記憶和上下文能不能帶走。模型、功能、價格表都是明面上的，真正決定值不值得換的，是那些看不見的東西：你攢下來的上下文、你定下來的規矩、你跑通的工作流。</p>
+<p>借的反面是追。追新工具，是把判斷交給廠商的發佈節奏；借得好，是把判斷留在自己手裏。工具是借來的，判斷是自己的。</p>
+<hr />
+<p><strong>資料來源</strong>
+- Grok Bot 官方文檔（docs.x.ai/grok-bot）：上線日期、共享雲電腦、安全邊界警告、記憶建議性、用量收緊（2026-11-01 馬斯克確認）。
+- 騰訊 WorkBuddy 官網（workbuddy.cn）：上線日期、14 個模型、5 家廠商、定價。
+- 飛書 8.0 與豆包工作夥伴發佈（2026-09-15）：團隊智能體、權限規矩、定價。
+- MIT NANDA、Gartner、McKinsey 2026：試點無利潤影響比例、項目取消預測、EBIT 貢獻比例。</p>
+<p><strong>出處三件套</strong></p>
+<ol>
+<li>Grok Bot 安全邊界警告</li>
+<li>中文引述：「不要把不同的 Bot 當作安全邊界。」</li>
+<li>英文原文："Do not use separate Bots as a security boundary."（docs.x.ai/grok-bot/security）</li>
+<li>
+<p>傳遞損耗分析：英文原文是祈使句，語氣直接；中文譯文保留了祈使語氣，意思無損耗。值得注意的是，這句話出現在官方安全文檔裏，不是營銷材料，說明 xAI 自己承認共享電腦的邊界問題。</p>
+</li>
+<li>
+<p>馬斯克論 Grok Bot 用量收緊</p>
+</li>
+<li>中文引述：「Grok Bot 的服務成本相對收入高得不可持續。」</li>
+<li>英文原文："The cost of serving Grok Bot was unsustainably high relative to revenue."（Elon Musk, X, 2026-11-01）</li>
+<li>傳遞損耗分析：英文 "unsustainably high relative to revenue" 直譯是「相對收入而言高得不可持續」；中文譯文「服務成本相對收入高得不可持續」意思一致，無損耗。這句話是馬斯克在 X 上回複用戶時說的，不是正式公告，但隨後多家媒體報道確認了用量收緊的事實。</li>
+</ol>
+<p>本文由 AI 輔助寫作。素材、結構與觀點來自作者，文字由 AI 起草、作者改定。</p>
+<hr />
+<p><strong>相關長文</strong>：《AI 時代最大的認知分歧》（即將發布）</p></div></div>
+  </div>
+
+  
+</main>
+
+<footer class="site-footer"><div class="footer-seal"><img src="../assets/v32/v32_logo_xi_white.svg?v=1791629214" alt="白石溪" class="brand-wordmark is-seal"></div><div class="footer-line"><span class="site-tr">© 2026 白石溪 WhiteStoneXi · 保留所有權利</span><span class="site-si">© 2026 白石溪 WhiteStoneXi · 保留所有权利</span></div></footer>
+
+<script>
+(function(){
+  var b=document.body;
+  document.querySelectorAll('.para-toggle').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      b.classList.toggle('zh-simple');
+      document.querySelectorAll('.para-toggle .opt').forEach(function(o){
+        o.classList.toggle('on', (o.dataset.v==='si')===b.classList.contains('zh-simple'));
+      });
+    });
+  });
+  // 移动端分段控件：中文 / English / 對照（body.m-en / body.m-duo；默认中文单栏）
+  var VIEWS=['zh','en','duo'];
+  function applyView(v){
+    if(VIEWS.indexOf(v)<0) v='zh';
+    b.classList.remove('m-en','m-duo');
+    if(v==='en') b.classList.add('m-en');
+    if(v==='duo') b.classList.add('m-duo');
+    document.querySelectorAll('.para-tabs button').forEach(function(x){
+      x.classList.toggle('on', x.dataset.view===v);
+    });
+    try{ localStorage.setItem('wss_view', v); }catch(e){}
+  }
+  var saved='zh';
+  try{
+    // ?v=zh|en|duo 优先（可分享/可测），否则读上次选择
+    var q=(new URLSearchParams(location.search)).get('v');
+    saved=q||localStorage.getItem('wss_view')||'zh';
+  }catch(e){}
+  applyView(saved);
+  document.querySelectorAll('.para-tabs button').forEach(function(btn){
+    btn.addEventListener('click',function(){ applyView(btn.dataset.view); });
+  });
+  // 站点级（导览/简介）繁/简：点按钮切 body.zh-simple，站名/导航用 site-tr/site-si 成对
+  document.querySelectorAll('.lang-toggle').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      var on=b.classList.toggle('zh-simple');
+      // on = 当前为简体 → 按钮提示「切回繁體」；off = 当前繁体 → 提示「切換簡體」
+      btn.textContent = on ? '切換繁體' : '切換簡體';
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var b=document.body;
+  var burger=document.querySelector('.nav-burger');
+  var nav=document.getElementById('siteNav');
+  if(burger&&nav){
+    burger.addEventListener('click',function(){
+      var open=b.classList.toggle('nav-open');
+      burger.setAttribute('aria-expanded', open?'true':'false');
+    });
+    // 点菜单外/点链接后收起
+    nav.addEventListener('click',function(e){
+      if(e.target.closest('a')) b.classList.remove('nav-open');
+    });
+  }
+  // 系列子页：滚动时高亮当前篇
+  var links=[].slice.call(document.querySelectorAll('.series-toc a'));
+  if(links.length && 'IntersectionObserver' in window){
+    var map={};
+    links.forEach(function(a){ var el=document.querySelector(a.getAttribute('href')); if(el) map[el.id]=a; });
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var a=map[en.target.id]; if(!a) return;
+        if(en.isIntersecting){
+          links.forEach(function(x){x.classList.remove('on');});
+          a.classList.add('on');
+        }
+      });
+    },{rootMargin:'-20% 0px -70% 0px'});
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+})();
+</script>
+</body>
+</html>
