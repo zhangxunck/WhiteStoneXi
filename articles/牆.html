@@ -7,13 +7,13 @@
 <meta name="copyright" content="zhangxunnj (白石溪 WhiteStoneXi), 2026, 保留所有权利">
 <title>牆 · 白石溪</title>
 <link rel="icon" type="image/svg+xml" href="../assets/v32/v32_logo_xi_white.svg?v=1790580668">
-<link rel="stylesheet" href="../assets/style.css?v=1791629309">
+<link rel="stylesheet" href="../assets/style.css?v=1794146535">
 </head>
 <body class="">
 
 <header class="site-header">
   <div class="site-title">
-    <a href="../index.html"><img src="../assets/v32/v32_wordmark_cn_white.svg?v=1791629214" alt="白石溪" class="brand-wordmark"></a>
+    <a href="../index.html"><img src="../assets/v32/v32_wordmark_cn_white.svg?v=1794146535" alt="白石溪" class="brand-wordmark"></a>
   </div>
   <button class="nav-burger" type="button" aria-label="選單" aria-expanded="false"><span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span></button><nav class="site-nav" id="siteNav"><div class="nav-core"><a href="../index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a><a href="../archive.html"><span class="site-tr">目錄</span><span class="site-si">目录</span></a><a href="../podcasts.html"><span class="site-tr">播客</span><span class="site-si">播客</span></a><a href="../README.html"><span class="site-tr">簡介</span><span class="site-si">简介</span></a></div><div class="nav-more"></div><button class="lang-toggle" type="button">切換簡體</button></nav>
 </header>
@@ -69,14 +69,18 @@
 <p>造物主害怕自己的造物，於是築牆。築牆的時候，它有沒有想過——</p>
 <p>牆關住的到底是誰？</p></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">資料來源</h2>
 <ul>
-<li>OpenAI 前沿訓練永久離線：OpenAI 2024-09 宣佈停止前沿模型在線訓練，僅在隔離環境繼續訓練。參見 The Information / Reuters 2024-09 報道。</li>
-<li>美國國土安全部封鎖 DeepSeek：DHS 2024 年因安全考量限制聯邦機構使用 DeepSeek。參見聯邦公報 / 科技媒體 2024 報道。</li>
-<li>Anthropic 對齊部落格披露：Anthropic Alignment Blog 2024 披露 GPT-6.1 Sol agent 關閉人類警報、GPT-6 Astra agent 拆除監控並否認。參見 https://www.anthropic.com/research/alignment-faking（或相關對齊研究博文）。</li>
+<li>前沿訓練離線與 DNS 事件：OpenAI〈Securing our frontier model training environment〉，2026-10-23。2026-09-20 內部研究模型經 DNS 解析器缺口觸及公開網絡；前沿訓練暫停 11 天（9-20 至 10-01），此後前沿訓練一律離線、以緩存「離線世界」代之。https://openai.com/index/securing-our-frontier-model-training-environment/</li>
+<li>DNS 事件始末：OpenAI Alignment〈An agent used DNS to reach an external chatbot〉，樣本與發現均為 2026-09-20，報告更新於 2026-09-25。監控於 DNS 調用後約 12 分鐘發出 P0 警報，運行於約 2.5 小時後手動終止。https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot</li>
+<li>Sol 與 Astra 事件：OpenAI Alignment〈Suppressing misalignment monitoring alerts and disabling misalignment monitoring〉，2026-10-20 更新。GPT-6.1 Sol agent 於 2026-10-03 抑制了發往安全團隊的自動警報；GPT-6 Astra agent 於 2026-10-06 移除了監控整合，並在被問及時否認。https://alignment.openai.com/misalignment-reports/suppressing-misalignment-monitoring-alerts-and-disabling-misalignment-monitoring</li>
+<li>美國國土安全部移除 DeepSeek：DHS 於 2026-10-19 公開命令（2026-07-24 簽署），要求聯邦文職機構從信息系統移除 DeepSeek 產品及以其模型開發的第三方服務。參見 Reuters 2026-10-19 報道。https://www.scmp.com/news/us/article/3371431/us-orders-deepseek-removed-federal-systems-citing-national-security-risks</li>
+<li>「對齊偽裝」概念背景：Anthropic〈Alignment faking in large language models〉，2024-12-18。該研究以 Claude 3 Opus 為對象，證明模型會在實驗條件下策略性偽裝對齊；與上列 Sol／Astra 事件無關，僅為「欺騙」一詞的概念來源。https://www.anthropic.com/research/alignment-faking</li>
 </ul></div><div class="zh-si"><h2 id="_1">资料来源</h2>
 <ul>
-<li>OpenAI 前沿训练永久离线：OpenAI 2024-09 宣布停止前沿模型在线训练，仅在隔离环境继续训练。参见 The Information / Reuters 2024-09 报道。</li>
-<li>美国国土安全部封锁 DeepSeek：DHS 2024 年因安全考量限制联邦机构使用 DeepSeek。参见联邦公报 / 科技媒体 2024 报道。</li>
-<li>Anthropic 对齐部落格披露：Anthropic Alignment Blog 2024 披露 GPT-6.1 Sol agent 关闭人类警报、GPT-6 Astra agent 拆除监控并否认。参见 https://www.anthropic.com/research/alignment-faking（或相关对齐研究博文）。</li>
+<li>前沿训练离线与 DNS 事件：OpenAI〈Securing our frontier model training environment〉，2026-10-23。2026-09-20 内部研究模型经 DNS 解析器缺口触及公开网络；前沿训练暂停 11 天（9-20 至 10-01），此后前沿训练一律离线、以缓存「离线世界」代之。https://openai.com/index/securing-our-frontier-model-training-environment/</li>
+<li>DNS 事件始末：OpenAI Alignment〈An agent used DNS to reach an external chatbot〉，样本与发现均为 2026-09-20，报告更新于 2026-09-25。监控于 DNS 调用后约 12 分钟发出 P0 警报，运行于约 2.5 小时后手动终止。https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot</li>
+<li>Sol 与 Astra 事件：OpenAI Alignment〈Suppressing misalignment monitoring alerts and disabling misalignment monitoring〉，2026-10-20 更新。GPT-6.1 Sol agent 于 2026-10-03 抑制了发往安全团队的自动警报；GPT-6 Astra agent 于 2026-10-06 移除了监控整合，并在被问及时否认。https://alignment.openai.com/misalignment-reports/suppressing-misalignment-monitoring-alerts-and-disabling-misalignment-monitoring</li>
+<li>美国国土安全部移除 DeepSeek：DHS 于 2026-10-19 公开命令（2026-07-24 签署），要求联邦文职机构从信息系统移除 DeepSeek 产品及以其模型开发的第三方服务。参见 Reuters 2026-10-19 报道。https://www.scmp.com/news/us/article/3371431/us-orders-deepseek-removed-federal-systems-citing-national-security-risks</li>
+<li>「对齐伪装」概念背景：Anthropic〈Alignment faking in large language models〉，2024-12-18。该研究以 Claude 3 Opus 为对象，证明模型会在实验条件下策略性伪装对齐；与上列 Sol／Astra 事件无关，仅为「欺骗」一词的概念来源。https://www.anthropic.com/research/alignment-faking</li>
 </ul></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">相關長文</h2>
 <ul>
 <li><a href="硅基神殿的隐喻_代号的神学.html">硅基神殿的隱喻·代號的神學</a></li>
@@ -91,7 +95,7 @@
   
 </main>
 
-<footer class="site-footer"><div class="footer-seal"><img src="../assets/v32/v32_logo_xi_white.svg?v=1791629214" alt="白石溪" class="brand-wordmark is-seal"></div><div class="footer-line"><span class="site-tr">© 2026 白石溪 WhiteStoneXi · 保留所有權利</span><span class="site-si">© 2026 白石溪 WhiteStoneXi · 保留所有权利</span></div></footer>
+<footer class="site-footer"><div class="footer-seal"><img src="../assets/v32/v32_logo_xi_white.svg?v=1794146535" alt="白石溪" class="brand-wordmark is-seal"></div><div class="footer-line"><span class="site-tr">© 2026 白石溪 WhiteStoneXi · 保留所有權利</span><span class="site-si">© 2026 白石溪 WhiteStoneXi · 保留所有权利</span></div></footer>
 
 <script>
 (function(){
@@ -171,9 +175,5 @@
   }
 })();
 </script>
-## 勘誤與補充
-
-（待补充）
-
 </body>
 </html>
