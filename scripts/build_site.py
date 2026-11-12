@@ -83,6 +83,8 @@ TOGGLE_JS = """
     saved=q||localStorage.getItem('wss_view')||'zh';
   }catch(e){}
   applyView(saved);
+  // P0-1 修复：?v=en 需同步切站点级导航/标语/按钮为英文（站点级 m-en）
+  if(saved==='en'){ b.classList.add('site-en'); }
   document.querySelectorAll('.para-tabs button').forEach(function(btn){
     btn.addEventListener('click',function(){ applyView(btn.dataset.view); });
   });
@@ -526,11 +528,13 @@ def _nav_html(depth=""):
         (f"{d}README.html",       "簡介", "简介"),
     ]
     ext = []
+    EN_LINKS = {"index.html": "Home", "archive.html": "Index", "podcasts.html": "Podcast", "README.html": "About"}
     def a(href, tr, si, cls=""):
         # 站内链接同页跳转；仅外链（http）新开标签
         ext = ' target="_blank" rel="noopener"' if href.startswith("http") else ""
+        en = EN_LINKS.get(href.split("/")[-1], tr)
         return (f'<a href="{href}"{cls}{ext}>'
-                f'<span class="site-tr">{tr}</span><span class="site-si">{si}</span></a>')
+                f'<span class="site-tr">{tr}</span><span class="site-si">{si}</span><span class="site-en">{en}</span></a>')
     core = "".join(a(h, tr, si) for h, tr, si in links)
     more = "".join(a(h, tr, si) for h, tr, si in ext)
     return (
@@ -540,7 +544,7 @@ def _nav_html(depth=""):
         f'<nav class="site-nav" id="siteNav">'
         f'<div class="nav-core">{core}</div>'
         f'<div class="nav-more">{more}</div>'
-        f'<button class="lang-toggle" type="button">切換簡體</button>'
+        f'<button class="lang-toggle" type="button">切換簡體 <span class="site-en" style="display:none">Switch</span></button>'
         f'</nav>'
     )
 
@@ -675,7 +679,8 @@ def strip_internal_sections(md):
     md = _re.sub(r"(?m)^[ \t]*<strong>相關長文</strong>[:：]\s*$", "", md)
     md = _re.sub(r"(?m)^[ \t]*<strong>相关长文</strong>[:：]\s*$", "", md)
     # 系列行删完变空（「**相關長文**：」后无任何 bullet）
-    md = _re.sub(r"(?m)^[ \t]*\*\*相關長文\*\*[:：]\s*\n(=[ \t]*\n)*[ \t]*$?", "", md)
+    md = _re.sub(r"(?m)^[ \t]*\*\*相關長文\*\*[:：]\s*$", "", md)
+    md = _re.sub(r"(?m)^[ \t]*\*\*相关长文\*\*[:：]\s*$", "", md)
     return md
 
 UPCOMING_TITLES = ("有限遊戲的造物主", "有限游戏的造物主",
@@ -1124,12 +1129,12 @@ index_html = f"""<!DOCTYPE html>
       <span class="motto-si">一條持續調查「語言、寫作與思想」的溪。</span>
     </div>
     <p class="home-subtitle"><span class="site-tr">在 AI 時代，重新學會學習。</span><span class="site-si">在 AI 时代，重新学会学习。</span></p>
-    <p class="home-subtitle-en">Essays on learning, language, and judgment in the age of AI.</p>
-    <p class="home-cta"><a class="home-cta-btn" href="https://substack.com/@whitestonexi" target="_blank" rel="noopener"><span class="site-tr">訂閱 Substack</span><span class="site-si">订阅 Substack</span></a><a class="home-cta-btn" href="https://open.spotify.com/show/2Zc8KcG9XmngIyz93yQOVW" target="_blank" rel="noopener"><span class="site-tr">Spotify 播客</span><span class="site-si">Spotify 播客</span></a></p>
+    <p class="home-subtitle-en"><span class="site-en">Essays on learning, language, and judgment in the age of AI.</span></p>
+    <p class="home-cta"><a class="home-cta-btn" href="https://substack.com/@whitestonexi" target="_blank" rel="noopener"><span class="site-tr">訂閱 Substack</span><span class="site-si">订阅 Substack</span><span class="site-en">Subscribe</span></a><a class="home-cta-btn" href="https://open.spotify.com/show/2Zc8KcG9XmngIyz93yQOVW" target="_blank" rel="noopener"><span class="site-tr">Spotify 播客</span><span class="site-si">Spotify 播客</span><span class="site-en">Spotify</span></a></p>
   </div>
 
   <section class="home-series">
-    <h2 class="home-section-title"><span class="site-tr">系列</span><span class="site-si">系列</span></h2>
+    <h2 class="home-section-title"><span class="site-tr">系列</span><span class="site-si">系列</span><span class="site-en">Series</span></h2>
     <div class="series-entries">
 {series_cards_html}
     </div>
@@ -1137,9 +1142,9 @@ index_html = f"""<!DOCTYPE html>
 
   <section class="home-fresh">
     <h2 class="home-section-title">
-      <span class="site-tr">最新</span><span class="site-si">最新</span>
+      <span class="site-tr">最新</span><span class="site-si">最新</span><span class="site-en">Latest</span>
       <a class="section-more" href="archive.html">
-        <span class="site-tr">全部目錄</span><span class="site-si">全部目录</span> →
+        <span class="site-tr">全部目錄</span><span class="site-si">全部目录</span><span class="site-en">All</span> →
       </a>
     </h2>
     <div class="minimal-articles-list">

@@ -7,7 +7,7 @@
 <meta name="copyright" content="zhangxunnj (白石溪 WhiteStoneXi), 2026, 保留所有权利">
 <title>建造手記之一：磨 · 白石溪</title>
 <link rel="icon" type="image/svg+xml" href="../assets/v32/v32_logo_xi_white.svg?v=1790580668">
-<link rel="stylesheet" href="../assets/style.css?v=1793870919">
+<link rel="stylesheet" href="../assets/style.css?v=1794470736">
 </head>
 <body class="">
 
@@ -15,7 +15,7 @@
   <div class="site-title">
     <a href="../index.html"><img src="../assets/v32/v32_wordmark_cn_white.svg?v=1793870919" alt="白石溪" class="brand-wordmark"></a>
   </div>
-  <button class="nav-burger" type="button" aria-label="選單" aria-expanded="false"><span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span></button><nav class="site-nav" id="siteNav"><div class="nav-core"><a href="../index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a><a href="../archive.html"><span class="site-tr">目錄</span><span class="site-si">目录</span></a><a href="../podcasts.html"><span class="site-tr">播客</span><span class="site-si">播客</span></a><a href="../README.html"><span class="site-tr">簡介</span><span class="site-si">简介</span></a></div><div class="nav-more"></div><button class="lang-toggle" type="button">切換簡體</button></nav>
+  <button class="nav-burger" type="button" aria-label="選單" aria-expanded="false"><span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span></button><nav class="site-nav" id="siteNav"><div class="nav-core"><a href="../index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span><span class="site-en">Home</span></a><a href="../archive.html"><span class="site-tr">目錄</span><span class="site-si">目录</span><span class="site-en">Index</span></a><a href="../podcasts.html"><span class="site-tr">播客</span><span class="site-si">播客</span><span class="site-en">Podcast</span></a><a href="../README.html"><span class="site-tr">簡介</span><span class="site-si">简介</span><span class="site-en">About</span></a></div><div class="nav-more"></div><button class="lang-toggle" type="button">切換簡體 <span class="site-en" style="display:none">Switch</span></button></nav>
 </header>
 
 <main class="article-container">
@@ -79,8 +79,7 @@
 - 中文譯稿轉載（CSDN）：https://blog.csdn.net/coolwubo/article/details/9373369
 - Steve Jobs，Stanford Commencement Address（2005）
 - 《搭行業知識庫，難的不是技術，而是立規矩》（微信轉貼）：https://mp.weixin.qq.com/s/NnUeaHMKCGM_VTEIje5k9A
-- Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe &amp; A. Shimamura (Eds.), <em>Metacognition: Knowing about knowing</em> (pp. 185–205). MIT Press.</p>
-<p><strong>相關長文</strong>：《寫作是學習的發生地》《AI 時代最大的認知分歧》</p></div><div class="zh-si"><h2 id="_1">建造手記之一：磨</h2>
+- Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe &amp; A. Shimamura (Eds.), <em>Metacognition: Knowing about knowing</em> (pp. 185–205). MIT Press.</p></div><div class="zh-si"><h2 id="_1">建造手記之一：磨</h2>
 <p>一份報告進來，是 a16z 的兩份報告。出去的時候，是前几天的一篇：《兩種 1%》。</p>
 <p>1% 有兩種。一種是少數人貢獻絕大多數 AI 消費；一種是喬布斯的減法——砍掉 99%，讓 1% 發光。</p>
 <p>寫到喬布斯的 1%，想起磨石機。</p>
@@ -124,8 +123,7 @@
 - 中文譯稿轉載（CSDN）：https://blog.csdn.net/coolwubo/article/details/9373369
 - Steve Jobs，Stanford Commencement Address（2005）
 - 《搭行業知識庫，難的不是技術，而是立規矩》（微信轉貼）：https://mp.weixin.qq.com/s/NnUeaHMKCGM_VTEIje5k9A
-- Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe &amp; A. Shimamura (Eds.), <em>Metacognition: Knowing about knowing</em> (pp. 185–205). MIT Press.</p>
-<p><strong>相關長文</strong>：《寫作是學習的發生地》《AI 時代最大的認知分歧》</p></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">相關長文</h2>
+- Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe &amp; A. Shimamura (Eds.), <em>Metacognition: Knowing about knowing</em> (pp. 185–205). MIT Press.</p></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">相關長文</h2>
 <ul>
 <li><a href="硅基神殿的隐喻_代号的神学.html">硅基神殿的隱喻·代號的神學</a></li>
 <li><a href="硅基神殿的隐喻_诸神的联邦.html">硅基神殿的隱喻·諸神的聯邦</a></li>
@@ -172,6 +170,8 @@
     saved=q||localStorage.getItem('wss_view')||'zh';
   }catch(e){}
   applyView(saved);
+  // P0-1 修复：?v=en 需同步切站点级导航/标语/按钮为英文（站点级 m-en）
+  if(saved==='en'){ b.classList.add('site-en'); }
   document.querySelectorAll('.para-tabs button').forEach(function(btn){
     btn.addEventListener('click',function(){ applyView(btn.dataset.view); });
   });

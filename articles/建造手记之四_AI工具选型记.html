@@ -7,7 +7,7 @@
 <meta name="copyright" content="zhangxunnj (白石溪 WhiteStoneXi), 2026, 保留所有权利">
 <title>建造手記之四：AI 工具選型記 · 白石溪</title>
 <link rel="icon" type="image/svg+xml" href="../assets/v32/v32_logo_xi_white.svg?v=1790580668">
-<link rel="stylesheet" href="../assets/style.css?v=1793870919">
+<link rel="stylesheet" href="../assets/style.css?v=1794470736">
 </head>
 <body class="">
 
@@ -15,7 +15,7 @@
   <div class="site-title">
     <a href="../index.html"><img src="../assets/v32/v32_wordmark_cn_white.svg?v=1793870919" alt="白石溪" class="brand-wordmark"></a>
   </div>
-  <button class="nav-burger" type="button" aria-label="選單" aria-expanded="false"><span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span></button><nav class="site-nav" id="siteNav"><div class="nav-core"><a href="../index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a><a href="../archive.html"><span class="site-tr">目錄</span><span class="site-si">目录</span></a><a href="../podcasts.html"><span class="site-tr">播客</span><span class="site-si">播客</span></a><a href="../README.html"><span class="site-tr">簡介</span><span class="site-si">简介</span></a></div><div class="nav-more"></div><button class="lang-toggle" type="button">切換簡體</button></nav>
+  <button class="nav-burger" type="button" aria-label="選單" aria-expanded="false"><span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span></button><nav class="site-nav" id="siteNav"><div class="nav-core"><a href="../index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span><span class="site-en">Home</span></a><a href="../archive.html"><span class="site-tr">目錄</span><span class="site-si">目录</span><span class="site-en">Index</span></a><a href="../podcasts.html"><span class="site-tr">播客</span><span class="site-si">播客</span><span class="site-en">Podcast</span></a><a href="../README.html"><span class="site-tr">簡介</span><span class="site-si">简介</span><span class="site-en">About</span></a></div><div class="nav-more"></div><button class="lang-toggle" type="button">切換簡體 <span class="site-en" style="display:none">Switch</span></button></nav>
 </header>
 
 <main class="article-container">
@@ -229,8 +229,7 @@
 <li>傳遞損耗分析：英文 "unsustainably high relative to revenue" 直譯是「相對收入而言高得不可持續」；中文譯文「服務成本相對收入高得不可持續」意思一致，無損耗。這句話是馬斯克在 X 上回複用戶時說的，不是正式公告，但隨後多家媒體報道確認了用量收緊的事實。</li>
 </ol>
 <p>本文由 AI 輔助寫作。素材、結構與觀點來自作者，文字由 AI 起草、作者改定。</p>
-<hr />
-<p><strong>相關長文</strong>：</p></div><div class="zh-si"><h2 id="_1">六、座標系</h2>
+<hr /></div><div class="zh-si"><h2 id="_1">六、座標系</h2>
 <p>這次選型給出的座標系是：判斷一個工具，不要看它用的模型，看它周圍的系統。模型會換，記憶、工作流、治理留下來。借得好，是本事；借什麼，反而是其次。</p>
 <p>這個座標系不只適用於 AI 工具。任何工具的選擇都一樣：看它能不能接進你已有的工作，看它的權限和治理配不配你的規矩，看它真實用量下的成本，看你的記憶和上下文能不能帶走。模型、功能、價格表都是明面上的，真正決定值不值得換的，是那些看不見的東西：你攢下來的上下文、你定下來的規矩、你跑通的工作流。</p>
 <p>借的反面是追。追新工具，是把判斷交給廠商的發佈節奏；借得好，是把判斷留在自己手裏。工具是借來的，判斷是自己的。</p>
@@ -256,8 +255,7 @@
 <li>傳遞損耗分析：英文 "unsustainably high relative to revenue" 直譯是「相對收入而言高得不可持續」；中文譯文「服務成本相對收入高得不可持續」意思一致，無損耗。這句話是馬斯克在 X 上回複用戶時說的，不是正式公告，但隨後多家媒體報道確認了用量收緊的事實。</li>
 </ol>
 <p>本文由 AI 輔助寫作。素材、結構與觀點來自作者，文字由 AI 起草、作者改定。</p>
-<hr />
-<p><strong>相關長文</strong>：</p></div></div>
+<hr /></div></div>
   </div>
 
   
@@ -296,6 +294,8 @@
     saved=q||localStorage.getItem('wss_view')||'zh';
   }catch(e){}
   applyView(saved);
+  // P0-1 修复：?v=en 需同步切站点级导航/标语/按钮为英文（站点级 m-en）
+  if(saved==='en'){ b.classList.add('site-en'); }
   document.querySelectorAll('.para-tabs button').forEach(function(btn){
     btn.addEventListener('click',function(){ applyView(btn.dataset.view); });
   });

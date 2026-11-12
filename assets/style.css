@@ -466,6 +466,13 @@ body {
 .site-si { display: none; }
 body.zh-simple .site-tr { display: none; }
 body.zh-simple .site-si { display: inline; }
+/* P0-1 修复：?v=en 站点级镜像——导航/标语/按钮/卡标题切英文（body.site-en） */
+body.site-en .site-tr { display: none; }
+body.site-en .site-en { display: inline; }
+/* ?v=en 时英文副标题占位才显示，避免重复 */
+.home-subtitle-en .site-en { display: none; }
+body.site-en .home-subtitle-en .site-en { display: inline; }
+body.site-en .home-subtitle { display: none; }
 .para-toolbar {
   display: flex;
   align-items: center;
