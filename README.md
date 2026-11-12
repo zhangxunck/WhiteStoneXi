@@ -102,7 +102,7 @@ Currently published (4 pieces):
 
 ### Principles of the Inquiries
 
-1. **Bilingual throughout.** Each piece ships in Simplified Chinese, Traditional Chinese, and English, side by side, switchable at the top.
+1. **Traditional/Simplified mirrors; selected bilingual essays.** The whole site switches between Traditional and Simplified at the top; the Silicon Temple essays (Code Theology, Federal of Gods, Reversal of the Axis) additionally ship a Chinese/English two-column layout.
 2. **Data is recomputable.** Percentages, densities, and quotations trace to primary material.
 
 ### The Name

@@ -370,6 +370,12 @@ def _podcast_page():
             _cover_v = (str(int(os.path.getmtime(os.path.join(ROOT, _cover))))
                        if os.path.exists(os.path.join(ROOT, _cover)) else "1")
             if _em.get("spotify"):
+                _ep_spt_link = _em["spotify"]
+            elif _em.get("spotify_ep"):
+                _ep_spt_link = _em["spotify_ep"]
+            else:
+                _ep_spt_link = None
+            if _em.get("spotify") or _em.get("spotify_ep"):
                 _cover_tag = (f'<a class="podcast-ep-cover" href="{_em["spotify"]}" '
                               f'target="_blank" rel="noopener">'
                               f'<img src="{_cover}?v={_cover_v}" alt="{_em["alt"]}" loading="lazy"></a>')
@@ -727,7 +733,7 @@ def _series_hero_figure(base, title):
         return ""
     v = str(int(os.path.getmtime(os.path.join(ROOT, "assets", img))))
     return f'''<figure class="card-hero">
-  <img src="../assets/{img}?v={v}" alt="{title} 题图" loading="lazy">
+  <img src="../assets/{img}?v={v}" alt="{title} 题图" loading="eager">
   <figcaption>白石溪 · 硅基神殿系列 · 作者摄</figcaption>
 </figure>'''
 def _hero_figure(base, title):
@@ -738,7 +744,7 @@ def _hero_figure(base, title):
     v = str(int(os.path.getmtime(os.path.join(ROOT, "assets", f"{s}.jpg"))))
     cap = HERO_CAPTION.get(base, "白石溪 · 写作与判断力 · 作者摄")
     return f'''<figure class="card-hero">
-  <img src="../assets/{s}.jpg?v={v}" alt="{title} 题图" loading="lazy">
+  <img src="../assets/{s}.jpg?v={v}" alt="{title} 题图" loading="eager">
   <figcaption>{cap}</figcaption>
 </figure>'''
 
@@ -970,7 +976,7 @@ for md_path in md_files:
 <main class="article-container">
   <div class="article-kicker">{trad(category_label)}</div>
   <h1 class="article-title">{trad(title)}</h1>
-  {f'<p class="article-subtitle">{trad(subtitle)}</p>' if subtitle else ''}
+  {f'<p class="article-subtitle">{trad(subtitle)}</p>' if subtitle and not subtitle.endswith("· " + title) and subtitle != title and title not in subtitle else ''}
   <div class="article-meta">
     <span>{trad(author)}</span>
     <span>{date}</span>
