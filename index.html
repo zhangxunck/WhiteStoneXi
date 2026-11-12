@@ -335,6 +335,8 @@
     b.classList.remove('m-en','m-duo');
     if(v==='en') b.classList.add('m-en');
     if(v==='duo') b.classList.add('m-duo');
+    var lt=document.querySelector('.lang-toggle');
+    if(lt) lt.style.display=(v==='en'||v==='duo')?'none':'';
     document.querySelectorAll('.para-tabs button').forEach(function(x){
       x.classList.toggle('on', x.dataset.view===v);
     });
