@@ -745,6 +745,42 @@ def _brand_wordmark(variant="字标_白底", depth=""):
 
 
 _BRAND_FAVICON_V = "1790580668"  # cache-bust for favicon (v32 Logo Xi)
+# 內外之界审计：重建不复活正文，只留「已下架」占位页（列表保留该条目，点进即見「本页面已下架」）
+DELISTED_BASENAMES = {"建造手记之三_AI领导力"}
+
+
+def _write_delisted_page(basename):
+    """內外之界审计下架页：robots noindex，只留「本页面已下架」，正文绝不复活。"""
+    out_path = os.path.join(ROOT, f"articles/{basename}.html")
+    page_html = f"""<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="copyright" content="zhangxunnj (白石溪 WhiteStoneXi), 2026, 保留所有权利">
+<title>404 · 页面已下架 · 白石溪</title>
+<link rel="icon" type="image/svg+xml" href="../assets/v32/v32_logo_xi_white.svg?v={_BRAND_FAVICON_V}">
+<link rel="stylesheet" href="../assets/style.css?v={css_v}">
+</head>
+<body class="">
+<header class="site-header">
+  <div class="site-title">
+    <a href="../index.html">{_brand_wordmark("字标_白底", "../")}</a>
+  </div>
+  <button class="nav-burger" type="button" aria-label="選單" aria-expanded="false"><span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span></button><nav class="site-nav" id="siteNav"><div class="nav-core"><a href="../index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a><a href="../archive.html"><span class="site-tr">目錄</span><span class="site-si">目录</span></a><a href="../podcasts.html"><span class="site-tr">播客</span><span class="site-si">播客</span></a><a href="../README.html"><span class="site-tr">簡介</span><span class="site-si">简介</span></a></div><div class="nav-more"></div><button class="lang-toggle" type="button">切換簡體</button></nav>
+</header>
+<main class="article-container">
+  <div class="article-kicker">Drops · 已下架</div>
+  <h1 class="article-title">本页面已下架</h1>
+  <p class="article-subtitle">出于「内外之界」审计要求，该页内容已下架，源文件保留在仓库中，不再对外公开。</p>
+  <p><a href="../index.html">← 返回首页</a> | <a href="../archive.html">查看目录</a></p>
+</main>
+</body>
+</html>"""
+    open(out_path, "w", encoding="utf-8").write(page_html)
+
+
 for md_path in md_files:
     raw = open(md_path, encoding="utf-8").read()
     basename = os.path.splitext(os.path.basename(md_path))[0]
@@ -767,6 +803,23 @@ for md_path in md_files:
     lead = fm.get("lead", "")
     author = fm.get("author", "白石溪特约撰述")
     date = fm.get("date", fm.get("updated", "2026-09-27"))
+
+    if basename in DELISTED_BASENAMES:
+        _write_delisted_page(basename)
+        article_metadata.append(
+            {
+                "basename": basename,
+                "title": title,
+                "category_label": category_label,
+                "subtitle": subtitle,
+                "lead": lead,
+                "abstract": lead,
+                "date": date,
+                "author": author,
+                "svg_art": "",
+            }
+        )
+        continue
     
     # 英文正文（可选；缺则单栏并加 body.no-en）
     en_path = md_path[:-3] + ".en.md"
