@@ -1050,11 +1050,12 @@ for slug in SERIES_ORDER:
     </a>"""
 
 
-# 2b. 最新 3 篇（跨系列按时间取）
-fresh_html = "".join(_card(a) for a in article_metadata[:3])
+# 2b. 最新 3 篇（跨系列按时间取）——DELISTED 不占首页位
+_visible_meta = [a for a in article_metadata if a["basename"] not in DELISTED_BASENAMES]
+fresh_html = "".join(_card(a) for a in _visible_meta[:3])
 # 2c. 其余文章折叠
-rest_count = max(0, len(article_metadata) - 3)
-rest_html = "".join(_card(a) for a in article_metadata[3:])
+rest_count = max(0, len(_visible_meta) - 3)
+rest_html = "".join(_card(a) for a in _visible_meta[3:])
 
 # 2b-1. 更多文章（默认折叠，超过 3 篇才显示开关）
 if rest_count:
@@ -1259,7 +1260,8 @@ for _grp_title, _items in _orphan_groups:
     rows = "".join(
         f'<li><a href="articles/{a["basename"]}.html">'
         f'<span class="ar-t">{trad(a["title"])}</span>'
-        f'<span class="ar-d">{a["date"]}</span></a></li>' for a in _items)
+        f'<span class="ar-d">{a["date"]}</span></a></li>'
+        for a in _items if a["basename"] not in DELISTED_BASENAMES)
     groups_html += f"""
   <section class="ar-group" style="--series-accent:#4A6B82">
     <h2 class="ar-group-head"><span class="site-tr">{_grp_tr}</span><span class="site-si">{_grp_si}</span></h2>
