@@ -658,7 +658,30 @@ INTERNAL_SECTIONS = ("待核实清单", "待核實清單", "To verify",
 def strip_internal_sections(md):
     for title in INTERNAL_SECTIONS:
         md = _re.sub(r"\n##+\s*%s\s*\n[\s\S]*?(?=\n##\s|\Z)" % _re.escape(title), "\n", md)
-    return _re.sub(r"\n{3,}", "\n\n", md).strip()
+    md = _re.sub(r"\n{3,}", "\n\n", md).strip()
+    # P0-2：未发布篇目（即将发布/待发布占位）一律不挂标题——公开页只列已上线篇目。
+    # 匹配「《标题》（即将发布/即将发布/待发布）」及「- 系列五 …《标题》（即将发布）」两种形态。
+    for _up in UPCOMING_TITLES:
+        # 带括注：《…》（即将发布）/ 《…》(即将发布) / 《…》（待发布） → 删
+        md = _re.sub(r"《" + _re.escape(_up) + r"》\s*[（(]\s*(?:即將發布|即将发布|待發布|待发布| forthcoming\s*)?[）)]?", "", md)
+        # 不带括注的独立引用（如「**相關長文**：《寫作是學習的發生地》《AI 時代最大的認知分歧》」）
+        # 也删除，但保留同句中其他已发布篇目（《諸神的聯邦》等）
+        md = _re.sub(r"《" + _re.escape(_up) + r"》", "", md)
+        # 系列条目行：- 系列五 · 邊界與遊戲：《…》（即将发布） → 整行删
+        md = _re.sub(r"(?m)^[ \t]*-[^\\n]*《" + _re.escape(_up) + r"》[^\n]*\n?", "", md)
+    # 删掉变空的相关长文段落（「**相關長文**：」后只剩空）
+    md = _re.sub(r"(?m)^[ \t]*\*\*相關長文\*\*[:：]\s*$", "", md)
+    md = _re.sub(r"(?m)^[ \t]*\*\*相关长文\*\*[:：]\s*$", "", md)
+    md = _re.sub(r"(?m)^[ \t]*<strong>相關長文</strong>[:：]\s*$", "", md)
+    md = _re.sub(r"(?m)^[ \t]*<strong>相关长文</strong>[:：]\s*$", "", md)
+    # 系列行删完变空（「**相關長文**：」后无任何 bullet）
+    md = _re.sub(r"(?m)^[ \t]*\*\*相關長文\*\*[:：]\s*\n(=[ \t]*\n)*[ \t]*$?", "", md)
+    return md
+
+UPCOMING_TITLES = ("有限遊戲的造物主", "有限游戏的造物主",
+                   "AI 時代最大的認知分歧", "AI 时代最大的认知分歧",
+                   "寫作是學習的發生地", "写作是学习的发生地",
+                   "無我者與共識", "无我与共识")
 
 # 来源分级标记剥离（Eva 品牌审计 P0-1，2026-10-08）：[Primary]/[Secondary]/[Unverified]
 # 是内部审稿分级，公开页只保留干净来源列表。md 源保留（交稿稿要全），渲染层剥离
