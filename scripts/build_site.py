@@ -471,8 +471,8 @@ SERIES = {
         "slug": "silicon-temple",
         "name":    {"tr": "硅基神殿的隱喻", "si": "硅基神殿的隐喻"},
         "tagline": {"tr": "五部曲 · 從符號到制度", "si": "五部曲 · 从符号到制度"},
-        "desc":    {"tr": "把 AI 當作神話來讀：代號、聯邦、軸心、無我、有限遊戲，五個維度拆開技術背後的隱喻結構。",
-                    "si": "把 AI 当作神话来读：代号、联邦、轴心、无我、有限游戏，五个维度拆开技术背后的隐喻结构。"},
+        "desc":    {"tr": "把 AI 當作神話來讀：從命名、聯邦、軸心出發，沿著一條弧線拆開技術背後的隱喻結構。",
+                    "si": "把 AI 当作神话来读：从命名、联邦、轴心出发，沿着一条弧线拆开技术背后的隐喻结构。"},
         "accent": "#8C3A2E",
         "order": [
             "硅基神殿的隐喻_代号的神学",
@@ -807,7 +807,7 @@ def _write_delisted_page(basename):
 <main class="article-container">
   <div class="article-kicker">Drops · 已下架</div>
   <h1 class="article-title">本页面已下架</h1>
-  <p class="article-subtitle">出于「内外之界」审计要求，该页内容已下架，源文件保留在仓库中，不再对外公开。</p>
+  <p class="article-subtitle">此頁內容已下架，不再對外公開。</p>
   <p><a href="../index.html">← 返回首页</a> | <a href="../archive.html">查看目录</a></p>
 </main>
 </body>
@@ -1632,7 +1632,7 @@ for _bn, _fp2, _pd in _eps:
     # 映射 basename -> 正式标题 + 描述
     _ep_titles = {
         "ep01": ("第一期 · 代號的神學",
-                 "以长文《硅基神殿的隐喻·代号的神学》为底稿：神话命名如何成为机器的止痛药。"),
+                 "以長文《矽基神殿的隱喻·代號的神學》為底稿：神話命名如何成為機器的止痛藥。"),
         "ep02": ("第二期 · 諸神的聯邦",
                  "三神从废墟站起，却没有替它们做决定的人——联邦没有牧师，这是代价而非缺陷。"),
     }
