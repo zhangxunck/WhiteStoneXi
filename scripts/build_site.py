@@ -1199,7 +1199,17 @@ for slug in SERIES_ORDER:
       </span>
       <span class="series-item-arrow">→</span>
     </a>""")
-    if not items_body:
+    if not items_body and slug == "chinese-writing":
+        # P0-2（Alex 2026-11-22 定：補齊篇目，不下架）：空殼頁列四篇，標「籌備中」，無連結。措辭照 Eva #717 定稿。
+        for k, up_title in enumerate(["翻譯史", "十人十策", "寫作作為學習的發生地", "判斷力該焊進腦子還是寫進文件"], 1):
+            items_body.append(f"""
+    <div class="series-item is-upcoming">
+      <span class="series-item-num">{k:02d}</span>
+      <span class="series-item-body">
+        <span class="series-item-title">{up_title} <span class="badge-status is-upcoming">籌備中</span></span>
+      </span>
+    </div>""")
+    elif not items_body:
         items_body.append("""
     <div class="series-item is-upcoming">
       <span class="series-item-body">
