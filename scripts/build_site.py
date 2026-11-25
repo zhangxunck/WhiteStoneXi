@@ -469,10 +469,11 @@ def _podcast_page():
 SERIES = {
     "silicon-temple": {
         "slug": "silicon-temple",
-        "name":    {"tr": "硅基神殿的隱喻", "si": "硅基神殿的隐喻"},
-        "tagline": {"tr": "五部曲 · 從符號到制度", "si": "五部曲 · 从符号到制度"},
+        "name":    {"tr": "硅基神殿的隱喻", "si": "硅基神殿的隐喻", "en": "The Silicon Temple"},
+        "tagline": {"tr": "五部曲 · 從符號到制度", "si": "五部曲 · 从符号到制度", "en": "Five parts · From symbol to institution"},
         "desc":    {"tr": "把 AI 當作神話來讀：從命名、聯邦、軸心出發，沿著一條弧線拆開技術背後的隱喻結構。",
-                    "si": "把 AI 当作神话来读：从命名、联邦、轴心出发，沿着一条弧线拆开技术背后的隐喻结构。"},
+                    "si": "把 AI 当作神话来读：从命名、联邦、轴心出发，沿着一条弧线拆开技术背后的隐喻结构。",
+                    "en": "Reading AI as myth: from naming, federation, and the axis, an arc that unpacks the metaphor structure behind the technology."},
         "accent": "#8C3A2E",
         "order": [
             "硅基神殿的隐喻_代号的神学",
@@ -484,10 +485,11 @@ SERIES = {
     },
     "chinese-writing": {
         "slug": "chinese-writing",
-        "name":    {"tr": "寫作與判斷力", "si": "写作与判断力"},
-        "tagline": {"tr": "語言 · 方法 · 認知", "si": "语言 · 方法 · 认知"},
+        "name":    {"tr": "寫作與判斷力", "si": "写作与判断力", "en": "Writing & Judgment"},
+        "tagline": {"tr": "語言 · 方法 · 認知", "si": "语言 · 方法 · 认知", "en": "Language · Method · Cognition"},
         "desc":    {"tr": "從翻譯史到十人十策，從寫作作為學習的發生地，到判斷力該焊進腦子還是寫進文件——四篇串成一條：怎麼想清楚，怎麼寫下來。",
-                    "si": "从翻译史到十人十策，从写作作为学习的发生地，到判断力该焊进脑子还是写进文件——四篇串成一条：怎么想清楚，怎么写下来。"},
+                    "si": "从翻译史到十人十策，从写作作为学习的发生地，到判断力该焊进脑子还是写进文件——四篇串成一条：怎么想清楚，怎么写下来。",
+                    "en": "From translation history to ten perspectives on ten topics: writing as a way of learning, and judgment welded into thinking and documents."},
         "accent": "#2C3E50",
         "order": [
             "翻译如何重塑中文_两千年来五波外来语与现代写作真相",
@@ -1054,30 +1056,32 @@ for slug in SERIES_ORDER:
     n_pub = sum(1 for b in sd["order"] if b in _BY_BASE)
     # 空货架降级（2026-10-02 品牌审计 P1-5）：0 篇已发布的系列不再打「已發布 0 / 共 4 篇」
     # 的大计数（读者视角=货架是空的），改显示「即將推出」小字，系列页照常可达。
+    # 英文三镜（P0-1/P0-3 2026-11-25）：每个 site-tr/site-si 成对补 site-en。
+    _en = lambda k: sd.get(k, {}).get("en", "") if isinstance(sd.get(k), dict) else ""
     if n_pub == 0:
         count_html = ('<span class="series-count is-empty">'
-                      '<span class="site-tr">即將推出</span><span class="site-si">即将推出</span></span>')
-        cta_tr, cta_si = "了解規劃", "了解规划"
+                      '<span class="site-tr">即將推出</span><span class="site-si">即将推出</span><span class="site-en">Coming soon</span></span>')
+        cta_tr, cta_si, cta_en = "了解規劃", "了解规划", "Learn more"
     else:
         count_html = (f'<span class="series-count">已發布 {n_pub} / 共 {n_art} '
-                      '<span class="site-tr">篇</span><span class="site-si">篇</span></span>')
-        cta_tr, cta_si = "進入系列", "进入系列"
+                      '<span class="site-tr">篇</span><span class="site-si">篇</span><span class="site-en">articles</span></span>')
+        cta_tr, cta_si, cta_en = "進入系列", "进入系列", "Enter series"
     series_cards_html += f"""
     <a class="series-entry{' is-empty' if n_pub == 0 else ''}" href="series/{slug}.html" style="--series-accent:{sd['accent']}">
       <span class="series-seal">{_brand_wordmark('Xi章_阴刻_方_朱红')}</span>
       <div class="series-entry-body">
         <div class="series-entry-tag">
-          <span class="site-tr">{g_tr}</span><span class="site-si">{g_si}</span>
+          <span class="site-tr">{g_tr}</span><span class="site-si">{g_si}</span><span class="site-en">{_en('tagline')}</span>
           {count_html}
         </div>
         <h2 class="series-entry-name">
-          <span class="site-tr">{n_tr}</span><span class="site-si">{n_si}</span>
+          <span class="site-tr">{n_tr}</span><span class="site-si">{n_si}</span><span class="site-en">{_en('name')}</span>
         </h2>
         <p class="series-entry-desc">
-          <span class="site-tr">{d_tr}</span><span class="site-si">{d_si}</span>
+          <span class="site-tr">{d_tr}</span><span class="site-si">{d_si}</span><span class="site-en">{_en('desc')}</span>
         </p>
         <div class="series-entry-cta">
-          <span class="site-tr">{cta_tr}</span><span class="site-si">{cta_si}</span>
+          <span class="site-tr">{cta_tr}</span><span class="site-si">{cta_si}</span><span class="site-en">{cta_en}</span>
           <span class="arrow">→</span>
         </div>
       </div>
