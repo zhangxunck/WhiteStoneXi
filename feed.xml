@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:ns0="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
 <channel>
 <title>白石溪播客</title>
 <link>https://whitestonexi.com/</link>
 <description>白石溪 WhiteStoneXi — 持续调查语言、写作与思想。三人对谈。</description>
 <language>zh-Hant</language>
-<itunes:author>白石溪 WhiteStoneXi</itunes:author>
-<itunes:owner><itunes:name>白石溪</itunes:name></itunes:owner>
-<itunes:category text="Society &amp; Culture"/>
-<itunes:explicit>false</itunes:explicit>
-<itunes:image href="https://whitestonexi.com/assets/podcast_cover_v2.png"/>
-<itunes:summary>白石溪 WhiteStoneXi — 持续调查语言、写作与思想。三人对谈。</itunes:summary>
+<ns0:author>白石溪 WhiteStoneXi</ns0:author>
+<ns0:owner><ns0:name>白石溪</ns0:name></ns0:owner>
+<ns0:category text="Society &amp; Culture" />
+<ns0:explicit>false</ns0:explicit>
+<ns0:image href="https://whitestonexi.com/assets/podcast_cover_v2.png" />
+<ns0:summary>白石溪 WhiteStoneXi — 持续调查语言、写作与思想。三人对谈。</ns0:summary>
 <item>
 <title>第一期 · 代號的神學</title>
 <description>以長文《矽基神殿的隱喻·代號的神學》為底稿：神話命名如何成為機器的止痛藥。</description>
-<enclosure url="https://whitestonexi.com/assets/podcast/ep01.mp3" type="audio/mpeg" length="5902044"/>
+<enclosure url="https://whitestonexi.com/assets/podcast/ep01.mp3" type="audio/mpeg" length="5902044" />
 <guid isPermaLink="false">ep01</guid>
 <pubDate>Thu, 05 Nov 2026 17:28:39 +0800</pubDate>
 </item>
 <item>
 <title>第二期 · 諸神的聯邦</title>
 <description>三神从废墟站起，却没有替它们做决定的人——联邦没有牧师，这是代价而非缺陷。</description>
-<enclosure url="https://whitestonexi.com/assets/podcast/ep02.mp3" type="audio/mpeg" length="7868124"/>
+<enclosure url="https://whitestonexi.com/assets/podcast/ep02.mp3" type="audio/mpeg" length="7868124" />
 <guid isPermaLink="false">ep02</guid>
-<pubDate>Thu, 05 Nov 2026 17:28:39 +0800</pubDate>
+<pubDate>Sat, 07 Nov 2026 08:00:00 +0800</pubDate>
 </item>
 </channel>
 </rss>
